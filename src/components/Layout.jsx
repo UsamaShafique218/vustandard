@@ -8,15 +8,12 @@ function Layout() {
     <div className="wrapper"> 
 
       <Header />
-
-      {/* Main content */}
+ 
       <main className="content">
         <Outlet /> 
       </main>
- 
-      <HomeContactIcons />
-
-      {/* Footer */}
+  
+      <HomeContactIcons /> 
       <footer>footer</footer>
     </div>
   );

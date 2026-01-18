@@ -13,9 +13,7 @@ function Home() {
     <Service />
     <WhyChoose />
     <Testimonial />
-    <OurTeam />
-
-    acbccc
+    <OurTeam /> 
     </>
   );
 }
