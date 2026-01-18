@@ -1,12 +1,12 @@
- 
+
 import React from 'react';
+import Banner from '../components/Banner';
 
 function Home() {
   return (
-    <div>
-      <h1>Home Page</h1>
-      <p>Welcome to the homepage!</p>
-    </div>
+    <>
+    <Banner />
+    </>
   );
 }
 

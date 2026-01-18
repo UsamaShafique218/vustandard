@@ -9,8 +9,7 @@ import Support from './pages/Support';
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* All pages use the Layout */}
+      <Routes> 
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="support" element={<Support />} />
