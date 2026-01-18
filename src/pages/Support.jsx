@@ -1,13 +1,13 @@
-import React from 'react'
  
- 
+import React from 'react';
 
 function Support() {
   return (
-    <main className="content">
-        Support
-    </main>
-  )
+    <div>
+      <h1>Support Page</h1>
+      <p>How can we help you?</p>
+    </div>
+  );
 }
 
-export default Support
+export default Support;

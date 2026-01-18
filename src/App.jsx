@@ -1,26 +1,23 @@
-import React from 'react'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-import './App.css'
-import Home from './pages/Home'
-import Support from './pages/Support'
+// src/App.jsx
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './App.css';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import Support from './pages/Support';
 
 function App() {
-
   return (
     <BrowserRouter>
-      <div className="wrapper"> 
-        <Link to="/">Home</Link>
-        <Link to="/support">Support</Link>
-        <Routes>
-          <Route path="/" element={<Home />} />  
-          <Route path="/support" element={<Support />} />  
-
-        </Routes>
-
-        <footer>footer</footer>
-      </div>
+      <Routes>
+        {/* All pages use the Layout */}
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="support" element={<Support />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;
