@@ -4,6 +4,7 @@ import Banner from '../components/Banner';
 import Service from '../components/Service';
 import WhyChoose from '../components/WhyChoose';
 import Testimonial from '../components/Testimonial';
+import OurTeam from '../components/OurTeam';
 
 function Home() {
   return (
@@ -12,6 +13,7 @@ function Home() {
     <Service />
     <WhyChoose />
     <Testimonial />
+    <OurTeam />
 
     acbccc
     </>
