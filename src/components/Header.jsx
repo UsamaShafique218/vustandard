@@ -126,7 +126,7 @@ function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link className="menuLink" to="/">
+                    <Link className="menuLink" to="/solved-mcqs">
                       Solved Mcq's
                     </Link>
                   </li>

@@ -8,6 +8,7 @@ import Support from './pages/Support';
 import Faqs from './pages/Faqs';
 import ContactUs from './pages/ContactUs';
 import DownloadNotes from './pages/DownloadNotes';
+import SolvedMcqsPage from './pages/SolvedMcqsPage';
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
           <Route path="/support" element={<Support />} />
           <Route path="/faqs" element={<Faqs />} />
           <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/Download-notes" element={<DownloadNotes />} /> 
+          <Route path="/download-notes" element={<DownloadNotes />} /> 
+          <Route path="/solved-mcqs" element={<SolvedMcqsPage />} /> 
+          
         </Route>
       </Routes>
     </BrowserRouter>
