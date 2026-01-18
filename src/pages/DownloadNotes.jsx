@@ -1,4 +1,4 @@
-import React from 'react'   
+import React from 'react'
 import DownloadNotesDataCS from '../data/DownloadNotesDataCS'
 
 
@@ -26,7 +26,6 @@ function DownloadNotes() {
 
                                                 <a
                                                     href={item.pdfUrl}
-                                                    download
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                 >
@@ -40,7 +39,7 @@ function DownloadNotes() {
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </main>
     )
 }
