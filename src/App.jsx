@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Support from './pages/Support';
 import Faqs from './pages/Faqs';
 import ContactUs from './pages/ContactUs';
+import DownloadNotes from './pages/DownloadNotes';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <Route path="/support" element={<Support />} />
           <Route path="/faqs" element={<Faqs />} />
           <Route path="/contact-us" element={<ContactUs />} />
-          
+          <Route path="/Download-notes" element={<DownloadNotes />} /> 
         </Route>
       </Routes>
     </BrowserRouter>
