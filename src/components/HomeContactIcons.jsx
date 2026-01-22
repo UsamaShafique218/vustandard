@@ -3,7 +3,7 @@ import React from 'react'
 function HomeContactIcons() {
   return (  
       <div className="whatsApp_btn">
-        <a target="_blank" href="https://wa.me/+971585603086?text=Hello! Sending Message from website">
+        <a target="_blank" href="https://wa.me/+923150250218?text=Hello! Sending Message from website">
           <i>
             <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
