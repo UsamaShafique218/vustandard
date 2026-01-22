@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import AnnouncementBar from "./AnnouncementBar";
-import TopNavMob from "./topNavMob";
+import TopNavMob from "./TopNavMob";
 import MobileFooter from "./MobileFooter";
 
 function HeaderLatest() {
