@@ -160,6 +160,11 @@ body { -webkit-text-size-adjust:none;  -webkit-overflow-scrolling: touch; }
 .visit_places_slider .slick-arrow.slick-prev{ left: 30%; }
 
 /* end jd responsive style */
+
+
+.os_content_left ul li{ width: 100%; padding-left: 0px; padding-right: 0px;}
+         .topNavMob{ display: none; }
+.topNavWeb{ display: block; }
  
 /*end of = (min-width: 1024px) and (max-width: 1279px)*/			
 }
@@ -211,7 +216,11 @@ body { -webkit-text-size-adjust:none; -webkit-overflow-scrolling: touch; overflo
 /* .openMobileMenu .header_left{ position: relative; z-index: 999; }*/
 .openMobileMenu .mob_menuBtn{  z-index: 999; }
 .openMobileMenu .header{  z-index: 9992; }
-.openMobileMenu{ overflow: hidden !important;}
+body.openMobileMenu {
+    overflow: hidden;
+    height: 100vh;
+    touch-action: none;
+}
 /* .openMobileMenu .topNav{ z-index: 9991;}  */ 
 
 .dropdownMenu{ position: initial; visibility: visible; opacity: 1; display: none;}
@@ -227,8 +236,8 @@ body { -webkit-text-size-adjust:none; -webkit-overflow-scrolling: touch; overflo
 .header_tracking { display: flex ; align-items: center; position: absolute; left: 0px; top: 39px; padding: 15px;  width: 100%; }
 .header_link > ul > li{ padding: 0px;}
 
-.header_link > ul{ display: block; }
-.header_link{ padding: 0px;}
+.header_link > ul{ display: block; padding-left: 0px !important; }
+.header_link ul{ padding: 0px;}
 .header_tracking{ justify-content: space-between;}
 
  
@@ -439,6 +448,13 @@ body { -webkit-text-size-adjust:none; -webkit-overflow-scrolling: touch; overflo
 .vehicle_plan ul::after{ width: 92%; }
 
 
+
+
+.os_content_left ul li{ width: 100%; padding-left: 0px; padding-right: 0px;}
+.topNavMob{ display: none; }
+.topNavWeb{ display: block; }
+
+
 /* end 768 */
 }
 
@@ -462,8 +478,9 @@ body { -webkit-text-size-adjust:none; -webkit-overflow-scrolling: touch; overflo
 
     .topPromo{ display: block;}
     .banner_text h1{ text-align: center; font-size: 30px;}
-    .navContact li a{ font-size: 0.83em;}
-    .navContact li{ padding-left: 10px; margin-left: 0px; width: 100%; justify-content: center;}
+    .navContact li a{ font-size: 0.74em; font-weight: 600;}
+    
+    .navContact li{ margin-left: 0px; width: 100%; justify-content: center;}
     .navInfo > ul > li{ padding-left: 10px; margin-left: 10px; border: 0px none; min-height: 20px;}
  
     .navOutlineBtn i svg { width: 20px; height: 12px; }
@@ -522,9 +539,7 @@ body { -webkit-text-size-adjust:none; -webkit-overflow-scrolling: touch; overflo
     .header_link{ padding: 0px;}
     .header_tracking{ justify-content: space-between;}
     .banner{ min-height: 0px;}
-    .banner_inner{ display: flex; }
-    .banner_icons_img{ display: none; }
-    .banner_right{ display: none; }
+    
      
     .all_btn svg, .field_icon svg{ max-width: 20px; max-height: 20px;}
     .ride_tab_header ul li a svg{max-width:18px; max-height: 18px; display: block;}
@@ -548,27 +563,11 @@ body { -webkit-text-size-adjust:none; -webkit-overflow-scrolling: touch; overflo
     .banner_box .banner_text small{ display: none;}
     /* .banner_box .banner_text p{ display: none;} */
 
-
-    /* new css */
-
-    .why_choose_vus{ padding: 3.625em 0px; }
-    .os_content_left{ width: 100%; padding-bottom: 1.75em; }
-    .why_choose_vus_inner{ flex-wrap: wrap; gap: 20px; }
-    .why_choose_vus_left{ width: 100%; }
-    .why_choose_vus_right{ width: 100%; padding-top: 0px; }
-    .r_vus_left_content ul{ padding-left: 0px; }
-    .r_vus_left_content ul li{ width: 100%; }
-    .ourTeam_detail ul{ flex-wrap: wrap; }
-    .ourTeam_detail ul li{ width: 100%; }
-    .topPromo p{ font-size: 1em; }
-
-    /* new css */
-
-
+ 
 
 
     
-    .os_content_left ul li{ width: 100%;}
+   
     .os_info_img { max-width: 100%; height: 6.75em; }
     .os_info_data h4{ padding-top: 0.5em; }
     .os_info { box-shadow: 0px 2px 1.15em rgba(0, 0, 0, 0.08); }
@@ -856,7 +855,7 @@ body { -webkit-text-size-adjust:none; -webkit-overflow-scrolling: touch; overflo
 
     .d_discovery_left{ width: 100%; }
     .d_discovery_left .banner_box{ padding-left: 0em; }
-    .banner_text{ padding: 2.5em 0.5em; }
+   
     .d_discover_list_content{ justify-content: center; align-items: center; }
     .d_discovery_right{ width: 100%; }
     .desert_safari_main .ct_value_right{ padding-left: 0em; }
@@ -1020,6 +1019,51 @@ body { -webkit-text-size-adjust:none; -webkit-overflow-scrolling: touch; overflo
    .sfariBook_increamentBox_mobile .v_card_spec span{ padding-left: 0px;}
 
  
+
+
+
+    /* new css */
+
+    .why_choose_vus{ padding: 3.625em 0px; }
+    .os_content_left{ width: 100%; padding-bottom: 1.75em; }
+    .why_choose_vus_inner{ flex-wrap: wrap; gap: 20px; }
+    .why_choose_vus_left{ width: 100%; }
+    .why_choose_vus_right{ width: 100%; padding-top: 0px; }
+    .r_vus_left_content ul{ padding-left: 0px; }
+    .r_vus_left_content ul li{ width: 100%; }
+    .ourTeam_detail ul{ flex-wrap: wrap; }
+    .ourTeam_detail ul li{ width: 100%; }
+    .topPromo p{ font-size: 1em; }
+
+    body.openMobileMenu {
+    overflow: hidden;
+    height: 100vh;
+    touch-action: none;
+}
+
+.banner_inner{ display: flex; }
+    .banner_icons_img{ display: none; }
+    .banner_right{ width: auto; }
+    .trusted_img{ width: 100px; height: 100px; bottom: 98px;
+    right: 0px; }
+
+     .banner_text{ padding: 8em 0em 4em 0em; }
+     .trusted_img img{ filter: drop-shadow(10px 10px 40px #E6B450); }
+
+     .header_link ul{ padding-left: 0px; }
+
+      .hasDropdown_li .dropdownMenu {
+            display: none !important;
+        }
+
+        .hasDropdown_li.open .dropdownMenu {
+            display: block !important;
+        }
+
+         .os_content_left ul li{ width: 100%; padding-left: 0px; padding-right: 0px;}
+         .topNavMob{ display: block; }
+.topNavWeb{ display: none; }
+    /* new css */
 
 
 

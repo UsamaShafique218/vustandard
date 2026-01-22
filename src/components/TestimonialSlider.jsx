@@ -9,8 +9,8 @@ import "swiper/css/pagination";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 import userImg1 from "../assets/images/user_img1.jpeg";
-import femaleIcon from "../assets/images/female_icon.png"; 
- 
+import femaleIcon from "../assets/images/female_icon.png";
+
 
 const TestimonialSlider = () => {
     return (
@@ -26,7 +26,28 @@ const TestimonialSlider = () => {
             }}
             loop={true}
             className="imageSlider"
+            breakpoints={{
+                0: {
+                    slidesPerView: 1,
+                    spaceBetween: 16,
+                    navigation: false,
+                },
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 24,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                    navigation: true,
+                },
+            }}
         >
+
             <SwiperSlide>
                 <div className="review_card">
                     <div className="review_card_image">
@@ -38,7 +59,7 @@ const TestimonialSlider = () => {
                     </div>
 
                     <div className="review_card_content">
-                        <h3 className="review_card_name">Usama Shafique</h3> 
+                        <h3 className="review_card_name">Usama Shafique</h3>
                         <div className="review_card_rating">
                             <span className="star filled">&#9733;</span>
                             <span className="star filled">&#9733;</span>
@@ -106,12 +127,12 @@ const TestimonialSlider = () => {
                             <p>I always visit Pak Jobs Ghazi for new vacancies. Their updates are fast, reliable, and extremely helpful for applying without any confusion.</p>
                         </div>
                     </div>
-                </div> 
+                </div>
             </SwiperSlide>
-             <SwiperSlide>
+            <SwiperSlide>
                 <div className="review_card">
                     <div className="review_card_image">
-                       <img
+                        <img
                             src={userImg1}
                             alt="Usama Shafique"
                             loading="lazy"
@@ -133,9 +154,9 @@ const TestimonialSlider = () => {
                             <p>I always visit Pak Jobs Ghazi for new vacancies. Their updates are fast, reliable, and extremely helpful for applying without any confusion.</p>
                         </div>
                     </div>
-                </div> 
+                </div>
             </SwiperSlide>
-            
+
         </Swiper>
     );
 };

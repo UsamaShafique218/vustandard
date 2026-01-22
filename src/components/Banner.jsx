@@ -70,8 +70,7 @@ function Banner() {
                             <p>
                                 Reliable academic LMS assistance for VU students, ensuring accuracy, confidentiality, and timely completion.
                             </p>
-
-                            <button className="all_btn mt-4">Contact Us</button>
+ 
                         </div>
                     </div>
 

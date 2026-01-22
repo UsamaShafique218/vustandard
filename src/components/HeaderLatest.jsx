@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import AnnouncementBar from "./AnnouncementBar";
+import TopNavMob from "./topNavMob";
+import MobileFooter from "./MobileFooter";
 
 function HeaderLatest() {
-    const [openLangDropdown, setOpenLangDropdown] = useState(false);
-    const [openCurrDropdown, setOpenCurrDropdown] = useState(false);
-    const [selectedLang, setSelectedLang] = useState("ENG");
-    const [selectedCurr, setSelectedCurr] = useState("USD");
-    const [openTrackDropdown, setOpenTrackDropdown] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [sticky, setSticky] = useState(false);
+    const [helpDropdownOpen, setHelpDropdownOpen] = useState(false);
 
     const headerRef = useRef();
     const topNavRef = useRef();
@@ -24,21 +22,43 @@ function HeaderLatest() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // Close dropdowns when clicking outside
+    // Close Help dropdown on outside click
     useEffect(() => {
         const handleClickOutside = (e) => {
-            if (
-                !e.target.closest(".navDropdown") &&
-                !e.target.closest(".customDropdownParent")
-            ) {
-                setOpenLangDropdown(false);
-                setOpenCurrDropdown(false);
-                setOpenTrackDropdown(false);
+            if (!e.target.closest(".hasDropdown_li")) {
+                setHelpDropdownOpen(false);
             }
         };
+
         document.addEventListener("click", handleClickOutside);
         return () => document.removeEventListener("click", handleClickOutside);
     }, []);
+
+    // Handle body class for mobile menu
+    useEffect(() => {
+        if (mobileMenuOpen) {
+            document.body.classList.add("openMobileMenu");
+        } else {
+            document.body.classList.remove("openMobileMenu");
+        }
+
+        return () => {
+            document.body.classList.remove("openMobileMenu");
+        };
+    }, [mobileMenuOpen]);
+
+    // Close mobile menu on link click
+    const handleMenuLinkClick = () => {
+        setMobileMenuOpen(false);
+        setHelpDropdownOpen(false);
+    };
+
+    // Toggle Help dropdown
+    const toggleHelpDropdown = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setHelpDropdownOpen(prev => !prev);
+    };
 
     return (
         <header
@@ -47,376 +67,112 @@ function HeaderLatest() {
             style={{ paddingBottom: sticky ? headerRef.current?.offsetHeight : 0 }}
         >
             {/* Top Navigation */}
-            <div className="topNav d-none" ref={topNavRef}>
+            <div className="topNav topNavWeb" ref={topNavRef}>
                 <div className="autoContent">
                     <div className="topNavInner">
                         <AnnouncementBar />
                     </div>
                 </div>
             </div>
-            <div className="topNav">
-                <div className="topPromo">
-                    <p>15% Off with code <b>tour15</b></p>
-                    <div className="topPromoClose"> </div>
-                </div>
-                <div className="autoContent">
-                    <div className="topNavInner">
-                        <div className="navContact">
-                            <ul>
-                                <li>
-                                    <a href="mailTo:info@c2crides.com" title="Please Email us at: info@c2crides.com">
-                                        <i><svg width="19" height="15" viewBox="0 0 19 15" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M13.875 0.0625H5.125C2.5 0.0625 0.75 1.375 0.75 4.4375V10.5625C0.75 13.625 2.5 14.9375 5.125 14.9375H13.875C16.5 14.9375 18.25 13.625 18.25 10.5625V4.4375C18.25 1.375 16.5 0.0625 13.875 0.0625ZM14.2862 5.39125L11.5475 7.57875C10.97 8.0425 10.235 8.27 9.5 8.27C8.765 8.27 8.02125 8.0425 7.4525 7.57875L4.71375 5.39125C4.43375 5.16375 4.39 4.74375 4.60875 4.46375C4.83625 4.18375 5.2475 4.13125 5.5275 4.35875L8.26625 6.54625C8.93125 7.08 10.06 7.08 10.725 6.54625L13.4638 4.35875C13.7438 4.13125 14.1637 4.175 14.3825 4.46375C14.61 4.74375 14.5662 5.16375 14.2862 5.39125Z"
-                                                    fill="#F3F3F3" />
-                                            </svg>
 
-                                        </i>
-                                        info@c2crides.com</a>
-                                </li>
-                                <li>
-                                    <a href="callTo:+971 58 123 1234" title="Please call us at: +971 58 123 1234">
-                                        <i><svg width="19" height="19" viewBox="0 0 19 19" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M13.9488 8.51068C13.6084 8.51068 13.3393 8.23359 13.3393 7.90109C13.3393 7.60818 13.0463 6.99859 12.5555 6.46818C12.0726 5.95359 11.5422 5.65276 11.0988 5.65276C10.7584 5.65276 10.4893 5.37568 10.4893 5.04318C10.4893 4.71068 10.7663 4.43359 11.0988 4.43359C11.8905 4.43359 12.7218 4.86109 13.4501 5.62901C14.1309 6.34943 14.5663 7.24401 14.5663 7.89318C14.5663 8.23359 14.2893 8.51068 13.9488 8.51068Z"
-                                                    fill="#F3F3F3" />
-                                                <path
-                                                    d="M16.8071 8.50912C16.4667 8.50912 16.1976 8.23203 16.1976 7.89953C16.1976 5.08911 13.9096 2.80911 11.1071 2.80911C10.7667 2.80911 10.4976 2.53203 10.4976 2.19953C10.4976 1.86703 10.7667 1.58203 11.0992 1.58203C14.5826 1.58203 17.4167 4.4162 17.4167 7.89953C17.4167 8.23203 17.1396 8.50912 16.8071 8.50912Z"
-                                                    fill="#F3F3F3" />
-                                                <path
-                                                    d="M8.74759 11.8341L7.28301 13.2987C6.97426 13.6074 6.48342 13.6074 6.16676 13.3066C6.07967 13.2195 5.99259 13.1404 5.90551 13.0533C5.09009 12.2299 4.35384 11.367 3.69676 10.4645C3.04759 9.56203 2.52509 8.65953 2.14509 7.76495C1.77301 6.86245 1.58301 5.99953 1.58301 5.1762C1.58301 4.63786 1.67801 4.12328 1.86801 3.64828C2.05801 3.16536 2.35884 2.72203 2.77842 2.3262C3.28509 1.82745 3.83926 1.58203 4.42509 1.58203C4.64676 1.58203 4.86842 1.62953 5.06634 1.72453C5.27217 1.81953 5.45426 1.96203 5.59676 2.16786L7.43342 4.75661C7.57592 4.95453 7.67884 5.13661 7.75009 5.31078C7.82134 5.47703 7.86093 5.64328 7.86093 5.7937C7.86093 5.9837 7.80551 6.1737 7.69467 6.35578C7.59176 6.53786 7.44134 6.72786 7.25134 6.91786L6.64967 7.54328C6.56259 7.63036 6.52301 7.73328 6.52301 7.85995C6.52301 7.92328 6.53093 7.9787 6.54676 8.04203C6.57051 8.10536 6.59426 8.15286 6.61009 8.20036C6.75259 8.46161 6.99801 8.80203 7.34634 9.2137C7.70259 9.62536 8.08259 10.0449 8.49426 10.4645C8.57342 10.5437 8.66051 10.6229 8.73968 10.702C9.05634 11.0108 9.06426 11.5174 8.74759 11.8341Z"
-                                                    fill="#F3F3F3" />
-                                                <path
-                                                    d="M17.393 14.5095C17.393 14.7312 17.3534 14.9608 17.2743 15.1824C17.2505 15.2458 17.2268 15.3091 17.1951 15.3724C17.0605 15.6574 16.8863 15.9266 16.6568 16.1799C16.2688 16.6074 15.8413 16.9162 15.3584 17.1141C15.3505 17.1141 15.3426 17.122 15.3347 17.122C14.8676 17.312 14.3609 17.4149 13.8147 17.4149C13.0072 17.4149 12.1443 17.2249 11.2338 16.837C10.3234 16.4491 9.41301 15.9266 8.51051 15.2695C8.20176 15.0399 7.89301 14.8104 7.6001 14.5649L10.1888 11.9762C10.4105 12.1424 10.6084 12.2691 10.7747 12.3562C10.8143 12.372 10.8618 12.3958 10.9172 12.4195C10.9805 12.4433 11.0438 12.4512 11.1151 12.4512C11.2497 12.4512 11.3526 12.4037 11.4397 12.3166L12.0413 11.7229C12.2393 11.5249 12.4293 11.3745 12.6113 11.2795C12.7934 11.1687 12.9755 11.1133 13.1734 11.1133C13.3238 11.1133 13.4822 11.1449 13.6563 11.2162C13.8305 11.2874 14.0126 11.3904 14.2105 11.5249L16.8309 13.3854C17.0368 13.5279 17.1793 13.6941 17.2663 13.892C17.3455 14.0899 17.393 14.2879 17.393 14.5095Z"
-                                                    fill="#F3F3F3" />
-                                            </svg>
-                                        </i>
-                                        +971 58 123 1234</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="navInfo navInfo_web">
-                            <ul>
-                                <li>
-                                    <a className="navOutlineBtn" href="become_partner.html">
-                                        <i>
-                                            <svg width="15" height="10" viewBox="0 0 15 10" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M1.74562 0L2.5457 0.297357C2.69778 0.368157 2.72423 0.467276 2.70439 0.644274L1.26293 4.75064C1.21003 4.88515 1.09762 4.99135 0.958769 4.96303C0.707505 4.84268 0.370283 4.78604 0.132244 4.6586C0.0528976 4.61612 0.033061 4.54532 0 4.46036V4.35416L1.44146 0.233638C1.48113 0.120359 1.55387 0.0353997 1.66627 0H1.74562Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M11.4389 6.68165C11.4389 6.68165 11.4323 6.66041 11.4191 6.64625C10.2487 5.34354 9.19078 3.9134 8.0072 2.61777C7.87496 2.47617 7.72949 2.27085 7.52451 2.38413C6.72443 2.85141 5.91775 3.32576 5.09122 3.72932C4.56886 3.9134 4.2647 3.39656 4.48951 2.90805C4.57547 2.71689 4.90608 2.47617 5.07139 2.33457C5.63342 1.87438 6.24836 1.42126 6.85668 1.03186C7.64353 0.522109 8.19895 0.146872 9.11144 0.656628C9.43543 0.833626 10.0438 1.36462 10.3545 1.4071C10.6256 1.4425 10.8306 1.30798 11.0554 1.17346L12.8936 4.93999C12.6424 5.4639 12.2522 5.93118 11.8489 6.32057C11.7629 6.40553 11.677 6.48341 11.591 6.56129C11.5712 6.58253 11.4455 6.68873 11.4323 6.68165H11.4389Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M12.3712 0.0625C12.4506 0.0625 12.5299 0.0978997 12.5894 0.154539C13.2573 1.47849 13.9053 2.83075 14.54 4.17594C14.5533 4.2963 14.5467 4.39542 14.4607 4.4733C14.2491 4.60074 14.0309 4.72818 13.8127 4.84854C13.6077 4.96181 13.4622 5.06801 13.2837 4.82022L11.4191 0.975811C11.353 0.834213 11.3463 0.664294 11.472 0.558095C11.7166 0.423577 11.9547 0.267818 12.1993 0.140379C12.2522 0.11206 12.3117 0.0695799 12.3712 0.0695799V0.0625Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M3.39214 0.992561L2.03664 4.79449L3.09459 6.04763C3.09459 6.04763 3.02185 6.10427 2.9954 6.13259C2.96896 6.16091 2.86316 6.29543 2.84994 6.28835C2.70447 6.13967 2.56561 5.98391 2.42675 5.82816C2.22839 5.6016 1.99035 5.33256 1.81182 5.09184C1.6928 4.929 1.67296 4.83697 1.73909 4.63165C2.22178 3.3431 2.64496 2.03331 3.12104 0.744763C3.24005 0.581925 3.47148 0.560685 3.61034 0.702284C3.65001 0.737683 3.66324 0.794323 3.68968 0.829722C3.74258 0.900522 3.97401 1.00672 4.05336 1.02796C4.75425 1.1908 5.4882 0.199608 6.30811 0.256248C6.49326 0.270408 6.76436 0.362447 6.8966 0.504046C6.92966 0.539445 6.92966 0.546525 6.8966 0.574845C6.87015 0.596085 6.64534 0.737683 6.63211 0.737683C6.60566 0.737683 6.48003 0.666884 6.42713 0.652724C5.89816 0.511125 5.30306 1.05628 4.83359 1.2616C4.36413 1.46692 4.00046 1.49524 3.57728 1.1908C3.51116 1.14124 3.40536 1.07752 3.38552 0.985481L3.39214 0.992561Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M11.406 7.17904C11.406 7.17904 11.6506 6.9808 11.6771 6.95956C11.6903 6.95248 11.6969 6.93833 11.7167 6.93833C11.7696 7.07284 11.7432 7.2286 11.7035 7.36312C11.558 7.88704 10.9828 8.14191 10.5265 7.88704C10.5133 8.12775 10.4406 8.36139 10.2885 8.55255C10.0637 8.82867 9.72646 8.91363 9.40907 8.78619C9.38262 8.77911 9.27683 8.70831 9.26361 8.72247C9.26361 9.36674 8.66851 9.88358 8.09325 9.56498C8.13953 9.45878 8.22549 9.36674 8.25855 9.25346C8.27178 9.2393 8.3908 9.29594 8.43047 9.29594C8.87349 9.33134 9.09169 8.62335 8.8272 8.29059C8.54949 7.92952 8.24533 7.58968 7.96761 7.23568C7.91472 7.16488 7.78247 7.02328 7.77586 6.94541C7.76264 6.80381 7.88827 6.61973 8.02712 6.73301C8.45031 7.22152 8.84704 7.75252 9.27683 8.23395C9.37601 8.34723 9.48181 8.45343 9.63389 8.48175C10.1364 8.55255 10.3546 7.84456 10.0769 7.46224L8.91316 6.08165C8.8272 5.91173 9.0454 5.6427 9.19087 5.8197C9.62728 6.32945 10.024 6.87461 10.467 7.37728C10.6257 7.55428 10.7447 7.66756 10.996 7.63924C11.1282 7.62508 11.3002 7.48348 11.3597 7.35604C11.3795 7.31356 11.3927 7.22152 11.3993 7.20736L11.406 7.17904Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M5.34945 9.1061C5.17753 8.92202 5.14447 8.61758 5.23704 8.38394C5.28994 8.24943 5.37589 8.17155 5.46847 8.07243C5.78585 7.74675 6.1363 7.44939 6.45368 7.11664C7.04217 6.62812 7.56453 7.53435 7.1149 8.04411C6.78429 8.41934 6.34127 8.74502 6.00405 9.12734C5.81891 9.29726 5.52797 9.29725 5.35606 9.1061H5.34945Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M5.47494 6.23755C5.91135 6.17383 6.14278 6.6411 6.02376 7.04466C5.98408 7.1721 5.91796 7.25706 5.832 7.3491C5.60719 7.58274 5.32948 7.85177 5.09144 8.07125C4.98564 8.17037 4.89307 8.26241 4.74099 8.27657C4.2583 8.31905 4.05332 7.71725 4.27814 7.32078C4.31781 7.24998 4.38393 7.17918 4.44344 7.12254C4.66826 6.8889 4.94597 6.61986 5.18401 6.40039C5.26335 6.32959 5.36254 6.24463 5.46833 6.23047L5.47494 6.23755Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M7.41206 8.25585C7.90136 8.18505 8.12617 8.77268 7.91458 9.18332C7.84846 9.31784 7.45173 9.75679 7.33271 9.86299C6.81035 10.3303 6.21525 9.50899 6.70455 8.9072C6.81035 8.77976 7.14096 8.39745 7.25998 8.31957C7.29965 8.29125 7.36577 8.26293 7.41206 8.25585Z"
-                                                    fill="white" />
-                                                <path
-                                                    d="M3.63007 6.13838C4.05987 6.07466 4.32435 6.57026 4.17889 6.97382C4.11276 7.15789 3.90779 7.34905 3.74909 7.44817C3.18706 7.79509 2.7242 6.89594 3.22673 6.4145C3.3193 6.32246 3.51105 6.1667 3.63669 6.14546L3.63007 6.13838Z"
-                                                    fill="white" />
-                                            </svg>
-                                        </i>
-                                        Become a Partner </a>
-                                </li>
-                                <li>
-                                    <div className="navDropdown customDropdown navLang">
-                                        <div className="navDropdown_span">
-                                            <span className="dropdownData" data-rel="ENG">
-                                                <i>
-                                                    <img src="images/flag_uk.svg" alt="#" />
-                                                </i>
-                                                <em> ENG </em>
-                                            </span>
-                                        </div>
-                                        <div className="navDropdownBox">
-                                            <ul>
-                                                <li>
-                                                    <span className="dropdownData" data-rel="ENG">
-                                                        <i><img src="images/flag_uk.svg" alt="#" /></i> <em>ENG</em>
-                                                    </span>
-                                                </li>
+            <TopNavMob />
 
-                                                <li>
-                                                    <span className="dropdownData" data-rel="Arabic">
-                                                        <i><img src="images/flag_uae.svg" alt="#" /></i>
-                                                        <em>Arabic</em>
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                    </div>
-                                </li>
-                                <li>
-                                    <div className="navDropdown customDropdown navCurr">
-                                        <div className="navDropdown_span">
-                                            <span className="dropdownData" data-rel="USD">
-                                                <i>
-                                                    <svg width="19" height="20" viewBox="0 0 19 20" fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M14.6658 11.9474C16.4918 7.71709 13.1786 3.02405 8.59298 3.34628C3.72642 3.68504 1.11551 9.39435 4.13955 13.2612C7.02312 16.9462 12.8151 16.2439 14.6658 11.9474ZM7.94851 12.5589C7.08922 12.311 6.50259 11.6913 6.37865 10.799L8.10549 10.5841C8.13028 10.832 8.20464 11.1542 8.4112 11.3112V9.8901C7.63454 9.74964 6.84135 9.35304 6.65958 8.51854C6.39518 7.32049 7.22968 6.36205 8.4112 6.28769V5.51929H9.63404V6.28769C10.5099 6.32074 11.2948 6.88259 11.4766 7.76666L9.89017 8.01453C9.8406 8.00627 9.7745 7.60968 9.63404 7.59315V8.70857C10.452 8.90687 11.4105 9.27868 11.617 10.1958C11.9062 11.493 10.9064 12.5836 9.63404 12.658V13.5008H8.4112V12.6745C8.29553 12.5836 8.10549 12.6002 7.94851 12.5589Z"
-                                                            fill="#C2C2C2" />
-                                                        <path
-                                                            d="M17.1033 5.53591C16.7563 5.17236 16.1118 5.40371 16.054 5.89945C16.0209 6.13906 16.3266 6.70091 16.4175 6.97356C17.2024 9.32835 16.8389 11.9393 15.426 13.9718C13.724 16.4175 10.766 17.6816 7.79984 17.2189C7.75026 17.1694 7.9403 16.7562 7.94856 16.6654C7.94856 16.5993 7.94856 16.6075 7.89072 16.6075L5.49463 17.1446L7.20494 19.0201C7.26278 18.921 7.35367 18.3922 7.43629 18.3757C11.1792 19.0862 14.9964 17.2602 16.8554 13.9801C18.1609 11.6914 18.4005 8.8987 17.5082 6.41172C17.4338 6.1969 17.2438 5.68463 17.1033 5.53591Z"
-                                                            fill="#0FA85B" />
-                                                        <path
-                                                            d="M6.32894 2.15648C7.59309 1.69379 8.92333 1.59464 10.2453 1.75989L10.0966 2.41262L12.5505 1.87556L10.8485 0L10.6336 0.611417C7.07256 -0.0495744 3.4371 1.53681 1.47065 4.54432C-0.0248397 6.82474 -0.40491 9.74963 0.446117 12.3523C0.611365 12.8645 0.950123 14.013 1.702 13.5503C2.26384 13.2033 1.80941 12.5671 1.66069 12.1375C0.272606 8.05583 2.27211 3.63545 6.32894 2.15648Z"
-                                                            fill="#0FA85B" />
-                                                        <path
-                                                            d="M9.63403 10.312V11.4605C10.1876 11.287 10.2041 10.4938 9.63403 10.312Z"
-                                                            fill="#C2C2C2" />
-                                                        <path
-                                                            d="M8.41103 7.51025C8.22099 7.64245 8.20447 8.006 8.3284 8.18777C8.35319 8.22908 8.3284 8.25387 8.41103 8.23734V7.51025Z"
-                                                            fill="#C2C2C2" />
-                                                    </svg>
-
-                                                </i>
-                                                <em> USD </em>
-                                            </span>
-                                        </div>
-                                        <div className="navDropdownBox">
-                                            <ul>
-                                                <li className="active">
-                                                    <span className="dropdownData" data-rel="USD">
-                                                        <i> <svg width="19" height="20" viewBox="0 0 19 20" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <path className="fllChange"
-                                                                    d="M14.6658 11.9474C16.4918 7.71709 13.1786 3.02405 8.59298 3.34628C3.72642 3.68504 1.11551 9.39435 4.13955 13.2612C7.02312 16.9462 12.8151 16.2439 14.6658 11.9474ZM7.94851 12.5589C7.08922 12.311 6.50259 11.6913 6.37865 10.799L8.10549 10.5841C8.13028 10.832 8.20464 11.1542 8.4112 11.3112V9.8901C7.63454 9.74964 6.84135 9.35304 6.65958 8.51854C6.39518 7.32049 7.22968 6.36205 8.4112 6.28769V5.51929H9.63404V6.28769C10.5099 6.32074 11.2948 6.88259 11.4766 7.76666L9.89017 8.01453C9.8406 8.00627 9.7745 7.60968 9.63404 7.59315V8.70857C10.452 8.90687 11.4105 9.27868 11.617 10.1958C11.9062 11.493 10.9064 12.5836 9.63404 12.658V13.5008H8.4112V12.6745C8.29553 12.5836 8.10549 12.6002 7.94851 12.5589Z"
-                                                                    fill="#C2C2C2" />
-                                                                <path className="fllChange"
-                                                                    d="M17.1033 5.53591C16.7563 5.17236 16.1118 5.40371 16.054 5.89945C16.0209 6.13906 16.3266 6.70091 16.4175 6.97356C17.2024 9.32835 16.8389 11.9393 15.426 13.9718C13.724 16.4175 10.766 17.6816 7.79984 17.2189C7.75026 17.1694 7.9403 16.7562 7.94856 16.6654C7.94856 16.5993 7.94856 16.6075 7.89072 16.6075L5.49463 17.1446L7.20494 19.0201C7.26278 18.921 7.35367 18.3922 7.43629 18.3757C11.1792 19.0862 14.9964 17.2602 16.8554 13.9801C18.1609 11.6914 18.4005 8.8987 17.5082 6.41172C17.4338 6.1969 17.2438 5.68463 17.1033 5.53591Z"
-                                                                    fill="#0FA85B" />
-                                                                <path className="fllChange"
-                                                                    d="M6.32894 2.15648C7.59309 1.69379 8.92333 1.59464 10.2453 1.75989L10.0966 2.41262L12.5505 1.87556L10.8485 0L10.6336 0.611417C7.07256 -0.0495744 3.4371 1.53681 1.47065 4.54432C-0.0248397 6.82474 -0.40491 9.74963 0.446117 12.3523C0.611365 12.8645 0.950123 14.013 1.702 13.5503C2.26384 13.2033 1.80941 12.5671 1.66069 12.1375C0.272606 8.05583 2.27211 3.63545 6.32894 2.15648Z"
-                                                                    fill="#0FA85B" />
-                                                                <path
-                                                                    d="M9.63403 10.312V11.4605C10.1876 11.287 10.2041 10.4938 9.63403 10.312Z"
-                                                                    fill="#C2C2C2" />
-                                                                <path
-                                                                    d="M8.41103 7.51025C8.22099 7.64245 8.20447 8.006 8.3284 8.18777C8.35319 8.22908 8.3284 8.25387 8.41103 8.23734V7.51025Z"
-                                                                    fill="#C2C2C2" />
-                                                            </svg>
-                                                        </i> <em>USD</em>
-                                                    </span>
-                                                </li>
-                                                <li>
-                                                    <span className="dropdownData" data-rel="AED">
-                                                        <i>
-                                                            <svg width="19" height="20" viewBox="0 0 19 20" fill="none"
-                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                <g clip-path="url(#clip0_506_27)">
-                                                                    <path className="fllChange"
-                                                                        d="M17.1005 5.54001C16.7505 5.18001 16.1105 5.41001 16.0505 5.90001C16.0205 6.14001 16.3205 6.70001 16.4105 6.97001C17.1905 9.32001 16.8305 11.94 15.4205 13.97C13.7205 16.42 10.7605 17.68 7.79047 17.22C7.74047 17.17 7.93047 16.76 7.94047 16.67C7.94047 16.6 7.94047 16.61 7.88047 16.61L5.48047 17.15L7.19047 19.03C7.25047 18.93 7.34047 18.4 7.42047 18.39C11.1605 19.1 14.9805 17.27 16.8405 13.99C18.1505 11.7 18.3905 8.91001 17.4905 6.42001C17.4205 6.21001 17.2305 5.69001 17.0905 5.54001H17.1005Z"
-                                                                        fill="#0FA85B" />
-                                                                    <path className="fllChange"
-                                                                        d="M6.32954 2.15999C7.58953 1.69999 8.91953 1.59999 10.2495 1.75999L10.0995 2.40999L12.5495 1.86999L10.8495 -0.0100098L10.6395 0.59999C7.06954 -0.0500097 3.43954 1.53999 1.46953 4.53999C-0.020465 6.81999 -0.400465 9.74999 0.449535 12.35C0.619535 12.86 0.949535 14.01 1.70954 13.55C2.26954 13.2 1.81953 12.57 1.66953 12.14C0.269535 8.05999 2.26954 3.63999 6.32954 2.15999Z"
-                                                                        fill="#0FA85B" />
-                                                                    <path
-                                                                        d="M12.3992 8.15997H11.9492V10.94H12.3992C12.5092 10.94 12.5692 10.89 12.5692 10.79V8.30997C12.5692 8.20997 12.5092 8.15997 12.3992 8.15997Z"
-                                                                        fill="#C2C2C2" />
-                                                                    <path
-                                                                        d="M5.42969 10.23H6.09969L5.76969 8.66998L5.42969 10.23Z"
-                                                                        fill="#C2C2C2" />
-                                                                    <path className="fllChange"
-                                                                        d="M8.58961 3.34998C3.71961 3.68998 1.10961 9.39999 4.13961 13.26C7.01961 16.95 12.8196 16.24 14.6696 11.95C16.4996 7.71998 13.1796 3.02999 8.59961 3.34998H8.58961ZM6.41961 11.71L6.27961 11.06H5.23961L5.09961 11.71H3.93961L5.04961 7.37999H6.48961L7.59961 11.71H6.40961H6.41961ZM10.4296 11.71H7.76961V7.37999H10.3696V8.21999H8.94961V9.09999H10.1696V9.93998H8.94961V10.86H10.4296V11.7V11.71ZM13.7496 10.88C13.7496 11.44 13.4196 11.72 12.7596 11.72H10.7696V7.38999H12.7596C13.4196 7.38999 13.7496 7.66998 13.7496 8.22998V10.89V10.88Z"
-                                                                        fill="#C2C2C2" />
-                                                                </g>
-                                                                <defs>
-                                                                    <clipPath id="clip0_506_27">
-                                                                        <rect width="18.04" height="19.02"
-                                                                            fill="white" />
-                                                                    </clipPath>
-                                                                </defs>
-                                                            </svg>
-
-                                                        </i> <em> AED</em>
-                                                    </span>
-                                                </li>
-
-                                            </ul>
-                                        </div>
-
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div className="header_main">
                 <div className="autoContent">
                     <div className="header_mainInner">
                         <div className="header_left">
-                            <a href="index.html" className="header_logo">
-                                <img src="images/logo.svg" alt="#" />
-                            </a>
+                            <Link to="/" className="header_logo" onClick={handleMenuLinkClick}>
+                                VuStandard
+                            </Link>
                         </div>
-                        <div className="header_right"> 
+
+                        <div className="header_right">
                             <div className="header_link">
                                 <ul>
-                                    <li className="active"><a className="menuLink" href="index.html">Home</a> </li>
-                                    <li className="hasDropdown_li"><a className="menuLink hasDropdown"
-                                        href="javascript:void(0)">Our Services</a>
-                                        <div className="dropdownMenu">
-                                            <div className="dropdownMenu_inner">
-                                                <div className="autoContent">
-                                                    <div className="dropdownMenuList">
-                                                        <ul>
-                                                            <li> <a className="menuLink"
-                                                                href="transportation-services.html">Rides</a>
-                                                            </li>
-                                                            <li> <a className="menuLink"
-                                                                href="airport-ride-in-uae.html">Airport
-                                                                Rides</a> </li>
-                                                            <li> <a className="menuLink"
-                                                                href="Best-city-to-City-travel-agency-in-uae.html">City
-                                                                Tour</a> </li>
-                                                            <li> <a className="menuLink" href="car_rentals.html">Car
-                                                                Rentals</a> </li>
-                                                            <li> <a className="menuLink"
-                                                                href="Full-day-luxury-chauffeur-service-in-uae.html">Full
-                                                                Day
-                                                                Chauffeur</a> </li>
-                                                            <li> <a className="menuLink" href="courier_service.html">Courier
-                                                                Service</a> </li>
-                                                            <li> <a className="menuLink"
-                                                                href="premium-desert-safari.html">Desert
-                                                                Safari</a> </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="dropdownMenu_overlay"></div>
-                                        </div>
-
+                                    <li>
+                                        <Link className="menuLink" to="/" onClick={handleMenuLinkClick}>
+                                            Home
+                                        </Link>
                                     </li>
-                                    <li className="hasDropdown_li"><a className="menuLink hasDropdown"
-                                        href="javascript:void(0)">Help</a>
+
+                                    {/* Help Dropdown */}
+                                    <li className={`hasDropdown_li ${helpDropdownOpen ? "open" : ""}`}>
+                                        <Link
+                                            className="menuLink hasDropdown"
+                                            to="#"
+                                            onClick={toggleHelpDropdown}
+                                        >
+                                            Help
+                                        </Link>
+
                                         <div className="dropdownMenu">
                                             <div className="dropdownMenu_inner">
                                                 <div className="autoContent">
                                                     <div className="dropdownMenuList">
                                                         <ul>
-                                                            <li> <a className="menuLink" href="aboutUs.html">About
-                                                                Us</a> </li>
-                                                            <li> <a className="menuLink" href="faqs.html">FAQs</a>
+                                                            <li>
+                                                                <Link className="menuLink" to="/rides" onClick={handleMenuLinkClick}>
+                                                                    About Us
+                                                                </Link>
                                                             </li>
-                                                            <li> <a className="menuLink" href="support.html">Support</a>
+                                                            <li>
+                                                                <Link className="menuLink" to="/faqs" onClick={handleMenuLinkClick}>
+                                                                    FAQs
+                                                                </Link>
                                                             </li>
-                                                            <li> <a className="menuLink" href="contactUs.html">Contact
-                                                                Us</a> </li>
-                                                            <li> <a className="menuLink"
-                                                                href="booking_conditions.html">Booking
-                                                                Conditions</a> </li>
-                                                            <li> <a className="menuLink" href="terms.html">Terms &
-                                                                Conditions</a> </li>
-                                                            <li> <a className="menuLink" href="privacy.html">Privacy
-                                                                Policy </a> </li>
+                                                            <li>
+                                                                <Link className="menuLink" to="/support" onClick={handleMenuLinkClick}>
+                                                                    Support
+                                                                </Link>
+                                                            </li>
+                                                            <li>
+                                                                <Link className="menuLink" to="/contact-us" onClick={handleMenuLinkClick}>
+                                                                    Contact Us
+                                                                </Link>
+                                                            </li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="dropdownMenu_overlay"></div>
+
+                                            <div
+                                                className="dropdownMenu_overlay"
+                                                onClick={() => setHelpDropdownOpen(false)}
+                                            />
                                         </div>
+                                    </li>
+
+                                    <li>
+                                        <Link className="menuLink" to="/download-notes" onClick={handleMenuLinkClick}>
+                                            Download Notes
+                                        </Link>
+                                    </li>
+
+                                    <li>
+                                        <Link className="menuLink" to="/solved-mcqs" onClick={handleMenuLinkClick}>
+                                            Solved Mcq's
+                                        </Link>
                                     </li>
                                 </ul>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="mob_menuBtn hc_cricle hamburger-lines">
+
+                {/* Hamburger */}
+                <div
+                    className={`mob_menuBtn hc_cricle hamburger-lines ${mobileMenuOpen ? "active" : ""}`}
+                    onClick={() => setMobileMenuOpen(prev => !prev)}
+                >
                     <span className="line line1"></span>
                     <span className="line line2"></span>
                     <span className="line line3"></span>
                 </div>
             </div>
-            {/* <!-- mobile footer menu --> */}
-            <div className="mobileFooter">
-                <div className="mobileFooter_inner">
-                    <ul>
-                        <li>
-                            <a className="active" href="index.html">
-                                <i className="hf_svg_stroke">
-                                    <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M9.87868 3.51458L4.18329 7.95255C3.2323 8.69221 2.46094 10.2666 2.46094 11.4607V19.2905C2.46094 21.7419 4.45802 23.7496 6.90947 23.7496H19.1456C21.597 23.7496 23.5941 21.7419 23.5941 19.3011V11.6086C23.5941 10.33 22.7382 8.69221 21.6921 7.96312L15.162 3.38778C13.6827 2.35226 11.3052 2.40509 9.87868 3.51458Z"
-                                            stroke="white" stroke-width="1.58499" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                        <path d="M13.0276 19.5234V16.3535" stroke="white" stroke-width="1.58499"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </i>
-                                <span>Home</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="booking_ride_search_mobile.html">
-                                <i className="hf_svg_fill">
-                                    <svg width="24" height="22" viewBox="0 0 24 22" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M8.63191 2.97168C7.08882 3.10134 6.20706 3.49397 5.26556 4.78828C4.6725 5.60302 4.30131 6.55773 4.04389 7.53822C3.62718 7.4071 3.67483 7.00415 3.15572 7.01667C2.90755 7.02256 1.37442 7.5036 1.10989 7.62809C0.747935 7.799 0.0290121 8.92461 0.0759448 9.32314C0.147055 9.92499 0.892289 9.97435 1.34313 10.0429C1.38295 10.213 1.31184 10.1637 1.25282 10.2108C0.646959 10.6992 0.15701 10.9379 0.0624338 11.8462C0.211054 13.7674 -0.134541 16.0046 0.0624338 17.8875C0.0837669 18.0916 0.191854 18.4326 0.287853 18.6117C0.381718 18.787 0.745091 19.0986 0.762868 19.1509C1.00464 19.875 0.28572 21.4795 1.66952 21.6739C2.3152 21.7645 4.13064 21.7557 4.79197 21.6806C5.13685 21.6415 5.75195 21.3137 5.75195 20.9071V19.4706L10.81 19.464C11.7088 19.3336 11.3654 18.1446 10.8164 18.1446H7.45859C7.80988 17.721 8.13698 17.2702 8.70871 17.1929L9.64665 17.1538C10.1978 16.9748 10.1018 15.9346 9.46674 15.9332C8.70373 15.8838 8.65182 15.8875 8.23725 15.9678C7.13291 16.1829 6.45239 17.5472 5.57204 18.1424C4.38095 18.0223 2.88266 18.3081 1.72997 18.1476C1.61477 18.1314 1.34242 17.9789 1.34242 17.886V16.4496H3.29794C3.80282 16.4496 3.80282 15.1972 3.29794 15.1972H1.34242V11.8455C1.34242 11.6598 3.07537 10.5106 3.33563 10.227C4.23233 9.25169 2.41333 8.86936 1.76908 8.86126C1.74774 8.84579 1.80534 8.76991 1.83947 8.75076C1.93547 8.69551 2.91395 8.40748 2.99786 8.43105C3.31359 8.51945 3.74523 9.61781 4.29348 9.52499C5.64244 9.55151 5.98377 9.60233 7.12011 9.52646C7.64135 9.49184 7.97699 9.00049 7.68188 8.49882C7.63566 8.42 7.45433 8.20637 7.33202 8.199H5.18307C5.55711 6.53858 6.48936 4.44574 8.34889 4.29619L8.73929 4.13192C9.30035 4.00153 9.72487 2.87813 8.63262 2.96947L8.63191 2.97168ZM2.05352 19.4721H4.54237V20.3561H2.05352V19.4721Z"
-                                            fill="#fff" />
-                                        <path
-                                            d="M8.90334 8.63343C8.9012 9.81871 9.10387 11.0033 9.45515 12.1583C9.11524 11.0003 8.90974 9.80766 8.90334 8.63343Z"
-                                            fill="#fff" />
-                                        <path
-                                            d="M4.36536 12.2519C4.17052 12.2379 3.86617 12.1952 3.67204 12.1598C3.3172 12.0965 2.78245 11.8254 2.46103 11.8983C2.05428 11.9896 1.86655 12.5539 2.09339 12.9119C2.24272 13.1477 3.0356 13.3539 3.31933 13.4099C3.99061 13.5425 5.75912 13.6096 6.42257 13.5005C7.03554 13.4003 7.00781 12.4066 6.41191 12.2681C5.88498 12.1458 4.96055 12.2954 4.36536 12.2519Z"
-                                            fill="#fff" />
-                                        <path
-                                            d="M22.0899 3.15328C20.5469 1.35068 18.4854 0.535935 16.4531 0.556561C14.42 0.535198 12.3592 1.34994 10.8162 3.15254C9.43307 4.76803 8.89334 6.67524 8.90472 8.63253C8.91112 9.8075 9.11662 10.9994 9.45653 12.1574C9.8007 13.2889 10.2878 14.3925 10.8645 15.4378C11.7548 17.0518 12.8584 18.5295 13.982 19.7656C14.2102 20.0198 15.5556 21.2029 15.9908 21.4784C15.993 21.4798 15.9951 21.4813 15.9972 21.4828C16.1757 21.5955 16.2995 21.6647 16.436 21.6721C16.4417 21.6721 16.4474 21.6721 16.4523 21.6721C16.458 21.6721 16.4637 21.6721 16.4687 21.6721C16.6052 21.6647 16.729 21.5955 16.9074 21.4828C16.9096 21.4813 16.9117 21.4798 16.9138 21.4784C17.349 21.2029 18.6952 20.0198 18.9227 19.7656C20.0455 18.5288 21.1854 17.0658 22.0757 15.4518C22.171 15.2993 22.2293 15.1969 22.2407 15.174C22.7228 14.2223 23.1402 13.2035 23.4482 12.1567C23.7994 11.0016 24.0021 9.81634 24 8.6318C24.0106 6.67524 23.4716 4.76803 22.0885 3.1518L22.0899 3.15328ZM20.0192 16.2717C19.6658 16.7866 19.2967 17.2676 18.9248 17.7037C18.6262 18.0536 17.1229 19.6257 16.9707 19.7686C16.921 19.8157 16.7339 19.9785 16.5882 20.0912C16.5391 20.148 16.5078 20.187 16.4957 20.2039C16.4879 20.2054 16.473 20.1988 16.4523 20.187C16.4324 20.1988 16.4168 20.2054 16.409 20.2039C16.3976 20.187 16.3656 20.1487 16.3165 20.0912C16.1707 19.9785 15.9844 19.8157 15.9339 19.7686C15.7818 19.6257 14.2785 18.0536 13.9798 17.7037C13.6079 17.2676 13.2389 16.7866 12.8855 16.2717C10.4905 12.7814 8.80018 7.70656 11.6353 4.18828C12.8869 2.63541 14.6668 1.85602 16.4516 1.85381C18.2358 1.85529 20.0164 2.63467 21.2679 4.18828C24.1031 7.70656 22.4128 12.7814 20.0178 16.2717H20.0192Z"
-                                            fill="#fff" />
-                                        <path
-                                            d="M19.5793 7.77355C18.9109 7.8649 19.0616 8.69732 18.9073 9.21666C18.6207 10.1832 17.7646 10.964 16.7811 11.0657C13.5228 11.4009 12.6795 6.57648 16.097 5.78973C16.3964 5.72123 16.636 5.86193 16.9006 5.59084C17.1338 5.35216 17.1544 4.94258 16.9461 4.68696C16.6531 4.326 15.5431 4.57646 15.1406 4.726C12.3325 5.77132 11.7849 9.63877 14.1287 11.5474C16.1589 13.2012 19.3069 12.248 20.0771 9.69181C20.2463 9.13048 20.5258 7.6439 19.5793 7.77355Z"
-                                            fill="#fff" />
-                                    </svg>
-                                </i>
-                                <span>Book ride</span>
-                            </a>
-                        </li> 
-                        <li>
-                            <a target="_blank"
-                                href="https://wa.me/+971585603086?text=Hello! Sending Message from website">
-                                <i className="hf_svg_stroke">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M16.9998 9.00016C16.9998 12.8702 13.6398 16.0002 9.49976 16.0002L8.56976 17.1202L8.01976 17.7802C7.54976 18.3402 6.64975 18.2201 6.33975 17.5501L4.99976 14.6001C3.17976 13.3201 1.99976 11.2902 1.99976 9.00016C1.99976 5.13016 5.35976 2.00016 9.49976 2.00016C12.5198 2.00016 15.1298 3.67016 16.2998 6.07016C16.7498 6.96016 16.9998 7.95016 16.9998 9.00016Z"
-                                            stroke="white" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                        <path
-                                            d="M22.0005 12.8598C22.0005 15.1498 20.8205 17.1799 19.0005 18.4599L17.6606 21.4098C17.3506 22.0798 16.4505 22.2099 15.9805 21.6399L14.5005 19.8598C12.0805 19.8598 9.92056 18.7898 8.57056 17.1198L9.50055 15.9998C13.6405 15.9998 17.0005 12.8698 17.0005 8.99984C17.0005 7.94984 16.7506 6.95984 16.3006 6.06984C19.5706 6.81984 22.0005 9.57982 22.0005 12.8598Z"
-                                            stroke="white" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                        <path d="M7.00024 9H12.0002" stroke="white" stroke-width="1.5"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
 
-                                </i>
-                                <span>live chat</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+            {/* Mobile Footer */}
+            <div className="mobileFooter">
+                <MobileFooter />
             </div>
         </header>
     );

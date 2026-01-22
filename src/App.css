@@ -291,7 +291,7 @@ body { width: 100%; font-family: var(--family);  color: var(--p_color); font-siz
 
 .topPromo p{ font-size: 1.250em; line-height: 1em; color: var(--white); font-weight: 900; text-transform: uppercase; cursor: pointer; margin-bottom: 0px; }
 
-.topPromo p b{  font-weight: 900; color: var(--sg_color);}
+.topPromo p b{  font-weight: 900; color: var(--golder_yellow);}
 
 .topPromoClose{
   width: 22px;
@@ -301,14 +301,7 @@ body { width: 100%; font-family: var(--family);  color: var(--p_color); font-siz
   top: 5px;
   cursor: pointer;
   background: no-repeat center / 22px 22px;
-  background-image: url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'>\
-<path d='M9 16.5C13.125 16.5 16.5 13.125 16.5 9C16.5 4.875 13.125 1.5 9 1.5C4.875 1.5 1.5 4.875 1.5 9C1.5 13.125 4.875 16.5 9 16.5Z' stroke='white' stroke-width='1.5'/>\
-<path d='M6.877 11.122L11.122 6.877' stroke='white' stroke-width='1.5'/>\
-<path d='M11.122 11.122L6.877 6.877' stroke='white' stroke-width='1.5'/>\
-</svg>");
-}
-
+  background-image: url("data:image/svg+xml;utf8,\<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none'>\<path d='M9 16.5C13.125 16.5 16.5 13.125 16.5 9C16.5 4.875 13.125 1.5 9 1.5C4.875 1.5 1.5 4.875 1.5 9C1.5 13.125 4.875 16.5 9 16.5Z' stroke='white' stroke-width='1.5'/>\<path d='M6.877 11.122L11.122 6.877' stroke='white' stroke-width='1.5'/>\<path d='M11.122 11.122L6.877 6.877' stroke='white' stroke-width='1.5'/>\</svg>"); }
 
  
 
@@ -317,10 +310,10 @@ body { width: 100%; font-family: var(--family);  color: var(--p_color); font-siz
 .navContact ul{  display: flex; align-items: center; min-height: 36px; padding: 0px; }
 .navContact li{ border-left: 1px solid var(--grey_dark); padding-left: 2.125em; margin-left: 2.125em;  min-height: 36px;  display: flex; align-items: center;   }
 .navContact li:first-child{ border-left: 0px none; padding-left: 0; margin-left: 0; }
-.navContact li a{ display: flex; align-items: center; gap: 0.625em; color: var(--light_grey); font-size: var(--fs14); line-height: 1.5em; transition: var(--transition); }
+.navContact li a{ display: flex; align-items: center; gap: 6px; color: var(--light_grey); font-size: var(--fs14); line-height: 1.5em; transition: var(--transition); }
 
-.navContact i{ display: block;}
-.navContact li a i svg{ display: block;}
+.navContact i{ width: 14px; height: 14px; display: block;}
+.navContact li a i svg{ width: 100%; height: 100%; display: block;}
 .navContact li a svg path{ transition: var(--transition); }
 .navContact li a:hover{ color: var(--pg_color);}
 .navContact li a:hover svg path{ fill: var(--pg_color);}
@@ -1342,15 +1335,20 @@ body { width: 100%; font-family: var(--family);  color: var(--p_color); font-siz
 .mobileFooter_inner li a:hover, .mobileFooter_inner li a.active{ color: var(--golder_yellow); } 
 
 .mobileFooter_inner li a:hover .hf_svg_stroke path, .mobileFooter_inner li a.active .hf_svg_stroke path, .mobileFooter_inner li a:hover .hf_svg_stroke, .mobileFooter_inner li a.active .hf_svg_stroke{ fill: none; stroke: var(--golder_yellow); } 
-.mobileFooter_inner li a:hover .hf_svg_fill path, .mobileFooter_inner li a.active .hf_svg_fill path, .mobileFooter_inner li a:hover .hf_svg_fill, .mobileFooter_inner li a.active .hf_svg_fill{ stroke: none; fill: var(--pg_color); } 
+.mobileFooter_inner li a:hover .hf_svg_fill path, .mobileFooter_inner li a.active .hf_svg_fill path, .mobileFooter_inner li a:hover .hf_svg_fill, .mobileFooter_inner li a.active .hf_svg_fill{ stroke: none; fill: var(--golder_yellow); } 
 
 .mobile_trackBooking_dropdown{ top: initial; bottom: 100%;  margin-bottom: 22px;  right: -52px !important;}
 .mobileFooter_inner li i{ display: flex;}
 .mobile_trackBooking_dropdown .all_btn {  padding: 0.75em 0.75em !important; }
 .mobile_trackBooking_dropdown .all_btn:hover, .mobile_trackBooking_dropdown .all_btn.active{ color: var(--white) !important;} 
 
-
-
-
-
+ 
 /* mobile footer css end here */
+
+
+
+.pr10{ padding-right: 10px !important; }
+.pl10{ padding-left: 10px !important; }
+
+.topNavMob{ display: none; }
+.topNavWeb{ display: block; }
