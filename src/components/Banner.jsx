@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import trustedImg from "../assets/images/trusted_img.png";  
-import banner_icons from "../assets/images/banner_icons_img.png"; 
+import trustedImg from "../assets/images/trusted_img.png";
+import banner_icons from "../assets/images/banner_icons_img.png";
 
 function Banner() {
     const spans = [
@@ -51,7 +51,9 @@ function Banner() {
 
                         <div className="banner_text">
                             <h1>
-                                Professional VU LMS Support Services <br />
+                                <b className="d-block">
+                                    Professional VU LMS Support Services
+                                </b> <br />
 
                                 <span className="banner_text_slider">
                                     <span
@@ -77,12 +79,12 @@ function Banner() {
                         <div className="banner_right_content">
                             <div className="trusted_img">
                                 <img src={trustedImg} alt="" />
-                            </div>  
+                            </div>
                             <div className="banner_icons_img">
                                 <img src={banner_icons} alt="" />
                             </div>
                         </div>
-                        
+
                     </div>
 
 

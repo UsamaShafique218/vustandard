@@ -1,13 +1,15 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import HomeContactIcons from "./HomeContactIcons";
-import Header from "./Header";
+// import Header from "./Header";
+import HeaderLatest from "./HeaderLatest";
 
 function Layout() {
   return (
     <div className="wrapper"> 
 
-      <Header />
+      {/* <Header /> */}
+      <HeaderLatest />
  
       <main className="content">
         <Outlet /> 
