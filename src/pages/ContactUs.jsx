@@ -9,7 +9,7 @@ function ContactUs() {
                 <div className="contactUs_inner">
                     <div className="headlines">
                         <h2 >Contact us,</h2>
-                        <p >We love to respond to your queries...
+                        <p >We love to respond to your queries....
                         </p>
                     </div>
 
