@@ -3,18 +3,18 @@ import Slider from "react-slick";
 import { Fancybox } from "@fancyapps/ui";
 
 import cs101 from "../assets/images/assignments/cs101.PNG"; 
-import cs101_2 from "../assets/images/assignments/cs101_2.png"; 
-import cs101_3 from "../assets/images/assignments/cs101_3.png"; 
+import cs101_2 from "../assets/images/assignments/cs101_2.PNG"; 
+import cs101_3 from "../assets/images/assignments/cs101_3.PNG"; 
 
-import cs201 from "../assets/images/assignments/cs201.png";
-import cs201p from "../assets/images/assignments/cs201p.png";
-import cs202 from "../assets/images/assignments/cs202.png";
-import cs302 from "../assets/images/assignments/cs302.png";
-import cs302p from "../assets/images/assignments/cs302p.png";
-import cs420 from "../assets/images/assignments/cs420.png";
-import cs506 from "../assets/images/assignments/cs506.png";
-import cs601 from "../assets/images/assignments/cs601.png";
-import mth104 from "../assets/images/assignments/mth104.png";
+import cs201 from "../assets/images/assignments/cs201.PNG";
+import cs201p from "../assets/images/assignments/cs201p.PNG";
+import cs202 from "../assets/images/assignments/cs202.PNG";
+import cs302 from "../assets/images/assignments/cs302.PNG";
+import cs302p from "../assets/images/assignments/cs302p.PNG";
+import cs420 from "../assets/images/assignments/cs420.PNG";
+import cs506 from "../assets/images/assignments/cs506.PNG";
+import cs601 from "../assets/images/assignments/cs601.PNG";
+import mth104 from "../assets/images/assignments/mth104.PNG";
 import phy301 from "../assets/images/assignments/phy301.png";
 
 const results = [
