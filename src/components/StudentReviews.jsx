@@ -132,7 +132,7 @@ const StudentReviews = () => {
     <section className="student_result_sec">
       <div className="container">
         <div className="headlines text-center mb-5">
-          <h2>Academic Success Showcase</h2>
+          <h2>Academic Success Showcases</h2>
           <span>Proven Results Through Professional Academic Support</span>
           <p className="mt-3">
             Browse verified student results achieved through our dedicated academic
