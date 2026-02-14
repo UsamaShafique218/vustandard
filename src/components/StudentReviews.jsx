@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Slider from "react-slick";
 import { Fancybox } from "@fancyapps/ui";
 
-import cs101 from "../assets/images/assignments/cs101.png"; 
+// import cs101 from "../assets/images/assignments/cs101.png"; 
 import cs101_2 from "../assets/images/assignments/cs101_2.png"; 
 import cs101_3 from "../assets/images/assignments/cs101_3.png"; 
 
@@ -23,7 +23,7 @@ const results = [
     desc:
       "CS101 Assignment Result 2026",
     gallery: [
-      cs101,  
+      // cs101,  
       cs101_2,  
       cs101_3,  
     ],
