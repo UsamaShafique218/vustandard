@@ -15,7 +15,7 @@ import cs420 from "../assets/images/assignments/cs420.PNG";
 import cs506 from "../assets/images/assignments/cs506.PNG";
 import cs601 from "../assets/images/assignments/cs601.PNG";
 import mth104 from "../assets/images/assignments/mth104.PNG";
-import phy301 from "../assets/images/assignments/phy301.png";
+import phy301 from "../assets/images/assignments/phy301.PNG";
 
 const results = [
   {
