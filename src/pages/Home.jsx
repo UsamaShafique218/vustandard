@@ -4,7 +4,8 @@ import Banner from '../components/Banner';
 import Service from '../components/Service';
 import WhyChoose from '../components/WhyChoose';
 import Testimonial from '../components/Testimonial';
-import OurTeam from '../components/OurTeam';
+import OurTeam from '../components/OurTeam';   
+import StudentReviews from '../components/StudentReviews';
 
 function Home() {
   return (
@@ -13,7 +14,8 @@ function Home() {
     <Service />
     <WhyChoose />
     <Testimonial />
-    <OurTeam /> 
+    <OurTeam />    
+    <StudentReviews />
     </>
   );
 }

@@ -10,10 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@fancyapps/ui": "^6.1.8",
     "bootstrap": "^5.3.8",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.12.0",
+    "react-slick": "^0.31.0",
+    "slick-carousel": "^1.8.1",
     "swiper": "^12.0.3"
   },
   "devDependencies": {

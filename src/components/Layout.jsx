@@ -3,6 +3,7 @@ import { Outlet, Link } from "react-router-dom";
 import HomeContactIcons from "./HomeContactIcons";
 // import Header from "./Header";
 import HeaderLatest from "./HeaderLatest";
+import Footer from "./Footer";
 
 function Layout() {
   return (
@@ -16,7 +17,7 @@ function Layout() {
       </main>
   
       <HomeContactIcons /> 
-      <footer>footer</footer>
+      <Footer />
     </div>
   );
 }

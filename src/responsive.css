@@ -8,7 +8,7 @@
     :root{
         --baseFS: 13px;
         --headerHeight: 104px;
-        --autoWidth: 1360px;
+        /* --autoWidth: 1360px; */
      }
      .v_card_sliderBox{ min-height:188px;}
      .auto_banner .banner_inner { padding: 2.5em 4.5em; }

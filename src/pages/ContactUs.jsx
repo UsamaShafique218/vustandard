@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react' 
+
+
 
 function ContactUs() {
     return (
@@ -15,101 +17,99 @@ function ContactUs() {
                         <div className="contactUs_details_left">
                             <div className="contactUs_details_heading">
                                 <h2 >Ask us anything here,</h2>
-                            </div>
-                            <div className="contactUs_form">
-                                <div className="rides_form ">
-                                    <div className="form_row">
-                                        <div className="form_cell">
-                                            <div className="form_field">
-                                                <input type="text" name="full_name" className="floating-input"
-                                                    placeholder="Full name" />
-                                                <label className="floating-label">Full
-                                                    name</label>
-                                                <i className="field_icon">
-                                                    <svg width="23" height="22" viewBox="0 0 23 22"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M11.7926 9.69335C11.7035 9.68443 11.5965 9.68443 11.4984 9.69335C9.37647 9.62202 7.69141 7.88347 7.69141 5.74371C7.69141 3.55937 9.45671 1.78516 11.65 1.78516C13.8343 1.78516 15.6085 3.55937 15.6085 5.74371C15.5996 7.88347 13.9145 9.62202 11.7926 9.69335Z"
-                                                            stroke="#8D8D8D" strokeWidth="1.33735"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round" />
-                                                        <path
-                                                            d="M7.33499 12.9815C5.1774 14.4258 5.1774 16.7796 7.33499 18.215C9.7868 19.8555 13.8078 19.8555 16.2596 18.215C18.4172 16.7706 18.4172 14.4169 16.2596 12.9815C13.8167 11.3499 9.79571 11.3499 7.33499 12.9815Z"
-                                                            stroke="#8D8D8D" strokeWidth="1.33735"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round" />
-                                                    </svg>
-                                                </i>
-                                            </div>
+                            </div> 
+                            <div className="contactUs_form"> 
+                                <div className="form_row">
+                                    <div className="form_cell">
+                                        <div className="form_field">
+                                            <input type="text" name="full_name" className="floating-input"
+                                                placeholder="Full name" />
+                                            <label className="floating-label">Full
+                                                name</label>
+                                            <i className="field_icon">
+                                                <svg width="23" height="22" viewBox="0 0 23 22"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M11.7926 9.69335C11.7035 9.68443 11.5965 9.68443 11.4984 9.69335C9.37647 9.62202 7.69141 7.88347 7.69141 5.74371C7.69141 3.55937 9.45671 1.78516 11.65 1.78516C13.8343 1.78516 15.6085 3.55937 15.6085 5.74371C15.5996 7.88347 13.9145 9.62202 11.7926 9.69335Z"
+                                                        stroke="#8D8D8D" strokeWidth="1.33735"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round" />
+                                                    <path
+                                                        d="M7.33499 12.9815C5.1774 14.4258 5.1774 16.7796 7.33499 18.215C9.7868 19.8555 13.8078 19.8555 16.2596 18.215C18.4172 16.7706 18.4172 14.4169 16.2596 12.9815C13.8167 11.3499 9.79571 11.3499 7.33499 12.9815Z"
+                                                        stroke="#8D8D8D" strokeWidth="1.33735"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round" />
+                                                </svg>
+                                            </i>
                                         </div>
-                                    </div>
-                                    <div className="form_row">
-                                        <div className="form_cell">
-                                            <div className="form_field">
-                                                <input type="text" name="email" className="floating-input"
-                                                    placeholder="Email" />
-                                                <label className="floating-label">Email</label>
-                                                <i className="field_icon">
-                                                    <svg width="21" height="21" viewBox="0 0 21 21"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M14.598 18.0263H6.09908C3.5494 18.0263 1.84961 16.7515 1.84961 13.7769V7.8276C1.84961 4.85297 3.5494 3.57812 6.09908 3.57812H14.598C17.1477 3.57812 18.8475 4.85297 18.8475 7.8276V13.7769C18.8475 16.7515 17.1477 18.0263 14.598 18.0263Z"
-                                                            stroke="#8D8D8D" strokeWidth="1.27484"
-                                                            strokeMiterlimit="10" strokeLinecap="round"
-                                                            strokeLinejoin="round" />
-                                                        <path
-                                                            d="M14.5986 8.25L11.9384 10.3747C11.063 11.0716 9.62667 11.0716 8.75128 10.3747L6.09961 8.25"
-                                                            stroke="#8D8D8D" strokeWidth="1.27484"
-                                                            strokeMiterlimit="10" strokeLinecap="round"
-                                                            strokeLinejoin="round" />
-                                                    </svg>
-                                                </i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="form_row">
-                                        <div className="form_cell">
-                                            <div className="form_field">
-                                                <input type="text" name="phone" className="floating-input"
-                                                    placeholder="Phone" />
-                                                <label className="floating-label">Phone</label>
-                                                <i className="field_icon">
-                                                    <svg width="16" height="19" viewBox="0 0 16 19"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M14.7992 5.25V13.75C14.7992 17.15 13.9492 18 10.5492 18H5.44922C2.04922 18 1.19922 17.15 1.19922 13.75V5.25C1.19922 1.85 2.04922 1 5.44922 1H10.5492C13.9492 1 14.7992 1.85 14.7992 5.25Z"
-                                                            stroke="#8D8D8D" strokeWidth="1.275"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round" />
-                                                        <path d="M9.69883 3.97656H6.29883" stroke="#8D8D8D"
-                                                            strokeWidth="1.275" strokeLinecap="round"
-                                                            strokeLinejoin="round" />
-                                                        <path
-                                                            d="M7.99914 15.5334C8.72678 15.5334 9.31664 14.9436 9.31664 14.2159C9.31664 13.4883 8.72678 12.8984 7.99914 12.8984C7.27151 12.8984 6.68164 13.4883 6.68164 14.2159C6.68164 14.9436 7.27151 15.5334 7.99914 15.5334Z"
-                                                            stroke="#8D8D8D" strokeWidth="1.275"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round" />
-                                                    </svg>
-                                                </i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="form_row">
-                                        <div className="form_cell">
-                                            <div className="form_field">
-                                                <textarea
-                                                    className="floating-input fieldHasNotIcon floating-textarea"
-                                                    placeholder="Message"></textarea>
-                                                <label className="floating-label">Message</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="form_row">
-                                        <a href="javascript:void(0)"
-                                            className="all_btn btn_large w_100 justify_content_center uppercase cs_send_msg"
-                                            type="button">Send Message</a>
                                     </div>
                                 </div>
+                                <div className="form_row">
+                                    <div className="form_cell">
+                                        <div className="form_field">
+                                            <input type="text" name="email" className="floating-input"
+                                                placeholder="Email" />
+                                            <label className="floating-label">Email</label>
+                                            <i className="field_icon">
+                                                <svg width="21" height="21" viewBox="0 0 21 21"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M14.598 18.0263H6.09908C3.5494 18.0263 1.84961 16.7515 1.84961 13.7769V7.8276C1.84961 4.85297 3.5494 3.57812 6.09908 3.57812H14.598C17.1477 3.57812 18.8475 4.85297 18.8475 7.8276V13.7769C18.8475 16.7515 17.1477 18.0263 14.598 18.0263Z"
+                                                        stroke="#8D8D8D" strokeWidth="1.27484"
+                                                        strokeMiterlimit="10" strokeLinecap="round"
+                                                        strokeLinejoin="round" />
+                                                    <path
+                                                        d="M14.5986 8.25L11.9384 10.3747C11.063 11.0716 9.62667 11.0716 8.75128 10.3747L6.09961 8.25"
+                                                        stroke="#8D8D8D" strokeWidth="1.27484"
+                                                        strokeMiterlimit="10" strokeLinecap="round"
+                                                        strokeLinejoin="round" />
+                                                </svg>
+                                            </i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="form_row">
+                                    <div className="form_cell">
+                                        <div className="form_field">
+                                            <input type="text" name="phone" className="floating-input"
+                                                placeholder="Phone" />
+                                            <label className="floating-label">Phone</label>
+                                            <i className="field_icon">
+                                                <svg width="16" height="19" viewBox="0 0 16 19"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M14.7992 5.25V13.75C14.7992 17.15 13.9492 18 10.5492 18H5.44922C2.04922 18 1.19922 17.15 1.19922 13.75V5.25C1.19922 1.85 2.04922 1 5.44922 1H10.5492C13.9492 1 14.7992 1.85 14.7992 5.25Z"
+                                                        stroke="#8D8D8D" strokeWidth="1.275"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round" />
+                                                    <path d="M9.69883 3.97656H6.29883" stroke="#8D8D8D"
+                                                        strokeWidth="1.275" strokeLinecap="round"
+                                                        strokeLinejoin="round" />
+                                                    <path
+                                                        d="M7.99914 15.5334C8.72678 15.5334 9.31664 14.9436 9.31664 14.2159C9.31664 13.4883 8.72678 12.8984 7.99914 12.8984C7.27151 12.8984 6.68164 13.4883 6.68164 14.2159C6.68164 14.9436 7.27151 15.5334 7.99914 15.5334Z"
+                                                        stroke="#8D8D8D" strokeWidth="1.275"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round" />
+                                                </svg>
+                                            </i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="form_row">
+                                    <div className="form_cell">
+                                        <div className="form_field">
+                                            <textarea
+                                                className="floating-input fieldHasNotIcon floating-textarea"
+                                                placeholder="Message"></textarea>
+                                            <label className="floating-label">Message</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="form_row">
+                                    <a href="javascript:void(0)"
+                                        className="all_btn btn_large w_100 justify_content_center uppercase cs_send_msg"
+                                        type="button">Send Message</a>
+                                </div> 
                             </div>
                         </div>
                         <div className="contactUs_details_right">

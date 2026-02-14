@@ -4,6 +4,9 @@ import AnnouncementBar from "./AnnouncementBar";
 import TopNavMob from "./TopNavMob";
 import MobileFooter from "./MobileFooter";
 
+import logo from "../assets/images/logo.png"; 
+
+
 function HeaderLatest() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [sticky, setSticky] = useState(false);
@@ -82,7 +85,7 @@ function HeaderLatest() {
                     <div className="header_mainInner">
                         <div className="header_left">
                             <Link to="/" className="header_logo" onClick={handleMenuLinkClick}>
-                                VuStandard
+                                <img src={logo} alt="#" /> 
                             </Link>
                         </div>
 
