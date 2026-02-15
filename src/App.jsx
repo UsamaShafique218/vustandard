@@ -10,6 +10,7 @@ import Faqs from './pages/Faqs';
 import ContactUs from './pages/ContactUs';
 import DownloadNotes from './pages/DownloadNotes';
 import SolvedMcqsPage from './pages/SolvedMcqsPage';
+import AboutUs from './pages/AboutUs';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/download-notes" element={<DownloadNotes />} /> 
           <Route path="/solved-mcqs" element={<SolvedMcqsPage />} /> 
+          <Route path="/about-us" element={<AboutUs />} /> 
           
         </Route>
       </Routes>

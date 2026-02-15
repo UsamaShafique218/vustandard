@@ -1589,3 +1589,131 @@ body { width: 100%; font-family: var(--family);  color: var(--p_color); font-siz
   justify-content: center;
   gap: 10px;
 }
+
+
+
+
+
+
+
+
+
+/* about us style start */
+.aboutUs_main{ width: 100%; padding: 5em 0em 0em 0em; }
+
+.aboutUs_banner{ padding-bottom: 6.25em; }
+.aboutUs_banner_inner{ display: flex; flex-wrap: wrap; } 
+.aboutUs_banner_left{ width: 46%; padding-right: 1.625em; }
+.aboutUs_banner_right{ width: 54%; padding-left: 1.625em; }
+
+.oc_traffic_left{ padding-right: 0.75em; }
+.oc_traffic_right{  padding-left: 0.75em; }
+
+
+.oc_trafic_row{ display: flex;justify-content: space-between; flex-wrap: wrap; } 
+ 
+
+.oc_trafic_text{ background-color: var(--white); border-radius: 20px; padding: 2em 1em; }
+
+.oc_trafic_text span{ color: var(--p_color); font-size: var(--fs16); font-weight: 500; line-height: 1.2em; display: block;}
+.oc_trafic_text h2{ color: var(--p_color); font-size: var(--fs74); font-weight: 700; line-height: 1.2em; padding: 
+  0.270em 0em; }
+.oc_trafic_text p{ color: var(--p_color); font-size: var(--fs16); font-weight: 500; line-height: 1.2em; padding-bottom: 2.5em; }
+
+.oc_progressBar{ width: 100%; height: 8px; background-color: var(--grey);  }
+.oc_progressLine{ width: 70%; height: 8px; background-color: var(--black); }
+
+.bg_soft_green{ background-color: var(--soft_green); }
+.bg_soft_green2{ background-color: var(--soft_green2); }
+.bg_green{ background-color: var(--pg_color); }
+
+
+.oc_trafic_img{ position: relative; height: 100%; display: flex; } 
+.oc_trafic_img_after{ padding: 1.625em; border-radius: 50%; background-color: var(--sg_color); position: absolute; left: 4px; top: -14px; display: flex; align-items: center; justify-content: center; }
+.oc_trafic_img_after i{ width: 100%; max-width: 40px; height: 100%; max-height: 40px; display: block; }
+.oc_trafic_img_after i svg{ width: 100%; height: 100%; max-width: none; max-height: none; display: block; }
+.oc_trafic_img img{ width: 100%; max-width: none; height: 100%; min-height: none; object-fit: cover; display: block; border-radius: 144px 20px 20px 20px; }
+
+.oc_trafic_growth{ display: flex; flex-wrap: wrap; justify-content: space-between; background-color: var(--p_dark); border-radius: 20px; margin-top: 1.5em; }
+.oc_trafic_growth_info{ width: 50%; padding: 2.5em 1.375em 3.125em 2.5em; }
+.oc_trafic_growth_info span{ color: var(--white); font-size: var(--fs14); line-height: 1.2em; display: block; padding: 0em 0em 1.25em 3.75em; position: relative; }
+
+.oc_trafic_growth_info span::after{ content: ""; width: 34px; height: 1px; background-color: var(--white); left: 0px; top: 6px; position: absolute; }
+
+.oc_trafic_growth_info h2{ color: var(--white); font-size: var(--fs30); font-weight: 600; line-height: 1.2em; }
+
+
+.oc_trafic_growth_lines{ width: 50%; display: flex; justify-content: end; padding: 2.5em 1.375em 0em 1.375em; }
+
+.oc_tg_lines_li{padding: 0em 0.438em; }
+.oc_tg_lines_bar{  display: flex; flex-direction: column-reverse; height: 10em; }
+
+.growthLine{ width: 70px; height: 100%; display: block; }
+.growth80{ height: 80%; }
+.growth60{ height: 60%; }
+
+.au_banner_text small{ display: block; font-size: var(--fs24); font-weight: 700; line-height: 1.4em; color: var(--pg_color); padding-bottom: 0.75em; }
+
+.au_banner_text h2{ color: var(--black); font-size: var(--fs60); font-weight: 900; line-height: 1.1em; text-transform: uppercase; padding-bottom: 0.433em;} 
+.au_banner_text h2 span{ color: var(--pg_color); }
+
+.au_banner_text > p{ color: var(--p_color); font-size: var(--fs20); line-height: 1.2em; padding-bottom: 1em; }
+.banner_btns ul{ display: flex; align-items: center; margin: 0em -1.5em !important; padding-left: 0px; }
+.banner_btns ul li{ padding: 0em 1.5em; }
+
+.banner_logos_main{ display: flex; align-items: center; padding-top: 2.25em; }
+.b_logos_text{ padding-right: 1.25em; }
+.b_logos_text p{ color: var(--p_color); font-size: var(--fs14); font-weight: 500; line-height: 1.2em; max-width: 180px; }
+
+.b_logos_text p strong{ display: block; font-weight: 600;}
+
+.b_logos{ padding-left: 1.25em; }
+.b_logos ul{ display: flex; align-items: center; margin-left: -0.813em !important; padding: 0px; }
+.b_logos ul li{ padding: 0px 0.813em; }
+.banner_logo_img img{ width: 100%; max-width: 108px; height: auto; display: block; }
+
+
+.aboutUs_content{ width: 100%; position: relative; } 
+
+ 
+ .aboutUs_content_inner{ position: relative; z-index: 2; }
+
+
+.aboutMe_detail{ background-color: var(--sg_dark);  padding: 3.125em 3.125em 4.375em 3.125em; overflow: hidden; border-radius: 10px; position: relative; }
+.aboutMe_detail_inner{ width: 100%; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;  position: relative; z-index: 2; }
+
+
+.aboutMe_detail_left{ width: 56%; }
+.aboutMe_info{ padding-right: 6.25em; }
+.aboutMe_info span{ color: var(--white); font-size: var(--fs16); font-weight: 500; line-height: 1.2em; display: block; }
+.aboutMe_info h4{ color: var(--white); font-size: var(--fs40); font-weight: 600; line-height: 1.1em;  padding: 0em 0em 0.5em 0em;}
+.aboutMe_info p{ color: var(--white); font-size: var(--f20); line-height: 1.4em; padding-bottom: 1em; }
+
+
+.aboutMe_detail_right{ width: 44%; }
+.aboutMe_img{ width: 100%; max-width: 37.125em; max-height: 31.25em; overflow: hidden; }
+.aboutMe_img img{ width: 100%; height: 100%; max-width: none; max-height: none; object-fit: cover;}
+
+.aboutUs_moreInfo{ width: 100%; padding: 3.125em 0em 4.375em 0em; }
+
+.au_moreInfo_header{ padding-bottom: 1.125em; }
+.au_moreInfo_header .headlines h2{ font-size: var(--fs30); padding-bottom: 0.4em; max-width: 760px; margin: auto; line-height: 1.2em; font-weight: 600; }
+.au_moreInfo_header .headlines p{ color: var(--p_color); font-size: var(--fs20); line-height: 1.2em; } 
+
+.au_moreInfo_content{ width: 100%; }
+.au_moreInfo_content ul{ display: flex; }
+.au_moreInfo_content ul li{ width: 33.33%; padding: 0em 0.938em; }
+.moreInfo_detail{ text-align: center; }
+.moreInfo_detail h4{ color: var(--p_color); font-size: var(--fs30); font-weight: 600; line-height: 1.2em; padding-bottom: 0.4em; }
+.moreInfo_detail p{ color: var(--p_color); font-size: var(--f18); line-height: 1.3em; }
+
+.our_promise_sec{ background: url(../src/assets/images/promise_bg1.png) no-repeat center center; background-size: cover; padding: 3.375em 0em 4.125em 0em;  border-bottom: 1px solid var(--grey2); }
+
+.our_promise_content{ text-align: center; }
+.our_promise_content h2{ color: var(--white); font-size: var(--fs74); font-weight: 600; line-height: 1.2em; padding-bottom: 0.162em; }
+.our_promise_content p{ color: var(--white); font-size: var(--f18); font-weight: 500; line-height: 1.4em; padding-bottom: 0.666em; max-width: 836px; margin: auto; }
+.our_promise_content .all_btn{ margin-top: 2.5em; }
+
+
+
+/* about us style end */

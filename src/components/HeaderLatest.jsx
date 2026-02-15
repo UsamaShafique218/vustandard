@@ -114,7 +114,7 @@ function HeaderLatest() {
                                                     <div className="dropdownMenuList">
                                                         <ul>
                                                             <li>
-                                                                <Link className="menuLink" to="/rides" onClick={handleMenuLinkClick}>
+                                                                <Link className="menuLink" to="/about-us" onClick={handleMenuLinkClick}>
                                                                     About Us
                                                                 </Link>
                                                             </li>
