@@ -4,7 +4,7 @@ import logo from "../assets/images/logo.png";
 function Footer() {
   return (
     <footer className="footer">
-      <div className="container">
+      <div className="autoContent">
 
         <div className="footer_top">
 

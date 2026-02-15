@@ -1,5 +1,5 @@
 const QuizCS202 = {
-  category: "History",
+  category: "CS202",
   questions: [
     {
       id: 1,
@@ -76,4 +76,5 @@ const QuizCS202 = {
   ],
 };
 
+ 
 export default QuizCS202;

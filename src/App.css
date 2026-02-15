@@ -1240,8 +1240,8 @@ body { width: 100%; font-family: var(--family);  color: var(--p_color); font-siz
 
 .download_notes{width: 100%; padding: 3.75em 0px 3.75em 0px;}
 .download_notes_content{ padding-top: 1.75em;}
-.custom_card{ background-color: var(--white); border-radius: 0.625em;  transition: var(--transition); display: block; position: relative; overflow: hidden; border: 1px solid var(--border_color); }
- .custom_card:hover{ box-shadow: 0px 0.625em 1.25em rgba(0, 0, 0, 0.05); transform: translateY(-0.625em); }
+.custom_card{ background-color: var(--white); border-radius: 0.625em;  transition: var(--transition); display: block; position: relative; overflow: hidden; border: 1px solid var(--border_color); padding: 1.375em 1.125em 0.875em 1.125em; text-align: center; }
+.custom_card:hover{ box-shadow: 0px 0.625em 1.25em rgba(0, 0, 0, 0.05); transform: translateY(-0.625em); }
 
 .os_info_data{ text-align: center; padding: 1.375em 1.125em 0.875em 1.125em;}
 .os_info_data h4{ color: var(--p_color); font-size: var(--fs20); font-weight: 700; line-height: 1.2em; padding: 0em 0px 6px 0px; }
@@ -1258,7 +1258,7 @@ body { width: 100%; font-family: var(--family);  color: var(--p_color); font-siz
 
 
 .quiz_wrapper {
-  background: #0a3d1e;
+  background: var(--sg_dark);
   color: #fff;
   padding: 30px;
   border-radius: 12px;
@@ -1280,7 +1280,7 @@ body { width: 100%; font-family: var(--family);  color: var(--p_color); font-siz
 }
 
 .quiz_options .option.active {
-  background: #145a32;
+  background: var(--p_dark);
 }
 
 .quiz_footer {
@@ -1291,7 +1291,7 @@ body { width: 100%; font-family: var(--family);  color: var(--p_color); font-siz
 }
 
 .quiz_footer button {
-  background: #f1c40f;
+  /* background: #f1c40f; */
   border: none;
   padding: 10px 25px;
   font-weight: bold;
@@ -1713,7 +1713,9 @@ body { width: 100%; font-family: var(--family);  color: var(--p_color); font-siz
 .our_promise_content h2{ color: var(--white); font-size: var(--fs74); font-weight: 600; line-height: 1.2em; padding-bottom: 0.162em; }
 .our_promise_content p{ color: var(--white); font-size: var(--f18); font-weight: 500; line-height: 1.4em; padding-bottom: 0.666em; max-width: 836px; margin: auto; }
 .our_promise_content .all_btn{ margin-top: 2.5em; }
-
-
-
+ 
 /* about us style end */
+
+
+.search_wrapper{ display: flex; justify-content: end; }
+.search_wrapper .floating-input{ border-color: var(--sg_dark); }

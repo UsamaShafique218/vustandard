@@ -41,13 +41,29 @@ function AttempQuiz({ data, onReset }) {
     return answers[index] === q.correct ? total + 1 : total;
   }, 0);
 
+  // Reset quiz to retake
+  const handleRetake = () => {
+    setCurrent(0);
+    setAnswers({});
+    setSeconds(totalTime);
+    setCompleted(false);
+  };
+
   return (
     <div className="quiz_wrapper">
       {/* HEADER */}
-      <div className="quiz_top">
-        <span>{Math.floor(seconds / 60)}:{seconds % 60 < 10 ? "0" : ""}{seconds % 60}</span>
-        <span>{current + 1}/{quizQuestions.length}</span>
-      </div>
+      {!completed && (
+        <div className="quiz_top">
+          <span>
+            {Math.floor(seconds / 60)}:
+            {seconds % 60 < 10 ? "0" : ""}
+            {seconds % 60}
+          </span>
+          <span>
+            {current + 1}/{quizQuestions.length}
+          </span>
+        </div>
+      )}
 
       {/* BODY */}
       {!completed ? (
@@ -57,7 +73,10 @@ function AttempQuiz({ data, onReset }) {
 
           <div className="quiz_options">
             {quizQuestions[current].options.map((opt, index) => (
-              <label key={index} className={`option ${answers[current] === index ? "active" : ""}`}>
+              <label
+                key={index}
+                className={`option ${answers[current] === index ? "active" : ""}`}
+              >
                 <input
                   type="radio"
                   checked={answers[current] === index}
@@ -69,11 +88,11 @@ function AttempQuiz({ data, onReset }) {
           </div>
 
           <div className="quiz_footer">
-            <button disabled={current === 0} onClick={() => setCurrent(current - 1)}>
+            <button className="all_btn" disabled={current === 0} onClick={() => setCurrent(current - 1)}>
               Prev
             </button>
 
-            <button
+            <button className="all_btn"
               disabled={answers[current] === undefined}
               onClick={() => {
                 if (isLastQuestion) {
@@ -95,9 +114,14 @@ function AttempQuiz({ data, onReset }) {
             Your Score: <strong>{score} / {quizQuestions.length}</strong>
           </p>
 
-          <button className="all_btn mt-3" onClick={onReset}>
-            Reset Quiz
-          </button>
+          <div className="d-flex justify-content-center gap-3 mt-3">
+            <button className="btn btn-primary" onClick={handleRetake}>
+              Retake Quiz
+            </button>
+            <button className="btn btn-secondary" onClick={onReset}>
+              Close
+            </button>
+          </div>
         </div>
       )}
     </div>

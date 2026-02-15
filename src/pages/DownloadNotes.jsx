@@ -18,8 +18,7 @@ function DownloadNotes() {
                                     key={item.id}
                                     className={`col-12 col-md-4 ${index >= 3 ? "pt-4" : ""}`}
                                 >
-                                    <div className="custom_card">
-                                        <div className="os_info_data">
+                                    <div className="custom_card"> 
                                             <h4>{item.title}</h4>
                                             <p className="custom-tooltip">{item.description}</p>
 
@@ -29,8 +28,7 @@ function DownloadNotes() {
                                                 rel="noopener noreferrer"
                                             >
                                                 <button className="all_btn">Download PDF</button>
-                                            </a>
-                                        </div>
+                                            </a> 
                                     </div>
                                 </div>
                             ))}
