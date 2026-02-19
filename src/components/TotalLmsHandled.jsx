@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import bscs from "../assets/images/bscs.png";
-import bsit from "../assets/images/bsit.PNG";
-import bs_sociology from "../assets/images/bs_sociology.PNG";
-import bs_ba from "../assets/images/bs_ba.PNG";
-import bbit from "../assets/images/bbit.PNG";
-import bs_english from "../assets/images/bs_english.PNG";
+import bsit from "../assets/images/bsit.png";
+import bs_sociology from "../assets/images/bs_sociology.png";
+import bs_ba from "../assets/images/bs_ba.png";
+import bbit from "../assets/images/bbit.png";
+import bs_english from "../assets/images/bs_english.png";
 
 
 function TotalLmsHandled() {
