@@ -17,7 +17,7 @@ function Service() {
       descFull:
         "LMS management includes organizing course content, monitoring student progress, facilitating communication, and administering assessments to ensure a smooth online learning experience",
       img: lmsHandlingImg,
-      link: "/contact-us",
+      // link: "/contact-us",
     },
     {
       title: "Assignments",
@@ -25,7 +25,7 @@ function Service() {
       descFull:
         "An assignment is a task that lets students apply concepts, demonstrate understanding, and develop skills within a set timeframe.",
       img: assignmntImg,
-      link: "/contact-us",
+      // link: "/contact-us",
     },
     {
       title: "QUIZ",
@@ -33,7 +33,7 @@ function Service() {
       descFull:
         "A quiz is a brief assessment to gauge students' understanding of a topic, often featuring multiple-choice, true/false, or short-answer questions with instant feedback.",
       img: quizImg,
-      link: "/contact-us",
+      // link: "/contact-us",
     },
     {
       title: "GDB",
@@ -41,7 +41,7 @@ function Service() {
       descFull:
         "The General Discussion Board is an interactive space for users to share ideas, engage in conversations, and explore diverse perspectives, promoting community interaction and open dialogue.",
       img: gdbImg,
-      link: "/contact-us",
+      // link: "/contact-us",
     },
     {
       title: "Paid Projects",
@@ -49,7 +49,7 @@ function Service() {
       descFull:
         "Projects are organized initiatives designed to accomplish defined objectives through planning, teamwork, and effective use of resources, delivering practical solutions and meaningful results.",
       img: fypProjectImg,
-      link: "/contact-us",
+      // link: "/contact-us",
     },
     {
       title: "Free Services",
@@ -57,7 +57,7 @@ function Service() {
       descFull:
         "Services involve actions or support provided to fulfill customer needs, delivering non-physical value. They span multiple sectors, from healthcare to technology, and focus on offering solutions and assistance to individuals and organizations..",
       img: lmsQuiries,
-      link: "/contact-us",
+      // link: "/contact-us",
     },
     // Add more services as needed
   ];
@@ -79,7 +79,7 @@ function Service() {
                   <ul>
                     {services.map((service, index) => (
                       <li key={index}>
-                        <a href={service.link} className="os_info">
+                        <a href="https://wa.me/+923150250218?text=Hello! Sending Message from website" target="_blank" className="os_info">
                           <div className="os_info_img">
                             <img src={service.img} alt={service.title} />
                           </div>

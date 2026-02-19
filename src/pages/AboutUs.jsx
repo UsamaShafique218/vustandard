@@ -2,8 +2,8 @@ import React from "react";
 
 function AboutUs() {
     return (
-        <div class="gradiantParent">
-            <div class="gradiantChild">
+        <div className="gradiantParent">
+            <div className="gradiantChild">
                 <div className="aboutUs_main">
                     <div className="aboutUs_banner">
                         <div className="autoContent">
@@ -66,47 +66,47 @@ function AboutUs() {
                                         <div className="banner_btns animated fadeInUpShort slow delay-750">
                                             <ul>
                                                 <li>
-                                                    <a href="tel:+923150250218" target="_blank"
+                                                    <a href="https://wa.me/+923150250218?text=Hello! Sending Message from website" target="_blank"
                                                         className="all_btn icon_btn btn_large uppercase w_100 justify_content_center">
                                                         <i>
                                                             <svg width="19" height="19" viewBox="0 0 19 19"
                                                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M6.33301 1.58203V3.95703" stroke="white"
-                                                                    stroke-width="1.45" stroke-miterlimit="10"
-                                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                                    strokeWidth="1.45" strokeMiterlimit="10"
+                                                                    strokeLinecap="round" strokeLinejoin="round">
                                                                 </path>
                                                                 <path d="M12.667 1.58203V3.95703" stroke="white"
-                                                                    stroke-width="1.45" stroke-miterlimit="10"
-                                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                                    strokeWidth="1.45" strokeMiterlimit="10"
+                                                                    strokeLinecap="round" strokeLinejoin="round">
                                                                 </path>
                                                                 <path d="M2.77051 7.19531H16.2288" stroke="white"
-                                                                    stroke-width="1.45" stroke-miterlimit="10"
-                                                                    stroke-linecap="round" stroke-linejoin="round">
+                                                                    strokeWidth="1.45" strokeMiterlimit="10"
+                                                                    strokeLinecap="round" strokeLinejoin="round">
                                                                 </path>
                                                                 <path
                                                                     d="M15.2084 12.4849L12.4059 15.2874C12.2951 15.3982 12.1921 15.6041 12.1684 15.7545L12.018 16.8232C11.9626 17.2111 12.2317 17.4803 12.6196 17.4249L13.6884 17.2745C13.8388 17.2507 14.0526 17.1478 14.1555 17.037L16.958 14.2345C17.4409 13.7516 17.6705 13.1895 16.958 12.477C16.2534 11.7724 15.6913 12.002 15.2084 12.4849Z"
-                                                                    stroke="white" stroke-width="1.45"
-                                                                    stroke-miterlimit="10" stroke-linecap="round"
-                                                                    stroke-linejoin="round"></path>
+                                                                    stroke="white" strokeWidth="1.45"
+                                                                    strokeMiterlimit="10" strokeLinecap="round"
+                                                                    strokeLinejoin="round"></path>
                                                                 <path
                                                                     d="M14.8047 12.8906C15.0422 13.7456 15.7072 14.4106 16.5622 14.6481"
-                                                                    stroke="white" stroke-width="1.45"
-                                                                    stroke-miterlimit="10" stroke-linecap="round"
-                                                                    stroke-linejoin="round"></path>
+                                                                    stroke="white" strokeWidth="1.45"
+                                                                    strokeMiterlimit="10" strokeLinecap="round"
+                                                                    strokeLinejoin="round"></path>
                                                                 <path
                                                                     d="M9.5 17.4154H6.33333C3.5625 17.4154 2.375 15.832 2.375 13.457V6.72786C2.375 4.35286 3.5625 2.76953 6.33333 2.76953H12.6667C15.4375 2.76953 16.625 4.35286 16.625 6.72786V9.4987"
-                                                                    stroke="white" stroke-width="1.45"
-                                                                    stroke-miterlimit="10" stroke-linecap="round"
-                                                                    stroke-linejoin="round"></path>
+                                                                    stroke="white" strokeWidth="1.45"
+                                                                    strokeMiterlimit="10" strokeLinecap="round"
+                                                                    strokeLinejoin="round"></path>
                                                                 <path d="M9.49598 10.8451H9.50309" stroke="white"
-                                                                    stroke-width="1.45" stroke-linecap="round"
-                                                                    stroke-linejoin="round"></path>
+                                                                    strokeWidth="1.45" strokeLinecap="round"
+                                                                    strokeLinejoin="round"></path>
                                                                 <path d="M6.56629 10.8451H6.5734" stroke="white"
-                                                                    stroke-width="1.45" stroke-linecap="round"
-                                                                    stroke-linejoin="round"></path>
+                                                                    strokeWidth="1.45" strokeLinecap="round"
+                                                                    strokeLinejoin="round"></path>
                                                                 <path d="M6.56629 13.2201H6.5734" stroke="white"
-                                                                    stroke-width="1.45" stroke-linecap="round"
-                                                                    stroke-linejoin="round"></path>
+                                                                    strokeWidth="1.45" strokeLinecap="round"
+                                                                    strokeLinejoin="round"></path>
                                                             </svg>
                                                         </i>
                                                         Schedule Call
@@ -119,7 +119,7 @@ function AboutUs() {
                                                             fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path
                                                                 d="M13.875 0.0625H5.125C2.5 0.0625 0.75 1.375 0.75 4.4375V10.5625C0.75 13.625 2.5 14.9375 5.125 14.9375H13.875C16.5 14.9375 18.25 13.625 18.25 10.5625V4.4375C18.25 1.375 16.5 0.0625 13.875 0.0625ZM14.2862 5.39125L11.5475 7.57875C10.97 8.0425 10.235 8.27 9.5 8.27C8.765 8.27 8.02125 8.0425 7.4525 7.57875L4.71375 5.39125C4.43375 5.16375 4.39 4.74375 4.60875 4.46375C4.83625 4.18375 5.2475 4.13125 5.5275 4.35875L8.26625 6.54625C8.93125 7.08 10.06 7.08 10.725 6.54625L13.4638 4.35875C13.7438 4.13125 14.1637 4.175 14.3825 4.46375C14.61 4.74375 14.5662 5.16375 14.2862 5.39125Z"
-                                                                fill="#0FA85C" />
+                                                                fill="#fff" />
                                                         </svg>
 
                                                         </i>
@@ -128,7 +128,7 @@ function AboutUs() {
                                             </ul>
                                         </div>
 
-                                        <div className="banner_logos_main animated fadeInUpShort slow delay-750">
+                                        <div className="banner_logos_main ">
                                             <div className="b_logos_text">
                                                 <p><strong>Have any questions?</strong>
                                                     We are here to help you out !!!
@@ -137,7 +137,7 @@ function AboutUs() {
                                             <div className="b_logos">
                                                 <ul>
                                                     <li>
-                                                        <a href="contactUs.html" className="all_btn  btn_large flexible icon_btn justify_content_between uppercase">
+                                                        <a href="/contact-us" className="all_btn  btn_large flexible icon_btn justify_content_between uppercase">
                                                             <span className="mr_auto">Contact Us</span>
                                                         </a>
                                                     </li>
@@ -201,8 +201,8 @@ function AboutUs() {
                                     Book Your Ride Now!
                                 </p>
 
-                                <a href="booking_ride_search_mobile.html"
-                                    className="all_btn light_green_btn btn_large uppercase animated fadeInUpShort slow delay-750">
+                                <a href="https://wa.me/+923150250218?text=Hello! Sending Message from website" target="_blank"
+                                    className="all_btn light_green_btn btn_large uppercase ">
                                     Book With Us
                                 </a>
                             </div>

@@ -219,10 +219,10 @@ function Header() {
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M9.87868 3.51458L4.18329 7.95255C3.2323 8.69221 2.46094 10.2666 2.46094 11.4607V19.2905C2.46094 21.7419 4.45802 23.7496 6.90947 23.7496H19.1456C21.597 23.7496 23.5941 21.7419 23.5941 19.3011V11.6086C23.5941 10.33 22.7382 8.69221 21.6921 7.96312L15.162 3.38778C13.6827 2.35226 11.3052 2.40509 9.87868 3.51458Z"
-                                            stroke="white" stroke-width="1.58499" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                        <path d="M13.0276 19.5234V16.3535" stroke="white" stroke-width="1.58499"
-                                            stroke-linecap="round" stroke-linejoin="round" />
+                                            stroke="white" strokeWidth="1.58499" strokeLinecap="round"
+                                            strokeLinejoin="round" />
+                                        <path d="M13.0276 19.5234V16.3535" stroke="white" strokeWidth="1.58499"
+                                            strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
                                 </i>
                                 <span>Home</span>
@@ -261,14 +261,14 @@ function Header() {
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M16.9998 9.00016C16.9998 12.8702 13.6398 16.0002 9.49976 16.0002L8.56976 17.1202L8.01976 17.7802C7.54976 18.3402 6.64975 18.2201 6.33975 17.5501L4.99976 14.6001C3.17976 13.3201 1.99976 11.2902 1.99976 9.00016C1.99976 5.13016 5.35976 2.00016 9.49976 2.00016C12.5198 2.00016 15.1298 3.67016 16.2998 6.07016C16.7498 6.96016 16.9998 7.95016 16.9998 9.00016Z"
-                                            stroke="white" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
+                                            stroke="white" strokeWidth="1.5" strokeLinecap="round"
+                                            strokeLinejoin="round" />
                                         <path
                                             d="M22.0005 12.8598C22.0005 15.1498 20.8205 17.1799 19.0005 18.4599L17.6606 21.4098C17.3506 22.0798 16.4505 22.2099 15.9805 21.6399L14.5005 19.8598C12.0805 19.8598 9.92056 18.7898 8.57056 17.1198L9.50055 15.9998C13.6405 15.9998 17.0005 12.8698 17.0005 8.99984C17.0005 7.94984 16.7506 6.95984 16.3006 6.06984C19.5706 6.81984 22.0005 9.57982 22.0005 12.8598Z"
-                                            stroke="white" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                        <path d="M7.00024 9H12.0002" stroke="white" stroke-width="1.5"
-                                            stroke-linecap="round" stroke-linejoin="round" />
+                                            stroke="white" strokeWidth="1.5" strokeLinecap="round"
+                                            strokeLinejoin="round" />
+                                        <path d="M7.00024 9H12.0002" stroke="white" strokeWidth="1.5"
+                                            strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
 
                                 </i>

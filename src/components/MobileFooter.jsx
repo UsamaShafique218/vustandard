@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 const MobileFooter = () => {
 
 
+    
+
     return (
         <div className="mobileFooter_inner">
             <ul>

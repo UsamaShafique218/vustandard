@@ -23,15 +23,19 @@ function Banner() {
     }, []);
 
     useEffect(() => {
-        if (textRef.current && indicatorRef.current) {
-            const width = textRef.current.offsetWidth;
-            indicatorRef.current.style.width = `${width + 6}px`;
+    if (textRef.current && indicatorRef.current) {
+        const width = textRef.current.offsetWidth;
+        indicatorRef.current.style.width = `${width + 6}px`;
 
-            setTimeout(() => {
+        const timeout = setTimeout(() => {
+            if (indicatorRef.current) {
                 indicatorRef.current.style.width = "6px";
-            }, 2200);
-        }
-    }, [index]);
+            }
+        }, 2200);
+
+        return () => clearTimeout(timeout);
+    }
+}, [index]);
 
     return (
         <div className="banner">
