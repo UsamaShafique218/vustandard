@@ -8,10 +8,10 @@ import "swiper/css/pagination";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
  
-import javid_ali from "../assets/images/javid_ali.JPEG";
-import ashir_img from "../assets/images/ashir_img.JPEG";
-import femaleIcon from "../assets/images/female_icon.PNG";
-import maleIcon from "../assets/images/male_icon.PNG";
+import javid_ali from "../assets/images/javid_ali.jpeg";
+import ashir_img from "../assets/images/ashir_img.jpeg";
+import femaleIcon from "../assets/images/female_icon.png";
+import maleIcon from "../assets/images/male_icon.png";
 
 
 const reviews = [
