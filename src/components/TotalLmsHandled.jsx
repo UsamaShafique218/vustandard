@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import bscs from "../assets/images/bscs.PNG";
+import bscs from "../assets/images/bscs.png";
 import bsit from "../assets/images/bsit.PNG";
 import bs_sociology from "../assets/images/bs_sociology.PNG";
 import bs_ba from "../assets/images/bs_ba.PNG";
