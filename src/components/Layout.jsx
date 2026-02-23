@@ -1,22 +1,22 @@
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import HomeContactIcons from "./HomeContactIcons";
-// import Header from "./Header";
 import HeaderLatest from "./HeaderLatest";
 import Footer from "./Footer";
+import ScrollToTop from "./ScrollToTop"; // ✅ import
 
 function Layout() {
   return (
-    <div className="wrapper"> 
+    <div className="wrapper">
+      <ScrollToTop /> {/* ✅ scroll fix */}
 
-      {/* <Header /> */}
       <HeaderLatest />
- 
+
       <main className="content">
-        <Outlet /> 
+        <Outlet />
       </main>
-  
-      <HomeContactIcons /> 
+
+      <HomeContactIcons />
       <Footer />
     </div>
   );

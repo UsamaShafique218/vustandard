@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AttempQuiz from "../components/AttempQuiz";
 
 // Import all quiz data
@@ -7,7 +7,6 @@ import QuizCS201 from "../data/quiz_data/QuizCS201";
 import QuizCS201p from "../data/quiz_data/QuizCS201p";
 import QuizCS202 from "../data/quiz_data/QuizCS202";
 import QuizENG101 from "../data/quiz_data/QuizENG101";
-// Add more imports for MATH, SOC, MGT, PHY, etc.
 
 const subjects = [
     { code: "CS101", description: "Old most repeated MCQs", category: "CS", data: QuizCS101 },
@@ -16,12 +15,17 @@ const subjects = [
     { code: "CS202", description: "Old most repeated MCQs", category: "CS", data: QuizCS202 },
     { code: "ENG101", description: "Old most repeated MCQs", category: "ENG", data: QuizENG101 },
     { code: "MTH101", description: "Old most repeated MCQs", category: "MTH", data: QuizENG101 },
-    // Add more subjects here
 ];
 
 function SolvedMcqsPage() {
+
     const [selectedSubject, setSelectedSubject] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
+
+    // Subscribe Flow States
+    const [pendingSubject, setPendingSubject] = useState(null);
+    const [showSubscribeModal, setShowSubscribeModal] = useState(false);
+    const [isSubscribed, setIsSubscribed] = useState(false);
 
     // Group subjects by category
     const groupedSubjects = subjects.reduce((acc, subj) => {
@@ -30,15 +34,42 @@ function SolvedMcqsPage() {
         return acc;
     }, {});
 
-    const handleOpenQuiz = (subject) => {
-        setSelectedSubject(subject);
+    // When user clicks Start Quiz
+    const handleStartClick = (subject) => {
+        setPendingSubject(subject);
+        setShowSubscribeModal(true);
+    };
+
+    // Confirm Subscribe
+    const handleConfirmSubscribe = () => {
+        if (!isSubscribed) return;
+
+        setShowSubscribeModal(false);
+        setSelectedSubject(pendingSubject);
+        setPendingSubject(null);
+        setIsSubscribed(false);
     };
 
     const handleReset = () => {
         setSelectedSubject(null);
     };
 
-    // Filtered subjects based on search term
+
+    useEffect(() => {
+    if (showSubscribeModal || selectedSubject) {
+        document.body.classList.add("modal-open");
+    } else {
+        document.body.classList.remove("modal-open");
+    }
+
+    // Safety cleanup
+    return () => {
+        document.body.classList.remove("modal-open");
+    };
+}, [showSubscribeModal, selectedSubject]);
+
+
+    // Filter subjects
     const filteredSubjects = Object.keys(groupedSubjects).reduce((acc, category) => {
         const filtered = groupedSubjects[category].filter((subj) =>
             subj.code.toLowerCase().includes(searchTerm.toLowerCase())
@@ -50,15 +81,17 @@ function SolvedMcqsPage() {
     return (
         <div className="solved_mcqs_wrapper">
             <div className="autoContent">
+
                 {/* Page Heading */}
-                <div className="headlines text-center mb-5">
+                <div className="headlines text-center">
                     <h2>Challenge Yourself with the Most Repeated MCQs</h2>
                     <p>
                         Welcome to <strong>VU Standard</strong>'s MCQ hub! Practice the most frequently repeated
-                        questions from a wide range of courses. Strengthen your understanding, boost your confidence,
-                        and prepare effectively for your virtual university assessments.
+                        questions from a wide range of courses.
                     </p>
                 </div>
+
+                
 
                 {/* Search Input */}
                 <div className="search_wrapper">
@@ -83,20 +116,25 @@ function SolvedMcqsPage() {
                     </div>
                 </div>
 
-                {/* Render subjects by category */}
+                {/* Subjects */}
                 {Object.keys(filteredSubjects).length === 0 ? (
                     <p className="text-center">No subjects found for "{searchTerm}"</p>
                 ) : (
                     Object.keys(filteredSubjects).map((category, idx) => (
                         <div key={idx} className="subject_category mb-5">
-                            <h3 className="category_heading mb-4">{`All ${category} Subjects Quizzes`}</h3>
+                            <h3 className="category_heading mb-4">
+                                {`All ${category} Subjects Quizzes`}
+                            </h3>
                             <div className="row">
                                 {filteredSubjects[category].map((subject, index) => (
                                     <div key={index} className="col-12 col-md-4 mb-4">
-                                        <div className="custom_card text-center">
+                                        <div className="custom_card text-center p-4 shadow rounded">
                                             <h4>{subject.code}</h4>
                                             <p>{subject.description}</p>
-                                            <button className="all_btn" onClick={() => handleOpenQuiz(subject)}>
+                                            <button
+                                                className="all_btn"
+                                                onClick={() => handleStartClick(subject)}
+                                            >
                                                 Start Quiz
                                             </button>
                                         </div>
@@ -107,23 +145,95 @@ function SolvedMcqsPage() {
                     ))
                 )}
 
-                {/* Modal */}
-                {selectedSubject && (
+                {/* SUBSCRIBE MODAL */}
+                {showSubscribeModal && (
                     <div className="modal fade show d-block" tabIndex="-1">
-                        <div className="modal-dialog modal-lg modal-dialog-centered">
+                        <div className="modal-dialog modal-dialog-centered">
                             <div className="modal-content">
                                 <div className="modal-header">
-                                    <h5 className="modal-title">{selectedSubject.code} Quiz</h5>
-                                    <button className="btn-close" onClick={handleReset}></button>
+                                    <h5 className="modal-title">
+                                        Subscribe to Unlock Quiz
+                                    </h5>
+                                    <button
+                                        className="btn-close"
+                                        onClick={() => {
+                                            setShowSubscribeModal(false);
+                                            setIsSubscribed(false);
+                                        }}
+                                    ></button>
                                 </div>
-                                <div className="modal-body">
-                                    <AttempQuiz data={selectedSubject.data} onReset={handleReset} />
+                                <div className="modal-body text-center">
+
+                                    <p className="mb-3">
+                                        Please subscribe to our official YouTube channel to continue.
+                                    </p>
+
+                                    <a
+                                        href="https://www.youtube.com/@vu_standard?sub_confirmation=1"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="btn btn-danger mb-3"
+                                    >
+                                        Subscribe Now
+                                    </a>
+
+                                    <div className="form-check mt-3">
+                                        <input
+                                            type="checkbox"
+                                            className="form-check-input"
+                                            id="subscribedCheck"
+                                            checked={isSubscribed}
+                                            onChange={(e) => setIsSubscribed(e.target.checked)}
+                                        />
+                                        <label
+                                            className="form-check-label"
+                                            htmlFor="subscribedCheck"
+                                        >
+                                            I have subscribed to VU Standard
+                                        </label>
+                                    </div>
+
+                                    <button
+                                        className="btn btn-success mt-4 w-100"
+                                        disabled={!isSubscribed}
+                                        onClick={handleConfirmSubscribe}
+                                    >
+                                        Continue to Quiz
+                                    </button>
+
                                 </div>
                             </div>
                         </div>
                         <div className="modal-backdrop fade show"></div>
                     </div>
                 )}
+
+                {/* QUIZ MODAL */}
+                {selectedSubject && (
+                    <div className="modal fade show d-block" tabIndex="-1">
+                        <div className="modal-dialog modal-lg modal-dialog-centered">
+                            <div className="modal-content">
+                                <div className="modal-header">
+                                    <h5 className="modal-title">
+                                        {selectedSubject.code} Quiz
+                                    </h5>
+                                    <button
+                                        className="btn-close"
+                                        onClick={handleReset}
+                                    ></button>
+                                </div>
+                                <div className="modal-body">
+                                    <AttempQuiz
+                                        data={selectedSubject.data}
+                                        onReset={handleReset}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="modal-backdrop fade show"></div>
+                    </div>
+                )}
+
             </div>
         </div>
     );

@@ -9,7 +9,9 @@ import logo from "../assets/images/logo.png";
 function HeaderLatest() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
-  const [helpDropdownOpen, setHelpDropdownOpen] = useState(false);
+
+  // ✅ FIX: Single active dropdown state
+  const [activeDropdown, setActiveDropdown] = useState(null);
 
   const headerRef = useRef(null);
   const topNavRef = useRef(null);
@@ -30,7 +32,7 @@ function HeaderLatest() {
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (!e.target.closest(".hasDropdown_li")) {
-        setHelpDropdownOpen(false);
+        setActiveDropdown(null);
       }
     };
 
@@ -54,27 +56,22 @@ function HeaderLatest() {
   /* Close menus on route change */
   useEffect(() => {
     setMobileMenuOpen(false);
-    setHelpDropdownOpen(false);
+    setActiveDropdown(null);
   }, [location.pathname]);
 
   const handleMenuLinkClick = () => {
     setMobileMenuOpen(false);
-    setHelpDropdownOpen(false);
+    setActiveDropdown(null);
   };
 
-  const toggleHelpDropdown = (e) => {
+  const toggleDropdown = (e, name) => {
     e.preventDefault();
     e.stopPropagation();
-    setHelpDropdownOpen((prev) => !prev);
+    setActiveDropdown((prev) => (prev === name ? null : name));
   };
 
-  /* Active class handler */
   const navClass = ({ isActive }) =>
     isActive ? "menuLink active" : "menuLink";
-
-  /* Help active detection */
-  const helpRoutes = ["/about-us", "/faqs", "/support", "/contact-us"];
-  const isHelpActive = helpRoutes.includes(location.pathname);
 
   return (
     <header
@@ -116,27 +113,101 @@ function HeaderLatest() {
                 <ul>
 
                   <li>
-                    <NavLink
-                      to="/"
-                      end
-                      className={navClass}
-                    >
+                    <NavLink to="/" end className={navClass}>
                       Home
                     </NavLink>
                   </li>
 
-                  {/* Help Dropdown */}
-                  <li
-                    className={`hasDropdown_li ${
-                      helpDropdownOpen ? "open" : ""
-                    }`}
-                  >
+                  {/* Download Notes */}
+                  <li className={`hasDropdown_li ${activeDropdown === "download" ? "open" : ""}`}>
                     <a
                       href="#"
-                      className={`menuLink hasDropdown ${
-                        isHelpActive ? "active" : ""
-                      }`}
-                      onClick={toggleHelpDropdown}
+                      className="menuLink hasDropdown"
+                      onClick={(e) => toggleDropdown(e, "download")}
+                    >
+                      Download Notes
+                    </a>
+
+                    <div className="dropdownMenu">
+                      <div className="dropdownMenu_inner">
+                        <div className="autoContent">
+                          <div className="dropdownMenuList">
+                            <ul>
+                              <li>
+                                <NavLink
+                                  to="/download-notes"
+                                  className={navClass}
+                                >
+                                  Finalterm Files
+                                </NavLink>
+                              </li>
+                              <li>
+                                <NavLink to="/faqs" className={navClass}>
+                                  Midterm Files
+                                </NavLink>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="dropdownMenu_overlay"
+                        onClick={() => setActiveDropdown(null)}
+                      />
+                    </div>
+                  </li>
+
+                  {/* Start Quiz */}
+                  <li className={`hasDropdown_li ${activeDropdown === "quiz" ? "open" : ""}`}>
+                    <a
+                      href="#"
+                      className="menuLink hasDropdown"
+                      onClick={(e) => toggleDropdown(e, "quiz")}
+                    >
+                      Start Quiz
+                    </a>
+
+                    <div className="dropdownMenu">
+                      <div className="dropdownMenu_inner">
+                        <div className="autoContent">
+                          <div className="dropdownMenuList">
+                            <ul>
+                              <li>
+                                <NavLink
+                                  to="/solved-mcqs"
+                                  className={navClass}
+                                >
+                                  Solved Mcq's
+                                </NavLink>
+                              </li>
+                              <li>
+                                <NavLink to="/faqs" className={navClass}>
+                                  Midterm Files
+                                </NavLink>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="dropdownMenu_overlay"
+                        onClick={() => setActiveDropdown(null)}
+                      />
+                    </div>
+                  </li>
+
+                  <li>
+                    <NavLink to="/lms-handled" className={navClass}>
+                      LMS Handled
+                    </NavLink>
+                  </li>
+
+                  {/* Help */}
+                  <li className={`hasDropdown_li ${activeDropdown === "help" ? "open" : ""}`}>
+                    <a
+                      href="#"
+                      className="menuLink hasDropdown"
+                      onClick={(e) => toggleDropdown(e, "help")}
                     >
                       Help
                     </a>
@@ -147,34 +218,22 @@ function HeaderLatest() {
                           <div className="dropdownMenuList">
                             <ul>
                               <li>
-                                <NavLink
-                                  to="/about-us"
-                                  className={navClass}
-                                >
+                                <NavLink to="/about-us" className={navClass}>
                                   About Us
                                 </NavLink>
                               </li>
                               <li>
-                                <NavLink
-                                  to="/faqs"
-                                  className={navClass}
-                                >
+                                <NavLink to="/faqs" className={navClass}>
                                   FAQs
                                 </NavLink>
                               </li>
                               <li>
-                                <NavLink
-                                  to="/support"
-                                  className={navClass}
-                                >
+                                <NavLink to="/support" className={navClass}>
                                   Support
                                 </NavLink>
                               </li>
                               <li>
-                                <NavLink
-                                  to="/contact-us"
-                                  className={navClass}
-                                >
+                                <NavLink to="/contact-us" className={navClass}>
                                   Contact Us
                                 </NavLink>
                               </li>
@@ -182,39 +241,11 @@ function HeaderLatest() {
                           </div>
                         </div>
                       </div>
-
                       <div
                         className="dropdownMenu_overlay"
-                        onClick={() => setHelpDropdownOpen(false)}
+                        onClick={() => setActiveDropdown(null)}
                       />
                     </div>
-                  </li>
-
-                  <li>
-                    <NavLink
-                      to="/download-notes"
-                      className={navClass}
-                    >
-                      Download Notes
-                    </NavLink>
-                  </li>
-
-                  <li>
-                    <NavLink
-                      to="/solved-mcqs"
-                      className={navClass}
-                    >
-                      Solved Mcq's
-                    </NavLink>
-                  </li>
-
-                  <li>
-                    <NavLink
-                      to="/lms-handled"
-                      className={navClass}
-                    >
-                      LMS Handled
-                    </NavLink>
                   </li>
 
                 </ul>
@@ -223,9 +254,7 @@ function HeaderLatest() {
 
             {/* Mobile Hamburger */}
             <div
-              className={`mob_menuBtn hc_cricle hamburger-lines ${
-                mobileMenuOpen ? "active" : ""
-              }`}
+              className={`mob_menuBtn hc_cricle hamburger-lines ${mobileMenuOpen ? "active" : ""}`}
               onClick={(e) => {
                 e.preventDefault();
                 setMobileMenuOpen((prev) => !prev);

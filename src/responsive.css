@@ -10,8 +10,7 @@
         --headerHeight: 104px;
         /* --autoWidth: 1360px; */
      }
-     .v_card_sliderBox{ min-height:188px;}
-     .auto_banner .banner_inner { padding: 2.5em 4.5em; }
+     .v_card_sliderBox{ min-height:188px;} 
 
 }
 
@@ -40,8 +39,7 @@
 .os_content_right{ width: 31%;}
 .os_info_img { width: 100%; max-width: 6.75em; height: 6.75em; }
 .trackBooking_dropdownBox {  min-width: 360px; }
-
-.auto_banner .banner_inner { padding: 2.5em 4.5em; }
+ 
 
 /*end of = (min-width: 1366px) and (max-width: 1900px)*/			
 }
@@ -138,9 +136,7 @@ body { -webkit-text-size-adjust:none;  -webkit-overflow-scrolling: touch; }
 .payment_card{ min-width: 55px;}
 .payment_cards{ padding: 10px;}
 
-
-.auto_banner .banner_inner{ padding: 20px;}
-.auto_banner .banner_right{ width: 40%;}
+ 
 .ct_value_images { padding-left: 16%; padding-right: 18%; max-width: 94%; }
 .ctSliderMainRunBox{ padding-left: 20px; padding-top: 30px;}
 .recentlyGallary{ padding-left: 20px;  padding-right: 20px;  }
@@ -153,13 +149,7 @@ body { -webkit-text-size-adjust:none;  -webkit-overflow-scrolling: touch; }
 .bp_a_list_inner ul li{ padding: 0em 0.25em; }
 .bp_a_list_inner{ padding-right: 39em; }
 
-
-/* start jd responsive style */
-
-.visit_places_slider .slick-arrow.slick-next{ right: 30%; }
-.visit_places_slider .slick-arrow.slick-prev{ left: 30%; }
-
-/* end jd responsive style */
+ 
 
 
 .os_content_left ul li{ width: 100%; padding-left: 0px; padding-right: 0px;}
@@ -377,11 +367,7 @@ body.openMobileMenu {
 .passenger_payment_inner .payment_terms_checks .checkbox-wrapper .checkbox{ min-width: 98px;}
 .wrapper, body, html{ overflow-x: hidden !important; min-height: 100%; width: 100%;}
 
-
-
-.auto_banner .banner_inner{ padding: 20px;}
-.auto_banner .banner_box{ padding-right: 4%;}
-.auto_banner .banner_right{ width: 54%;}
+ 
 .ct_value_images { padding-left: 0%; padding-right: 18%; max-width: 98%; }
 .ct_value_image_pos{ max-width: 70%; border-width: 4px; }
 .ctSliderMainRunBox{ padding-left: 20px; padding-top: 30px;}
@@ -424,32 +410,16 @@ body.openMobileMenu {
 .bf_rf_contect ul li:last-child{ padding-bottom: 0em; }
 .bp_team_work_inner .aboutMe_detail_left{ padding-right: 1em; }
 
-.vp_slider_img{ height: 22em; }
-
-/* start jd responsive style */
-
-.visit_places_slider .slick-arrow.slick-next{ right: 22%; }
-.visit_places_slider .slick-arrow.slick-prev{ left: 22%; }
-
-.d_discovery_left .banner_box{ padding: 1em 0 1em 1em; }
-
-/* end jd responsive style */
+ 
+ 
 
 
 /* us new  */
-
-.desert_safari_main .ct_value_images{ padding-left: 22% !important; }
+ 
 .faqs_content ul li{ padding-bottom: 6.75em; }
 .faqs_detail_left{ padding-right: 0.875em; }
-
-
-
 .support_contect ul li{ width: 50%; padding: 1.125em 1.125em; } 
 .vehicle_plan ul::after{ width: 92%; }
-
-
-
-
 .os_content_left ul li{ width: 100%; padding-left: 0px; padding-right: 0px;}
 .topNavMob{ display: none; }
 .topNavWeb{ display: block; }
@@ -716,9 +686,7 @@ body.openMobileMenu {
     .thanks_actions ul li{ width: auto;}
     .thanks_text i svg {  max-width: 8.375em; max-height: 7.375em; }
 
-
-
-    .auto_banner .banner_inner{ padding: 20px;}
+ 
     
     .ct_value_images { padding-left: 16%; padding-right: 18%; max-width: 94%; }
     .ctSliderMainRunBox{ padding-left: 20px; padding-top: 30px; min-height: 0;}
@@ -731,7 +699,7 @@ body.openMobileMenu {
     .ct_value_sec{ padding: 2.75em 0px;}
     .ct_value_inner{ display: block;}
     .ct_value_right{ width: 100%; padding: 0px 0px 2.75em 0px;}
-    .ov_left{ width: 100%;}
+ 
 
     .ctThumbImg { width: 8em; height: 8em; }
     .ctThumbText p{ padding-bottom: 6px;}
@@ -765,14 +733,8 @@ body.openMobileMenu {
 
 
 
-     /* start jd responsive style */
-     .ov_right{ width: 100%; }
-     .ov_left{ width: 100%; padding:3.75em 0 0 0 !important; }
-
-     .visit_places_slider .slick-dots{ width: 75%; }
-     .visit_places_slider .slick-arrow.slick-next{ right: 0; }
-     .visit_places_slider .slick-arrow.slick-prev{ left: 0; }
-     .our_value_sec{ padding:2.813em 0 3.75em 0; }
+     
+  
      .ov_galary ul{ height: 26em; }
 
     /* usama about us */
@@ -840,8 +802,7 @@ body.openMobileMenu {
     .circle_middle{ top: 523px;  right: 22px; }
     .bp_rf_left{ width: 100%; }
     .bp_rf_img img{ position: relative;}
-    .bp_registration_form_inner{ flex-direction: column-reverse; }
-    .bp_rf_right{ width: 100%; margin-bottom: 1em; border-radius: 10px; }
+ 
     .bp_rf_img{ border-radius: 10px; }
 
     .bf_rf_contect{ padding: 1em 1em; }
@@ -850,57 +811,11 @@ body.openMobileMenu {
     .bf_rf_contect_info{ display: block; }
     .bf_rf_contect_icon{ margin: auto; } 
     .bf_rf_contect_text{ padding-top: 0.5em; padding-left: 0em; text-align: center; }
-
-    .auto_banner .banner_box{ padding-right: 0em; }
-    .ct_value_sec .ov_left .headlines p{ padding-bottom: 1em; }
-    .ct_exclusive_list{ padding-bottom: 1.5em; }
-
-    .d_discovery_left{ width: 100%; }
-    .d_discovery_left .banner_box{ padding-left: 0em; }
-   
-    .d_discover_list_content{ justify-content: center; align-items: center; }
-    .d_discovery_right{ width: 100%; }
-    .desert_safari_main .ct_value_right{ padding-left: 0em; }
-    .desert_discovery_sec{ padding-bottom: 2.75em; } 
-     .bt_header_left{ width: 100%; padding-bottom: 1.5em; }
-     .bt_header_right{ width: 100%; }
-     .b_tracking_header{ padding-bottom: 1.2em;}
-     .tracking_id_box{   width: 100%; }
-
-     .b_passender_details_left, .b_passender_details_right{ width: 100%; }
-     .passenger_location_box{ padding: 1em; }
-     .p_location_box_left, .p_location_box_right{ width: 100%; padding: 0; }
-     .passenger_allBtns ul li{ width: 50%; }
-    .b_tracking_header, .b_passenger_details, .passenger_location_box{ flex-wrap: wrap; }
-
-    .ov_left .ct_exclusive_list ul li{ gap: 0; }
-    .ov_left .ct_exclusive_list{ padding-bottom: 0; }
-    .visit_places .headlines{ padding-bottom: 1.2em; }
-
-    .vp_slider_img{ height: 22em; }
-    .bp_selected_car_box{ gap: 0; }
-    .cencel_checkBox_btns ul{ justify-content: center; }
-    .cencel_checkBox_btns ul li{ width: 100% !important; }
-
-    .ride_with_section .banner_box{ width: 100%; padding-bottom: 0; }
-    .ride_with_section .banner_box .banner_text small, 
-    .ride_with_section .banner_box .banner_text p{ display: block; }
-
-    .d_discovery_left .banner_box .banner_text p{ display: block; }
-    .d_discover_list_content .r_c2c_left_info p{ text-align: left; }
-    .desert_safari_main .ct_value_inner .ov_left{ padding-bottom: 3.75em !important; }
-    .desert_safari_main .ct_value_sec{ padding: 0; }
-    .desert_safari_main .auto_banner{ padding-bottom: 0; }
-
-    /* end jd responsive style */
+  
 
 
 
-    /* us */
-    .d_discovery_list{ padding:1.5em 0 1em 0; }
-    .d_discovery_img{ border-radius: 0px 0px 10px 10px; }
-    .ct_exclusive_icon{ max-width: 2.75em; }
-    .d_discovery_left .banner_box{ margin: auto; }
+    /* implemented css  */
 
     /* login  */
     .login_signup{ padding: 5em 0em 2em 0em; }
@@ -913,6 +828,7 @@ body.openMobileMenu {
     .login_signup_heading{ text-align: center; }
     .rememberMe_text{ padding: 0em 0em 2em 0em; }
     .DoYouHaveAcc{ padding: 1em 0em 1em 0em; }
+ 
 
     /* faq */
     .faqs_main{ padding-bottom: 0em; }
@@ -928,38 +844,25 @@ body.openMobileMenu {
 
     .faqs_detail_right{ padding-top: 1em; }
     .faqs_content ul li{ padding-bottom: 2.75em; }
+ 
 
-    /* chauffeur  */
+
+
+
+
     .how_works{ padding-bottom: 0em; }
     .hw_content_list ul li{ flex: 0 0 100%; }
     .hw_box_img{ max-width: 3.375em; max-height: 3.375em; }
     .hw_box{ padding: 1.875em; }
     .hw_content_list ul li{ padding: 0 1.25em 2em; }
-    .full_day_chauffeur .ride_with_section .banner_box{ width: 100%; }
-    .full_day_chauffeur .banner_box .banner_text small, .full_day_chauffeur .banner_box .banner_text p{ display: block !important; }
-
-    .full_day_chauffeur .ride_with_section.auto_banner .banner_inner{ padding: 1.5em; }
-
+   
 
     .footer::after{ display: none;}
     .banner_text h1 br{ display: none;}
-    .floating-textarea{ height: 80px;}
-    .ui-datepicker{ position: absolute !important;}
-    .faqs_navBar_main.sticky .faqs_navBar{ top: 54px;}
+    .floating-textarea{ height: 80px;} 
 
-    .bp_rf_right{ padding: 20px 15px;}
-    .bp_registration_form .form_cell{ padding-bottom: 12px;}
-    .bp_rf_right .floating-textarea{ height: 100px;}
-    .vehicleSec{ padding-bottom: 1.75em;}
-
-    .v_outward_edit{ display: none !important;}
-
-
-    .termsTableContent{ display: none;}
-    .termsContent_right{ width: 100%;}
-    .termsBox{ padding: 0px;}
     
-
+ 
 
     .support_main .headlines{ padding-top: 1.125em; }
     .support_contect ul li{ width: 100%; padding: 1.125em 0em;}
@@ -971,59 +874,7 @@ body.openMobileMenu {
     .address_detail ul li{ padding-bottom: 2.125em; }
     .contactUs_social_icons ul li{ padding-bottom: 1.5em; }
     .banner{ z-index: initial;}
-    .coming_soon_content{ min-height: 340px; padding-left: 50px; padding-right: 50px; max-width: 400px;}
-
-
-
-
-    .vehicle_plan ul::after{ width: 94%; }
-
-
-
-    /* sfari booking mobile view */
-
-    .v_card_middle_title{ flex-direction: column; gap: 0px; justify-content: flex-start; align-items: flex-start; padding-bottom:2px; }
-   .v_card_middle_title h4{ padding-top: 0px !important;}
-   .safariBookingMain .v_card_middle{ padding-top: 0px;}
-
-   .safariBookingMain .v_card_middle > ul{ display: block; width: 100%; padding-bottom: 4px;}
-   .safariBookingMain .v_card_middle > ul li{ width: 100% !important; border: 0px none; padding: 6px 0px !important;}
-   .safariBookingMain .v_card_spec span{ font-size: 14px;}
-   .safariBookingMain .v_card_middle > ul > li .v_card_spec{ border: 0px none; padding: 0px;}
-   .safariBookingMain .v_card_spec i svg { width: 1.625em; max-height: 1.625em; max-width:  1.625em; }
-
-   .safariBookingMain .v_card_sliderBox div{ width: 100%; height: 132px;}
-
-   .safariBookingMain .v_card_spec_footer{ border-bottom: 1px solid #EBEBEB; }
-
-   .safariBookingMain .v_card_inner{ padding: 0.75em 0.875em; overflow: hidden; }
-   .safariBookingMain .v_card{ padding: 0px;}
-   .safariBookingMain .selectedList .v_card_btn{ margin: 0px;}
-   .safariBookingMain .v_card_spec_footer_list span{ font-size: 12px;}
-
-   .sfariBook_priceBox_parent{ display: flex; padding: 3px;  background-color: #F5F4F1; border-radius: 8px; align-items: center; margin-bottom: 8px; margin-top: 8px; } 
-
-   .sfariBook_increamentBox_mobile{ padding: 10px; width: 50%; text-align: center; display: flex; flex-direction: column; align-items: center;  gap: 10px; }
-
-   .sfariBook_priceBox_parent .v_card_priceBox_text{ width: 50%; border: 0px none; border-left: 1px solid #fff;}
-   .sfariBook_priceBox_parent .sfariBookIncreament_inner{ margin: 0px;}
-
-   .sfariBook_priceBox_parent .sfariBookIncreament_inner label{ padding-top: 6px;}
-
-   .bookSfariPop_flexible{ display: block;}
-   .bookSfariPop_left{ width: 100%; padding: 0px 0px 2em 0px;}
-   .bookSfariPop_right{ width: 100%;}
-   .additionalOns_sec{ padding: 15px;}
-   .additionalOns_footer{ gap: 6px;}
-   .additionalOns_box{ align-items: flex-start;}
-   .additionalOns_boxFooter ul li .all_btn{ min-width: 140px;}
-
-   .sfariBook_increamentBox_mobile .v_card_spec span{ padding-left: 0px;}
-
- 
-
-
-
+  
     /* new css */
 
     .why_choose_vus{ padding: 3.625em 0px; }
@@ -1065,6 +916,24 @@ body.openMobileMenu {
          .os_content_left ul li{ width: 100%; padding-left: 0px; padding-right: 0px;}
          .topNavMob{ display: block; }
 .topNavWeb{ display: none; }
+
+.solved_mcqs_wrapper{ padding-bottom: 0px !important; }
+
+ .footer_top {
+    flex-direction: column;
+  }
+
+  .footer_links {
+    grid-template-columns: 1fr;
+  }
+
+  .footer_bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+.footer_top{ margin-bottom: 30px; }
+.footer_links{ gap: 20px; }
+.footer{ padding-bottom: 68px; }
  
     /* new css */
 
