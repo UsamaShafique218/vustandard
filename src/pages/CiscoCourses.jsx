@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import course1 from "../assets/images/cisco/course1.png";
-import course2 from "../assets/images/cisco/course2.png";
-import course3 from "../assets/images/cisco/course3.png";
-import course4 from "../assets/images/cisco/course4.png";
-import course5 from "../assets/images/cisco/course5.png";
-import course6 from "../assets/images/cisco/course6.png";
-import course7 from "../assets/images/cisco/course7.png";
-import course8 from "../assets/images/cisco/course8.png";
-import course9 from "../assets/images/cisco/course9.png";
-import course10 from "../assets/images/cisco/course10.png";
-import course11 from "../assets/images/cisco/course11.png";
-import course12 from "../assets/images/cisco/course12.png";
-import course13 from "../assets/images/cisco/course13.png";
-import course14 from "../assets/images/cisco/course14.png";
-import course15 from "../assets/images/cisco/course15.png";
+import course1 from "../assets/images/cisco/course1.PNG";
+import course2 from "../assets/images/cisco/course2.PNG";
+import course3 from "../assets/images/cisco/course3.PNG";
+import course4 from "../assets/images/cisco/course4.PNG";
+import course5 from "../assets/images/cisco/course5.PNG";
+import course6 from "../assets/images/cisco/course6.PNG";
+import course7 from "../assets/images/cisco/course7.PNG";
+import course8 from "../assets/images/cisco/course8.PNG";
+import course9 from "../assets/images/cisco/course9.PNG";
+import course10 from "../assets/images/cisco/course10.PNG";
+import course11 from "../assets/images/cisco/course11.PNG";
+import course12 from "../assets/images/cisco/course12.PNG";
+import course13 from "../assets/images/cisco/course13.PNG";
+import course14 from "../assets/images/cisco/course14.PNG";
+import course15 from "../assets/images/cisco/course15.PNG";
 
 function CiscoCourses() {
     const [showAll, setShowAll] = useState(false);
