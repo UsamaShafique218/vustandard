@@ -1170,7 +1170,7 @@ body { width: 100%; font-family: var(--family);  color: var(--p_color); font-siz
 }
 
 .quiz_options .option.active {
-  background: var(--p_dark);
+  background: var(--grey_dark);
 }
 
 .quiz_footer {
@@ -1693,4 +1693,17 @@ body { width: 100%; font-family: var(--family);  color: var(--p_color); font-siz
 
 .modal-open {
   overflow: hidden !important;
+}
+
+
+
+.cisco_courses_wrapper{width: 100%; padding: 3.75em 0px 3.75em 0px;}
+ .mobileFooter_inner li a .hf_svg_fill {
+    color: white;
+    transition: color 0.3s;
+}
+
+.mobileFooter_inner li a:hover .hf_svg_fill,
+.mobileFooter_inner li a.active .hf_svg_fill {
+    color: var(--golden_yellow);
 }

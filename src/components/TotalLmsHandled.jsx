@@ -162,6 +162,14 @@ function TotalLmsHandled() {
       type: "Full LMS Handle",
       image: bs_english,
     },
+    {
+      id: 20,
+      name: "Rabia Razzaq",
+      program: "BS Information Technology",
+      semester: "Semester 2",
+      type: "Assignments",
+      image: bsit,
+    },
   ];
 
 

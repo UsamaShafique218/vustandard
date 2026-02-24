@@ -12,6 +12,7 @@ import SolvedMcqsPage from './pages/SolvedMcqsPage';
 import AboutUs from './pages/AboutUs';
 import LmsHandled from './pages/LmsHandled'; 
 import StudentResults from './pages/StudentResults';
+import CiscoCourses from './pages/CiscoCourses';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/about-us" element={<AboutUs />} /> 
           <Route path="/lms-handled" element={<LmsHandled />} />  
           <Route path="/student-results" element={<StudentResults />} />  
+          <Route path="/cisco-courses" element={<CiscoCourses />} />  
 
 
           

@@ -291,6 +291,12 @@ function HeaderLatest() {
                     </div>
                   </li>
 
+                   <li>
+                    <NavLink to="/cisco-courses" className={navClass}>
+                      Cisco Courses
+                    </NavLink>
+                  </li>
+
                   <li>
                     <NavLink to="/student-results" className={navClass}>
                       Result's
