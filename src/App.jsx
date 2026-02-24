@@ -10,8 +10,8 @@ import ContactUs from './pages/ContactUs';
 import DownloadNotes from './pages/DownloadNotes';
 import SolvedMcqsPage from './pages/SolvedMcqsPage';
 import AboutUs from './pages/AboutUs';
-import LmsHandled from './pages/LmsHandled';
-import StudentResults from './pages/Results';
+import LmsHandled from './pages/LmsHandled'; 
+import StudentResults from './pages/StudentResults';
 
 function App() {
   return (
@@ -25,8 +25,8 @@ function App() {
           <Route path="/download-notes" element={<DownloadNotes />} /> 
           <Route path="/solved-mcqs" element={<SolvedMcqsPage />} /> 
           <Route path="/about-us" element={<AboutUs />} /> 
-          <Route path="/lms-handled" element={<LmsHandled />} /> 
-          <Route path="/student-results" element={<StudentResults />} /> 
+          <Route path="/lms-handled" element={<LmsHandled />} />  
+          <Route path="/student-results" element={<StudentResults />} />  
 
 
           

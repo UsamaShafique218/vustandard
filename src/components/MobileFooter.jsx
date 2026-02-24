@@ -44,8 +44,8 @@ const MobileFooter = () => {
                     >
                         <i className="hf_svg_fill">
 
-                            <svg fill="#ffffff" height="24" width="22" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                viewBox="0 0 294.023 294.023" xml:space="preserve">
+                            <svg fill="#ffffff" height="24" width="22" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
+                                viewBox="0 0 294.023 294.023" xmlSpace="preserve">
                                 <path d="M124.916,0.002
   c-1.649,0.045-3.169,0.9-4.064,2.285l-14.49,21.736h-49.35c-2.761,0-5,2.239-5,5v50c0,2.761,2.239,5,5,5h50c2.761,0,5-2.239,5-5
   V39.574l-10,15v19.449h-40v-40h37.682L85.631,55.117l-6.146-12.293c-1.205-2.485-4.196-3.523-6.681-2.318

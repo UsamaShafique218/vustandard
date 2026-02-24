@@ -3,21 +3,37 @@ import { NavLink, useLocation } from "react-router-dom";
 import AnnouncementBar from "./AnnouncementBar";
 import TopNavMob from "./TopNavMob";
 import MobileFooter from "./MobileFooter";
-
 import logo from "../assets/images/logo.png";
 
 function HeaderLatest() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
-
-  // ✅ FIX: Single active dropdown state
   const [activeDropdown, setActiveDropdown] = useState(null);
 
   const headerRef = useRef(null);
   const topNavRef = useRef(null);
   const location = useLocation();
 
-  /* Sticky Header */
+  /* ================= ROUTE BASED ACTIVE CHECK ================= */
+
+  const downloadRoutes = ["/download-notes", "/faqs"];
+  const quizRoutes = ["/solved-mcqs"];
+  const helpRoutes = ["/about-us", "/faqs", "/support", "/contact-us"];
+
+  const isDownloadActive = downloadRoutes.some((route) =>
+    location.pathname.startsWith(route)
+  );
+
+  const isQuizActive = quizRoutes.some((route) =>
+    location.pathname.startsWith(route)
+  );
+
+  const isHelpActive = helpRoutes.some((route) =>
+    location.pathname.startsWith(route)
+  );
+
+  /* ================= Sticky Header ================= */
+
   useEffect(() => {
     const handleScroll = () => {
       const navHeight = topNavRef.current?.offsetHeight || 0;
@@ -28,7 +44,8 @@ function HeaderLatest() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  /* Close dropdown when clicking outside */
+  /* ================= Close dropdown outside ================= */
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (!e.target.closest(".hasDropdown_li")) {
@@ -40,7 +57,8 @@ function HeaderLatest() {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
-  /* Body class for mobile menu */
+  /* ================= Body class for mobile ================= */
+
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.classList.add("openMobileMenu");
@@ -53,7 +71,8 @@ function HeaderLatest() {
     };
   }, [mobileMenuOpen]);
 
-  /* Close menus on route change */
+  /* ================= Close menus on route change ================= */
+
   useEffect(() => {
     setMobileMenuOpen(false);
     setActiveDropdown(null);
@@ -119,10 +138,18 @@ function HeaderLatest() {
                   </li>
 
                   {/* Download Notes */}
-                  <li className={`hasDropdown_li ${activeDropdown === "download" ? "open" : ""}`}>
+                  <li
+                    className={`hasDropdown_li ${
+                      activeDropdown === "download" || isDownloadActive
+                        ? "open"
+                        : ""
+                    }`}
+                  >
                     <a
                       href="#"
-                      className="menuLink hasDropdown"
+                      className={`menuLink hasDropdown ${
+                        isDownloadActive ? "active" : ""
+                      }`}
                       onClick={(e) => toggleDropdown(e, "download")}
                     >
                       Download Notes
@@ -158,10 +185,18 @@ function HeaderLatest() {
                   </li>
 
                   {/* Start Quiz */}
-                  <li className={`hasDropdown_li ${activeDropdown === "quiz" ? "open" : ""}`}>
+                  <li
+                    className={`hasDropdown_li ${
+                      activeDropdown === "quiz" || isQuizActive
+                        ? "open"
+                        : ""
+                    }`}
+                  >
                     <a
                       href="#"
-                      className="menuLink hasDropdown"
+                      className={`menuLink hasDropdown ${
+                        isQuizActive ? "active" : ""
+                      }`}
                       onClick={(e) => toggleDropdown(e, "quiz")}
                     >
                       Start Quiz
@@ -203,10 +238,18 @@ function HeaderLatest() {
                   </li>
 
                   {/* Help */}
-                  <li className={`hasDropdown_li ${activeDropdown === "help" ? "open" : ""}`}>
+                  <li
+                    className={`hasDropdown_li ${
+                      activeDropdown === "help" || isHelpActive
+                        ? "open"
+                        : ""
+                    }`}
+                  >
                     <a
                       href="#"
-                      className="menuLink hasDropdown"
+                      className={`menuLink hasDropdown ${
+                        isHelpActive ? "active" : ""
+                      }`}
                       onClick={(e) => toggleDropdown(e, "help")}
                     >
                       Help
@@ -248,13 +291,21 @@ function HeaderLatest() {
                     </div>
                   </li>
 
+                  <li>
+                    <NavLink to="/student-results" className={navClass}>
+                      Result's
+                    </NavLink>
+                  </li>
+
                 </ul>
               </div>
             </div>
 
-            {/* Mobile Hamburger */}
+            {/* Mobile Button */}
             <div
-              className={`mob_menuBtn hc_cricle hamburger-lines ${mobileMenuOpen ? "active" : ""}`}
+              className={`mob_menuBtn hc_cricle hamburger-lines ${
+                mobileMenuOpen ? "active" : ""
+              }`}
               onClick={(e) => {
                 e.preventDefault();
                 setMobileMenuOpen((prev) => !prev);
@@ -269,7 +320,6 @@ function HeaderLatest() {
         </div>
       </div>
 
-      {/* Mobile Footer */}
       <div className="mobileFooter">
         <MobileFooter />
       </div>

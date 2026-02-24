@@ -83,42 +83,30 @@ function Footer() {
             <div className="footer_col">
               <h4>Quick Links</h4>
               <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Finalterm Files</a></li>
-                <li><a href="#">Midterm Files</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/lms-handled">LMS Handled</a></li>
+                <li><a href="/student-results">Result's</a></li>
                 <li><a href="#"></a></li>
               </ul>
             </div>
 
             <div className="footer_col">
-              <h4>Admissions</h4>
+              <h4>Download Note's</h4>
               <ul>
-                <li><a href="#">Apply Online</a></li>
-                <li><a href="#">Fee Structure</a></li>
-                <li><a href="#">Scholarships</a></li>
-                <li><a href="#">Entry Test</a></li>
+                <li><a href="/download-notes">Midterm Files</a></li>
+                <li><a href="/download-notes">Finalterm Files</a></li> 
               </ul>
             </div>
 
             <div className="footer_col">
               <h4>Helps</h4>
               <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">FAQ's</a></li>
-                <li><a href="#">Support</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="/about-us">About Us</a></li>
+                <li><a href="/faqs">FAQ's</a></li>
+                <li><a href="/support">Support</a></li>
+                <li><a href="/contact-us">Contact Us</a></li>
               </ul>
-            </div>
-
-            <div className="footer_col">
-              <h4>Legal</h4>
-              <ul>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms & Conditions</a></li>
-                <li><a href="#">Cookie Policy</a></li>
-              </ul>
-            </div>
-
+            </div>  
           </div>
         </div>
 
