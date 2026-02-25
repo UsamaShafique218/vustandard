@@ -120,7 +120,7 @@ function Header() {
                     </div>
                   </li> 
                   <li>
-                    <Link className="menuLink" to="/download-notes">
+                    <Link className="menuLink" to="/finalterm-files">
                       Download Notes
                     </Link>
                   </li>

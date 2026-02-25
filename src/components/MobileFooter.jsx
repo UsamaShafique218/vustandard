@@ -66,7 +66,7 @@ const MobileFooter = () => {
                 </li>
                 <li>
                     <NavLink
-                        to="/download-notes"
+                        to="/finalterm-files"
                         className={({ isActive }) => (isActive ? "active" : "")}
                     >
                         <i className="hf_svg_fill">
@@ -81,19 +81,19 @@ const MobileFooter = () => {
                 </li>
                 <li>
                     <NavLink
-  to="/student-results"
-  className={({ isActive }) => (isActive ? "active" : "")}
->
-  <i className="hf_svg_fill">
-    <svg width="24" height="22" viewBox="0 0 24 24" fill="none"
-      xmlns="http://www.w3.org/2000/svg">
-      <path d="M9 2H15C16.1046 2 17 2.89543 17 4V5H7V4C7 2.89543 7.89543 2 9 2Z" stroke="white" strokeWidth="1.5"/>
-      <path d="M6 5H18C19.1046 5 20 5.89543 20 7V20C20 21.1046 19.1046 22 18 22H6C4.89543 22 4 21.1046 4 20V7C4 5.89543 4.89543 5 6 5Z" stroke="white" strokeWidth="1.5"/>
-      <path d="M8 10H16M8 14H16M8 18H13" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-    </svg>
-  </i>
-  <span>Results</span>
-</NavLink>
+                        to="/student-results"
+                        className={({ isActive }) => (isActive ? "active" : "")}
+                    >
+                        <i className="hf_svg_fill">
+                            <svg width="24" height="22" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 2H15C16.1046 2 17 2.89543 17 4V5H7V4C7 2.89543 7.89543 2 9 2Z" stroke="white" strokeWidth="1.5" />
+                                <path d="M6 5H18C19.1046 5 20 5.89543 20 7V20C20 21.1046 19.1046 22 18 22H6C4.89543 22 4 21.1046 4 20V7C4 5.89543 4.89543 5 6 5Z" stroke="white" strokeWidth="1.5" />
+                                <path d="M8 10H16M8 14H16M8 18H13" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+                            </svg>
+                        </i>
+                        <span>Results</span>
+                    </NavLink>
                 </li>
             </ul>
         </div>

@@ -1707,3 +1707,17 @@ body { width: 100%; font-family: var(--family);  color: var(--p_color); font-siz
 .mobileFooter_inner li a.active .hf_svg_fill {
     color: var(--golden_yellow);
 }
+
+
+
+
+
+
+
+/*  */
+body.modal-open {
+  overflow: hidden !important;
+  position: fixed;
+  width: 100%;
+}
+ 

@@ -93,8 +93,8 @@ function Footer() {
             <div className="footer_col">
               <h4>Download Note's</h4>
               <ul>
-                <li><a href="/download-notes">Midterm Files</a></li>
-                <li><a href="/download-notes">Finalterm Files</a></li> 
+                <li><a href="/finalterm-files">Midterm Files</a></li>
+                <li><a href="/finalterm-files">Finalterm Files</a></li> 
               </ul>
             </div>
 

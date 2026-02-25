@@ -16,7 +16,7 @@ function HeaderLatest() {
 
   /* ================= ROUTE BASED ACTIVE CHECK ================= */
 
-  const downloadRoutes = ["/download-notes", "/faqs"];
+  const downloadRoutes = ["/finalterm-files", "/faqs"];
   const quizRoutes = ["/solved-mcqs"];
   const helpRoutes = ["/about-us", "/faqs", "/support", "/contact-us"];
 
@@ -162,14 +162,14 @@ function HeaderLatest() {
                             <ul>
                               <li>
                                 <NavLink
-                                  to="/download-notes"
+                                  to="/finalterm-files"
                                   className={navClass}
                                 >
                                   Finalterm Files
                                 </NavLink>
                               </li>
                               <li>
-                                <NavLink to="/faqs" className={navClass}>
+                                <NavLink to="/midterm-files" className={navClass}>
                                   Midterm Files
                                 </NavLink>
                               </li>
@@ -214,12 +214,7 @@ function HeaderLatest() {
                                 >
                                   Solved Mcq's
                                 </NavLink>
-                              </li>
-                              <li>
-                                <NavLink to="/faqs" className={navClass}>
-                                  Midterm Files
-                                </NavLink>
-                              </li>
+                              </li> 
                             </ul>
                           </div>
                         </div>
