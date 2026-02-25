@@ -1708,16 +1708,14 @@ body { width: 100%; font-family: var(--family);  color: var(--p_color); font-siz
     color: var(--golden_yellow);
 }
 
-
-
-
-
-
-
-/*  */
+ 
 body.modal-open {
   overflow: hidden !important;
   position: fixed;
   width: 100%;
+} 
+body.openMobileMenu .wrapper {
+    overflow: hidden; 
+    height: 100vh;
 }
  
