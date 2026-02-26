@@ -86,7 +86,7 @@ const reviews = [
   },
   {
     name: "Alveena",
-    degree: "BSIT",
+    degree: "BS English",
     image: femaleIcon,
     text: "LMS activities and assignments are all clear now Alhamdulillah I've had minimal gaps so far thanks to your support",
   },
