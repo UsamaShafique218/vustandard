@@ -66,6 +66,32 @@ const reviews = [
     image: ashir_img,
     text: "Usama Bhai Bht Bht shukria apka ap ny bht achy sy handle kia lms or files etc b outclass share ki jis sy mera result kafi bhtr hova, Thanks a lot...",
   },
+  {
+    name: "Anum Ijaz",
+    degree: "BSCS",
+    image: femaleIcon,
+    text: "Sir apka samjhana ka tareeka to bhout behtreen hai or informative hai+AP bhout cooperative Hain about study students ko har mushki MN sahi guidelines dete hain",
+  },
+  {
+    name: "M Ibrahim",
+    degree: "BSCS",
+    image: maleIcon,
+    text: "Excellent services 👍, results always on time, quizzes and assignments are a breeze! Keep up the good work VU Standard!",
+  },
+  {
+    name: "Aleena Zanib",
+    degree: "BSCS",
+    image: femaleIcon,
+    text: "I really liked their work, everything was 100% clear in the GDB assignment and afterwards in everything, I mean their services are very good😊 👍 ",
+  },
+  {
+    name: "Alveena",
+    degree: "BSIT",
+    image: femaleIcon,
+    text: "LMS activities and assignments are all clear now Alhamdulillah I've had minimal gaps so far thanks to your support",
+  },
+  
+  
 ];
 
 const TestimonialSlider = () => {
@@ -77,7 +103,7 @@ const TestimonialSlider = () => {
       navigation
       pagination={{ clickable: true }}
       autoplay={{
-        delay: 3000,
+        delay: 2000,
         disableOnInteraction: false,
       }}
       loop={true}
@@ -117,16 +143,7 @@ const TestimonialSlider = () => {
             <div className="review_card_content">
               <h3 className="review_card_name">{review.name}</h3>
 
-              {review.degree && <span>{review.degree}</span>}
-
-              {/* <div className="review_card_rating">
-                <span className="star filled">&#9733;</span>
-                <span className="star filled">&#9733;</span>
-                <span className="star filled">&#9733;</span>
-                <span className="star filled">&#9733;</span>
-                <span className="star half">&#9733;</span>
-              </div> */}
-
+              {review.degree && <span>{review.degree}</span>}  
               <div className="review_card_text">
                 <p>{review.text}</p>
               </div>
