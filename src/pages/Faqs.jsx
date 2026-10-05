@@ -1,23 +1,28 @@
-import React from 'react' 
-import Accordion from '../components/Accordion'
- 
-function Faqs() {
-    return (
-        <div className="gradiantParent">
-            <div className="gradiantChild">
-                <section className="faqs_sec">
-                    <div className="autoContent">
-                        <div className="faqs_sec_inner">
-                            <div className="headlines">
-                                <h2>FAQs</h2>
-                            </div>
-                            <Accordion />
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div> 
-  )
-}
+import { Plus } from "lucide-react";
+import { PageHero } from "../components/site/ui";
+import faqs from "../data/faqs";
+import { ContactCta } from "./Home";
 
-export default Faqs
+export default function Faqs() {
+  return (
+    <>
+      <PageHero crumb="FAQs" eyebrow="Help centre" title="Frequently asked questions">
+        Everything students usually ask before booking LMS support, quizzes or final project help.
+      </PageHero>
+
+      <section className="section-sm">
+        <div className="container faq-layout">
+          <div className="accordion">
+            {faqs.map((f, i) => (
+              <details key={f.q} open={i === 0}>
+                <summary>{f.q}<Plus /></summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
+          <ContactCta />
+        </div>
+      </section>
+    </>
+  );
+}

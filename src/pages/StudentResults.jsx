@@ -1,30 +1,53 @@
-import React from "react";
-import StudentReviewsSlider from "../components/StudentReviewsSlider";
+import { useState } from "react";
+import { Images } from "lucide-react";
+import { Lightbox, PageHero } from "../components/site/ui";
+import { results } from "../data/showcase";
+import { Testimonials } from "./Home";
 
+const items = results.flatMap((r) => r.gallery.map((src) => ({ src, title: r.title, caption: r.desc })));
 
-const StudentResults = () => {
+export default function StudentResults() {
+  const [open, setOpen] = useState(null);
 
-    return (
-        <div className="gradiantParent">
-            <div className="gradiantChild">  
-                <section className="student_result_sec">
-                    <div className="container">
-                        <div className="headlines text-center mb-5">
-                            <h2>Academic Success Showcases</h2>
-                            <span>Proven Results Through Professional Academic Support</span>
-                            <p className="mt-3">
-                                Browse verified student results achieved through our dedicated academic
-                                assistance services, including quizzes, assignments, GDB participation,
-                                and full or partial LMS management. We focus on quality, accuracy, and
-                                timely submissions to ensure outstanding academic performance.
-                            </p>
-                        </div> 
-                        <StudentReviewsSlider />
-                    </div>
-                </section>
-            </div>
+  return (
+    <>
+      <PageHero crumb="Results" eyebrow="Academic success" title="Proven results from real student LMS accounts">
+        Verified results achieved through our quizzes, assignments, GDB participation and full or partial LMS
+        management. Select any result to view it full size.
+      </PageHero>
+
+      <section className="section-sm">
+        <div className="container">
+          <div className="results-grid">
+            {results.map((r) => {
+              const start = items.findIndex((it) => it.src === r.gallery[0]);
+              return (
+                <button key={r.title} type="button" className="result-tile card" onClick={() => setOpen(start)}>
+                  <img src={r.gallery[0]} alt={`${r.title} result`} loading="lazy" />
+                  {r.gallery.length > 1 && (
+                    <span className="badge result-count"><Images /> {r.gallery.length}</span>
+                  )}
+                  <span className="result-label"><strong>{r.title}</strong> {r.desc}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
-    );
-};
+      </section>
 
-export default StudentResults;
+      <section className="section section-alt">
+        <div className="container">
+          <div className="section-head">
+            <div>
+              <span className="eyebrow">Student reviews</span>
+              <h2>What our students say</h2>
+            </div>
+          </div>
+          <Testimonials />
+        </div>
+      </section>
+
+      {open !== null && <Lightbox items={items} index={open} onIndex={setOpen} onClose={() => setOpen(null)} />}
+    </>
+  );
+}
