@@ -314,8 +314,9 @@ function Result({ quiz, answers, student, durationSec, onRetake }) {
 export default function QuizAttempt() {
   const { code = "" } = useParams();
   const upper = code.toUpperCase();
-  const fallback = useMemo(() => staticQuizzes.find((q) => q.code === upper) || null, [upper]);
-  const { data: loaded, loading, error } = useApiData(`/quizzes/${encodeURIComponent(upper)}`, fallback);
+  const term = new URLSearchParams(window.location.search).get("term") === "final" ? "final" : "midterm";
+  const fallback = useMemo(() => term === "midterm" ? staticQuizzes.find((q) => q.code === upper) || null : null, [upper, term]);
+  const { data: loaded, loading, error } = useApiData(`/quizzes/${encodeURIComponent(upper)}?term=${term}`, fallback);
   const [stage, setStage] = useState("intro");
   const [student, setStudent] = useState(null);
   const [outcome, setOutcome] = useState(null);

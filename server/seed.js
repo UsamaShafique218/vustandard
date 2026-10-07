@@ -21,8 +21,8 @@ await Subject.bulkWrite(
 await Quiz.bulkWrite(
   quizzes.map((q) => ({
     updateOne: {
-      filter: { code: q.code },
-      update: { $set: { ...q, department: departmentOf[q.code] || q.code.replace(/\d+/, "") } },
+      filter: { code: q.code, term: q.term || "midterm" },
+      update: { $set: { ...q, term: q.term || "midterm", department: departmentOf[q.code] || q.code.replace(/\d+/, "") } },
       upsert: true,
     },
   }))

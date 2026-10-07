@@ -8,19 +8,21 @@ import subjects, { departments } from "../data/subjects";
 
 const deptOf = Object.fromEntries(subjects.map((s) => [s.code, s.department]));
 const fallback = () =>
-  staticQuizzes.map((q) => ({ code: q.code, title: q.title, department: deptOf[q.code], questionCount: q.questions.length }));
+  staticQuizzes.map((q) => ({ code: q.code, title: q.title, term: q.term || "midterm", department: deptOf[q.code], questionCount: q.questions.length }));
 
 export default function Quizzes() {
   const { data, loading } = useApiData("/quizzes", fallback);
   const [query, setQuery] = useState("");
   const [dept, setDept] = useState("ALL");
+  const [term, setTerm] = useState("midterm");
 
   const list = useMemo(() => data || [], [data]);
+  const termQuizzes = list.filter((q) => (q.term || "midterm") === term);
   const deptCounts = useMemo(
-    () => list.reduce((acc, q) => ({ ...acc, [q.department]: (acc[q.department] || 0) + 1 }), {}),
-    [list]
+    () => termQuizzes.reduce((acc, q) => ({ ...acc, [q.department]: (acc[q.department] || 0) + 1 }), {}),
+    [termQuizzes]
   );
-  const filtered = list.filter((q) => {
+  const filtered = termQuizzes.filter((q) => {
     const text = `${q.code} ${q.title}`.toLowerCase();
     return (dept === "ALL" || q.department === dept) && text.includes(query.trim().toLowerCase());
   });
@@ -40,10 +42,18 @@ export default function Quizzes() {
             <li><FileDown /> <span><strong>PDF result</strong> with correct answers</span></li>
           </ul>
 
+          <div className="tabs quiz-term-switch" role="tablist" aria-label="Choose quiz term">
+            {[["midterm", "Midterm"], ["final", "Final Term"]].map(([value, label]) => (
+              <button key={value} type="button" role="tab" className="tab" aria-selected={term === value} onClick={() => { setTerm(value); setDept("ALL"); }}>
+                {label} <span className="count">{list.filter((q) => (q.term || "midterm") === value).length}</span>
+              </button>
+            ))}
+          </div>
+
           <div className="toolbar">
             <div className="chips" role="group" aria-label="Filter by department">
               <button type="button" className="chip" aria-pressed={dept === "ALL"} onClick={() => setDept("ALL")}>
-                All <span className="count">{list.length}</span>
+                All <span className="count">{termQuizzes.length}</span>
               </button>
               {departments
                 .filter((d) => deptCounts[d.code])
@@ -67,7 +77,7 @@ export default function Quizzes() {
           ) : (
             <div className="quiz-grid">
               {filtered.map((q) => (
-                <Link key={q.code} to={`/quiz/${q.code}`} className="quiz-card card card-link">
+                <Link key={`${q.code}-${q.term || "midterm"}`} to={`/quiz/${q.code}?term=${q.term || "midterm"}`} className="quiz-card card card-link">
                   <div className="quiz-card-top">
                     <span className="code-tag">{q.code}</span>
                     <span className="badge">{departments.find((d) => d.code === q.department)?.name || q.department}</span>

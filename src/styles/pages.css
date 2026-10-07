@@ -420,6 +420,7 @@
 
 /* ---------- Quiz listing ---------- */
 .quiz-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
+.quiz-term-switch { margin: var(--s-5) 0; }
 .quiz-card { display: flex; flex-direction: column; gap: var(--s-3); padding: var(--s-5); color: var(--text); }
 .quiz-card-top { display: flex; justify-content: space-between; align-items: center; gap: var(--s-2); }
 .quiz-card-top .code-tag { font-size: var(--fs-lg); }

@@ -31,7 +31,8 @@ export const Quiz = model(
   "Quiz",
   new Schema(
     {
-      code: { type: String, required: true, unique: true, uppercase: true, trim: true },
+      code: { type: String, required: true, uppercase: true, trim: true },
+      term: { type: String, enum: ["midterm", "final"], default: "midterm", required: true },
       title: { type: String, required: true, trim: true },
       department: { type: String, uppercase: true, trim: true },
       published: { type: Boolean, default: true },
@@ -40,6 +41,7 @@ export const Quiz = model(
     opts
   )
 );
+Quiz.schema.index({ code: 1, term: 1 }, { unique: true });
 
 export const Note = model(
   "Note",

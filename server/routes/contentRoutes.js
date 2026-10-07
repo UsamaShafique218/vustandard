@@ -58,18 +58,18 @@ router.get("/quizzes/admin", protect, async (req, res) => {
   res.json(await Quiz.find().sort({ code: 1 }).lean());
 });
 crud("/quizzes", Quiz, {
-  fields: ["code", "title", "department", "published", "questions"],
+  fields: ["code", "title", "department", "term", "published", "questions"],
   listHandler: async (req, res) => {
     const items = await Quiz.aggregate([
       { $match: { published: true } },
-      { $project: { code: 1, title: 1, department: 1, questionCount: { $size: "$questions" } } },
+      { $project: { code: 1, title: 1, department: 1, term: 1, questionCount: { $size: "$questions" } } },
       { $sort: { code: 1 } },
     ]);
     res.json(items);
   },
 });
 router.get("/quizzes/:code", async (req, res) => {
-  const quiz = await Quiz.findOne({ code: req.params.code.toUpperCase(), published: true }).lean();
+  const quiz = await Quiz.findOne({ code: req.params.code.toUpperCase(), term: req.query.term === "final" ? "final" : "midterm", published: true }).lean();
   if (!quiz) return res.status(404).json({ message: "Quiz not found" });
   res.json(quiz);
 });

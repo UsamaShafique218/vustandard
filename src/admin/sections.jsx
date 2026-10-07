@@ -374,9 +374,9 @@ export function QuizzesAdmin() {
       emptyText="Create a practice quiz with multiple-choice questions."
       searchText={(q) => `${q.code} ${q.title} ${q.department}`}
       itemName={(q) => `${q.code} ${q.title}`}
-      blank={{ code: "", title: "", department: "CS", published: true, questions: [blankQuestion()] }}
+      blank={{ code: "", title: "", department: "CS", term: "midterm", published: true, questions: [blankQuestion()] }}
       toForm={(q) => ({
-        code: q.code, title: q.title, department: q.department || "CS", published: q.published !== false,
+        code: q.code, title: q.title, department: q.department || "CS", term: q.term || "midterm", published: q.published !== false,
         questions: q.questions.map((x) => ({ question: x.question, options: [...x.options], answer: x.answer })),
       })}
       toPayload={(f) => ({
@@ -402,6 +402,7 @@ export function QuizzesAdmin() {
         { key: "code", label: "Code", width: 110, render: (q) => <span className="code-tag">{q.code}</span> },
         { key: "title", label: "Title", render: (q) => <strong>{q.title}</strong> },
         { key: "department", label: "Department", render: (q) => deptName(q.department) },
+        { key: "term", label: "Term", render: (q) => <span className={`badge ${q.term === "final" ? "badge-accent" : "badge-primary"}`}>{q.term === "final" ? "Final term" : "Midterm"}</span> },
         { key: "questions", label: "Questions", render: (q) => q.questions.length },
         {
           key: "published", label: "Status",
@@ -423,6 +424,12 @@ export function QuizzesAdmin() {
               <Field label="Department" id="q-dept">
                 <select id="q-dept" className="select" value={f.department} onChange={(e) => set({ department: e.target.value })}>
                   {departments.map((d) => <option key={d.code} value={d.code}>{d.code} · {d.name}</option>)}
+                </select>
+              </Field>
+              <Field label="Term" id="q-term">
+                <select id="q-term" className="select" value={f.term} onChange={(e) => set({ term: e.target.value })}>
+                  <option value="midterm">Midterm</option>
+                  <option value="final">Final term</option>
                 </select>
               </Field>
             </div>
