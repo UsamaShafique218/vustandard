@@ -43,6 +43,7 @@ const loadAssets = () =>
 const pretty = (url = "") => url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
 
 export async function downloadQuizPdf({ quiz, answers, student, score, durationSec, settings }) {
+  const termLabel = quiz.term === "final" ? "Final Term" : "Midterm";
   const [{ jsPDF }, regular, bold, logo] = await loadAssets();
   const doc = new jsPDF({ unit: "mm", format: "a4" });
   doc.addFileToVFS("DejaVuSans.ttf", regular);
@@ -80,7 +81,7 @@ export async function downloadQuizPdf({ quiz, answers, student, score, durationS
       font(9, "bold", C.white);
       doc.text("VU Standard", M, 10);
       font(8, "normal", [170, 183, 201]);
-      doc.text(`${quiz.code} · Quiz result · ${student.name || "Student"}`, W - M, 10, { align: "right" });
+      doc.text(`${quiz.code} · ${termLabel} quiz · ${student.name || "Student"}`, W - M, 10, { align: "right" });
       return h + 10;
     }
     if (logo) {
@@ -110,8 +111,9 @@ export async function downloadQuizPdf({ quiz, answers, student, score, durationS
 
   // ---- Title ----
   font(19, "bold");
-  doc.text(`${quiz.code}: ${quiz.title}`, M, y);
-  y += 7;
+  const quizHeading = doc.splitTextToSize(`${quiz.code}: ${quiz.title} · ${termLabel} Quiz`, CW);
+  doc.text(quizHeading, M, y);
+  y += 7 * quizHeading.length;
   font(10, "normal", C.text2);
   doc.text(`${total} multiple-choice questions · free practice quiz by VU Standard`, M, y);
   y += 9;
@@ -275,5 +277,5 @@ export async function downloadQuizPdf({ quiz, answers, student, score, durationS
   }
 
   const safeName = (student.name || "Student").replace(/[^\w-]+/g, "_").slice(0, 40);
-  doc.save(`VU-Standard_${quiz.code}_Quiz_Result_${safeName}.pdf`);
+  doc.save(`VU-Standard_${quiz.code}_${termLabel.replace(/\s+/g, "_")}_Quiz_Result_${safeName}.pdf`);
 }
