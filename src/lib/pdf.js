@@ -111,11 +111,10 @@ export async function downloadQuizPdf({ quiz, answers, student, score, durationS
 
   // ---- Title ----
   font(19, "bold");
-  const quizHeading = doc.splitTextToSize(`${quiz.code}: ${quiz.title} · ${termLabel} Quiz`, CW);
-  doc.text(quizHeading, M, y);
-  y += 7 * quizHeading.length;
+  doc.text(`${quiz.code}: ${quiz.title}`, M, y);
+  y += 7;
   font(10, "normal", C.text2);
-  doc.text(`${total} multiple-choice questions · free practice quiz by VU Standard`, M, y);
+  doc.text(`${termLabel} Quiz · ${total} multiple-choice questions · free practice quiz by VU Standard`, M, y);
   y += 9;
 
   // ---- Summary card ----
