@@ -923,7 +923,7 @@ body.openMobileMenu {
     flex-direction: column;
   }
 
-  .footer_links {
+     .footer_links {
     grid-template-columns: 1fr;
   }
 
@@ -933,6 +933,70 @@ body.openMobileMenu {
   }
 .footer_top{ margin-bottom: 30px; }
 .footer_links{ gap: 20px; }
+
+/* Reliable mobile navigation drawer and touch target. */
+@media (max-width: 992px) {
+  .header_mainInner { position: relative; }
+  .header_right {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(360px, calc(100vw - 56px));
+    max-width: none;
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+    padding: 76px 0 24px !important;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-radius: 0;
+    transform: translateX(105%);
+    visibility: hidden;
+    transition: transform 0.25s ease, visibility 0.25s ease;
+    z-index: 9999;
+  }
+  .openMobileMenu .header_right {
+    right: 0;
+    padding-top: 76px !important;
+    transform: translateX(0);
+    visibility: visible;
+  }
+  .header_mainInner:after { z-index: 998; }
+  .mob_menuBtn {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    bottom: auto;
+    width: 44px;
+    height: 44px;
+    padding: 12px 8px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    transform: translateY(-50%);
+    z-index: 10000;
+    appearance: none;
+  }
+  .mob_menuBtn:focus-visible { outline: 2px solid var(--pg_color); outline-offset: 2px; }
+  .mob_menuBtn .line { left: 8px; width: calc(100% - 16px); }
+  .openMobileMenu .header { z-index: 9992; }
+  .openMobileMenu .mob_menuBtn {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    bottom: auto;
+    transform: none;
+    z-index: 10001;
+  }
+  .header_link { max-height: none; min-height: 0; padding: 0 !important; overflow: visible; }
+  .header_link > ul { display: block; padding: 0 !important; margin: 0; }
+  .header_link > ul > li { padding: 0; }
+  .header_link .menuLink { display: block; padding: 14px 20px; }
+  .header_link .dropdownMenu { position: static; display: none; visibility: visible; opacity: 1; }
+  .header_link .hasDropdown_li.open > .dropdownMenu { display: block !important; }
+  .header_link .dropdownMenuList ul { display: block; }
+  .header_link .dropdownMenuList ul li { padding: 0; }
+  .header_link .dropdownMenuList .menuLink { padding-left: 36px; }
+}
 .footer{ padding-bottom: 68px; }
  
     /* new css */

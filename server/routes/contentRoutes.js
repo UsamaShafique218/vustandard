@@ -49,7 +49,7 @@ crud("/notes", Note, {
 });
 
 crud("/projects", Project, {
-  fields: ["course", "title", "description", "youtubeUrl", "studentName", "tech", "order"],
+  fields: ["course", "title", "description", "youtubeUrl", "imageUrl", "projectUrl", "studentName", "tech", "order"],
   sort: { order: 1, createdAt: -1 },
 });
 

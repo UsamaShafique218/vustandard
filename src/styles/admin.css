@@ -251,6 +251,7 @@
 .modal {
   display: flex;
   flex-direction: column;
+  min-height: 0;
   width: min(560px, 100%);
   max-height: calc(100vh - 32px);
   max-height: calc(100dvh - 32px);
@@ -262,10 +263,10 @@
 }
 .modal-wide { width: min(880px, 100%); }
 @keyframes modal-in { from { opacity: 0; transform: translateY(8px) scale(0.98); } }
-.modal-head { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); padding: var(--s-4) var(--s-5); border-bottom: 1px solid var(--border); }
+.modal-head { display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; gap: var(--s-4); padding: var(--s-4) var(--s-5); border-bottom: 1px solid var(--border); }
 .modal-head h2 { font-size: var(--fs-xl); letter-spacing: -0.02em; }
-.modal-body { padding: var(--s-5); overflow-y: auto; }
-.modal-foot { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: var(--s-3); padding: var(--s-4) var(--s-5); border-top: 1px solid var(--border); }
+.modal-body { min-height: 0; flex: 1 1 auto; padding: var(--s-5); overflow-y: auto; overscroll-behavior: contain; }
+.modal-foot { display: flex; flex: 0 0 auto; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: var(--s-3); padding: var(--s-4) var(--s-5); border-top: 1px solid var(--border); background: var(--surface); }
 .modal-error { margin-right: auto; font-size: var(--fs-sm); }
 
 /* ---------- Login ---------- */

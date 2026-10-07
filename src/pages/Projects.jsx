@@ -80,7 +80,7 @@ export default function Projects() {
             <div className="video-grid">
               {list.map((p) => (
                 <article key={p._id} className="video-card card">
-                  <YouTubeEmbed videoId={p.videoId} title={p.title} />
+                  {p.videoId ? <YouTubeEmbed videoId={p.videoId} title={p.title} /> : <div className="yt"><img src={p.imageUrl} alt={`${p.title} project screenshot`} loading="lazy" /></div>}
                   <div className="video-body">
                     <h3>{p.title}</h3>
                     <div className="video-meta">
@@ -88,6 +88,7 @@ export default function Projects() {
                       {p.tech && <span className="badge">{p.tech}</span>}
                     </div>
                     {p.description && <p>{p.description}</p>}
+                    {p.projectUrl && <a className="btn btn-secondary btn-sm" href={p.projectUrl} target="_blank" rel="noreferrer">View project</a>}
                   </div>
                 </article>
               ))}

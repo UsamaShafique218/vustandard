@@ -127,7 +127,7 @@ function HeaderLatest() {
             </div>
 
             {/* Desktop Menu */}
-            <div className="header_right">
+            <div className="header_right" id="site-mobile-navigation">
               <div className="navInfo navInfo_mobile">
                 <div className="navInfoMobile_partner">
                   <a className="navOutlineBtn" href="become_partner.html">
@@ -335,9 +335,13 @@ function HeaderLatest() {
             </div>
 
             {/* Mobile Button */}
-            <div
+            <button
+              type="button"
               className={`mob_menuBtn hc_cricle hamburger-lines ${mobileMenuOpen ? "active" : ""
                 }`}
+              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="site-mobile-navigation"
               onClick={(e) => {
                 e.preventDefault();
                 setMobileMenuOpen((prev) => !prev);
@@ -346,7 +350,7 @@ function HeaderLatest() {
               <span className="line line1"></span>
               <span className="line line2"></span>
               <span className="line line3"></span>
-            </div>
+            </button>
 
           </div>
         </div>

@@ -68,7 +68,9 @@ const projectSchema = new Schema(
     course: { type: String, enum: ["CS519", "CS619"], required: true },
     title: { type: String, required: true, trim: true },
     description: { type: String, trim: true, default: "" },
-    youtubeUrl: { type: String, required: true, trim: true },
+    youtubeUrl: { type: String, trim: true, default: "" },
+    imageUrl: { type: String, trim: true, default: "" },
+    projectUrl: { type: String, trim: true, default: "" },
     videoId: { type: String },
     studentName: { type: String, trim: true, default: "" },
     tech: { type: String, trim: true, default: "" },
@@ -77,8 +79,9 @@ const projectSchema = new Schema(
   opts
 );
 projectSchema.pre("validate", function () {
-  this.videoId = youtubeId(this.youtubeUrl);
-  if (!this.videoId) this.invalidate("youtubeUrl", "Enter a valid YouTube video link");
+  this.videoId = this.youtubeUrl ? youtubeId(this.youtubeUrl) : null;
+  if (this.youtubeUrl && !this.videoId) this.invalidate("youtubeUrl", "Enter a valid YouTube video link");
+  if (!this.imageUrl && !this.videoId) this.invalidate("imageUrl", "Upload a project image");
 });
 export const Project = model("Project", projectSchema);
 

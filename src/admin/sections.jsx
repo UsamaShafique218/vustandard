@@ -14,7 +14,6 @@ import siteDefaults from "../data/site";
 import { CrudSection, Field, Modal, SectionError } from "./kit";
 import { useAdminList } from "./useAdminList";
 
-const youtubeId = (url = "") => String(url).match(/(?:youtu\.be\/|v=|\/embed\/|\/shorts\/|\/live\/)([\w-]{11})/)?.[1] || null;
 const dateFmt = (d) => new Date(d).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
 const deptName = (code) => departments.find((d) => d.code === code)?.name || code || "—";
 
@@ -88,20 +87,20 @@ export function ProjectsAdmin() {
     <CrudSection
       path="/projects"
       singular="Project"
-      emptyText="Add a CS519 or CS619 student project with its YouTube demo link. It will play directly on the Projects page."
+      emptyText="Add a CS519 or CS619 student project with a screenshot."
       searchText={(p) => `${p.title} ${p.studentName} ${p.course} ${p.tech}`}
       itemName={(p) => p.title}
-      blank={{ course: "CS519", title: "", youtubeUrl: "", studentName: "", tech: "", description: "", order: 0 }}
+      blank={{ course: "CS519", title: "", imageUrl: "", projectUrl: "", studentName: "", tech: "", description: "", order: 0 }}
       toForm={(p) => ({
-        course: p.course, title: p.title, youtubeUrl: p.youtubeUrl, studentName: p.studentName || "",
+        course: p.course, title: p.title, imageUrl: p.imageUrl || "", projectUrl: p.projectUrl || "", studentName: p.studentName || "",
         tech: p.tech || "", description: p.description || "", order: p.order || 0,
       })}
       toPayload={(f) => ({ ...f, order: Number(f.order) || 0 })}
-      validate={(f) => (!f.title.trim() ? "Enter a project title." : !youtubeId(f.youtubeUrl) ? "Enter a valid YouTube video link." : null)}
+      validate={(f) => (!f.title.trim() ? "Enter a project title." : !f.imageUrl ? "Upload a project screenshot." : f.projectUrl && !/^https?:\/\//i.test(f.projectUrl) ? "Project URL must start with http:// or https://." : null)}
       columns={[
         {
           key: "video", label: "Video", width: 120,
-          render: (p) => <img className="a-thumb" src={`https://i.ytimg.com/vi/${p.videoId}/mqdefault.jpg`} alt="" loading="lazy" />,
+          render: (p) => <img className="a-thumb" src={p.imageUrl || (p.videoId ? `https://i.ytimg.com/vi/${p.videoId}/mqdefault.jpg` : "")} alt="" loading="lazy" />,
         },
         {
           key: "title", label: "Project",
@@ -116,7 +115,14 @@ export function ProjectsAdmin() {
         { key: "order", label: "Order" },
       ]}
       renderForm={(f, set) => {
-        const id = youtubeId(f.youtubeUrl);
+        const uploadImage = (file) => {
+          if (!file) return;
+          if (!file.type.startsWith("image/")) return;
+          if (file.size > 4 * 1024 * 1024) return alert("Choose an image smaller than 4 MB.");
+          const reader = new FileReader();
+          reader.onload = () => set({ imageUrl: reader.result });
+          reader.readAsDataURL(file);
+        };
         return (
           <>
             <div className="a-form-grid">
@@ -132,10 +138,13 @@ export function ProjectsAdmin() {
             <Field label="Project title" id="p-title">
               <input id="p-title" className="input" value={f.title} onChange={(e) => set({ title: e.target.value })} placeholder="e.g. Online Pharmacy Management System" />
             </Field>
-            <Field label="YouTube video link" id="p-url" hint="Paste any YouTube link: watch, youtu.be, shorts or embed.">
-              <input id="p-url" className="input" value={f.youtubeUrl} onChange={(e) => set({ youtubeUrl: e.target.value })} placeholder="https://www.youtube.com/watch?v=…" aria-invalid={!!f.youtubeUrl && !id} />
+            <Field label="Project screenshot" id="p-image" hint="Upload a JPG, PNG, or WebP image (up to 4 MB).">
+              <input id="p-image" className="input" type="file" accept="image/*" onChange={(e) => uploadImage(e.target.files?.[0])} />
             </Field>
-            {id && <img className="a-preview" src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="Video thumbnail preview" />}
+            {f.imageUrl && <img className="a-preview" src={f.imageUrl} alt="Project screenshot preview" />}
+            <Field label="Project URL" id="p-url" hint="Optional link to a live demo or source repository." optional>
+              <input id="p-url" className="input" type="url" value={f.projectUrl} onChange={(e) => set({ projectUrl: e.target.value })} placeholder="https://…" />
+            </Field>
             <div className="a-form-grid">
               <Field label="Student name" id="p-student" optional>
                 <input id="p-student" className="input" value={f.studentName} onChange={(e) => set({ studentName: e.target.value })} />
