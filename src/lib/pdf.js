@@ -276,5 +276,5 @@ export async function downloadQuizPdf({ quiz, answers, student, score, durationS
   }
 
   const safeName = (student.name || "Student").replace(/[^\w-]+/g, "_").slice(0, 40);
-  doc.save(`VU-Standard_${quiz.code}_${termLabel.replace(/\s+/g, "_")}_Quiz_Result_${safeName}.pdf`);
+  doc.save(`${quiz.code}_${termLabel.replace(/\s+/g, "_")}_Quiz_Result_${safeName}_Vu_Standard.pdf`);
 }
