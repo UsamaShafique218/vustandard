@@ -1,19 +1,21 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link, Navigate, NavLink, Outlet, Route, Routes, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import {
-  AlertCircle, BookOpen, Clapperboard, ExternalLink, Eye, EyeOff, FileCode2, FileText, Inbox, LayoutDashboard, ListChecks, Users,
+  AlertCircle, BookOpen, Clapperboard, ExternalLink, Eye, EyeOff, FileCode2, FileText, Inbox, LayoutDashboard, ListChecks, Star, Trophy, Users,
   LogIn, LogOut, Moon, ServerCrash, Settings, Sun,
 } from "lucide-react";
 import logo from "../assets/optimized/logo-128.png";
 import { api } from "../lib/api";
 import { useTheme } from "../lib/site";
-import { LmsHandledAdmin, MessagesAdmin, NotesAdmin, Overview, ProjectsAdmin, QuizzesAdmin, SettingsAdmin, SolutionsAdmin, SubjectsAdmin } from "./sections";
+import { LmsHandledAdmin, MessagesAdmin, NotesAdmin, Overview, ProjectsAdmin, QuizzesAdmin, SettingsAdmin, SolutionsAdmin, StudentResultsAdmin, StudentReviewsAdmin, SubjectsAdmin } from "./sections";
 import "../styles/admin.css";
 
 const nav = [
   { to: "/admin", end: true, label: "Overview", icon: LayoutDashboard, text: "Activity across the site at a glance." },
   { to: "/admin/projects", label: "Projects", icon: Clapperboard, stat: "projects", text: "CS519 and CS619 student project videos shown on the Projects page." },
   { to: "/admin/lms-handled", label: "LMS Handled", icon: Users, stat: "lmsHandled", text: "Student records shown on the LMS Handled page." },
+  { to: "/admin/student-results", label: "Student Results", icon: Trophy, stat: "results", text: "Result cards and screenshots shown on the Student Results page." },
+  { to: "/admin/student-reviews", label: "Student Reviews", icon: Star, stat: "testimonials", text: "Student testimonials shown on the website." },
   { to: "/admin/solutions", label: "Solutions", icon: FileCode2, stat: "solutions", text: "Assignment solutions with source code, e.g. CS201, CS301 and CS304." },
   { to: "/admin/quizzes", label: "Quizzes", icon: ListChecks, stat: "quizzes", text: "Practice quizzes students attempt and download as PDF." },
   { to: "/admin/notes", label: "Notes", icon: FileText, stat: "notes", text: "Midterm and final term files." },
@@ -227,6 +229,8 @@ export default function AdminApp() {
         <Route index element={<Overview />} />
         <Route path="projects" element={<ProjectsAdmin />} />
         <Route path="lms-handled" element={<LmsHandledAdmin />} />
+        <Route path="student-results" element={<StudentResultsAdmin />} />
+        <Route path="student-reviews" element={<StudentReviewsAdmin />} />
         <Route path="solutions" element={<SolutionsAdmin />} />
         <Route path="quizzes" element={<QuizzesAdmin />} />
         <Route path="notes" element={<NotesAdmin />} />

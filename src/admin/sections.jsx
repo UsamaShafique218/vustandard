@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import {
-  BookOpen, Clapperboard, FileCode2, FileText, Inbox, ListChecks, Mail, MailOpen, Plus, Save, Trash2, Trophy, Users, X,
+  BookOpen, Clapperboard, FileCode2, FileText, Inbox, ListChecks, Mail, MailOpen, Plus, Save, Star, Trash2, Trophy, Users, X,
 } from "lucide-react";
 import { api } from "../lib/api";
 import { useSite } from "../lib/site";
@@ -11,7 +11,7 @@ import { departments } from "../data/subjects";
 import { projectCourses } from "../data/projects";
 import { languageOf, solutionLanguages } from "../data/solutions";
 import siteDefaults from "../data/site";
-import { lmsImageFor } from "../data/showcase";
+import { lmsImageFor, resultImageFor, testimonialImageFor } from "../data/showcase";
 import { CrudSection, Field, Modal, SectionError } from "./kit";
 import { useAdminList } from "./useAdminList";
 
@@ -24,6 +24,8 @@ export function Overview() {
   const cards = [
     { key: "projects", label: "Project videos", icon: Clapperboard, to: "/admin/projects" },
     { key: "lmsHandled", label: "LMS handled", icon: Users, to: "/admin/lms-handled" },
+    { key: "results", label: "Student results", icon: Trophy, to: "/admin/student-results" },
+    { key: "testimonials", label: "Student reviews", icon: Star, to: "/admin/student-reviews" },
     { key: "solutions", label: "Assignment solutions", icon: FileCode2, to: "/admin/solutions" },
     { key: "quizzes", label: "Quizzes", icon: ListChecks, to: "/admin/quizzes" },
     { key: "notes", label: "Note files", icon: FileText, to: "/admin/notes" },
@@ -210,6 +212,104 @@ export function LmsHandledAdmin() {
             <Field label="Display order" id="lms-order"><input id="lms-order" className="input" type="number" value={f.order} onChange={(e) => set({ order: e.target.value })} /></Field>
           </div>
           {f.imageUrl && <img className="a-preview" src={f.imageUrl} alt="Student card preview" />}
+        </>;
+      }}
+    />
+  );
+}
+
+/* ---------- Student results ---------- */
+export function StudentResultsAdmin() {
+  return (
+    <CrudSection
+      path="/results"
+      singular="Student result"
+      emptyText="Add a result card with one or more screenshots."
+      searchText={(r) => `${r.title} ${r.desc}`}
+      itemName={(r) => r.title}
+      blank={{ title: "", desc: "", gallery: [], imageKeys: [], order: 0 }}
+      toForm={(r) => ({ title: r.title, desc: r.desc || "", gallery: r.gallery || [], imageKeys: r.imageKeys || [], order: r.order || 0 })}
+      toPayload={(f) => ({ ...f, order: Number(f.order) || 0 })}
+      validate={(f) => (!f.title.trim() ? "Enter a course or result title." : !(f.gallery.length || f.imageKeys.length) ? "Upload at least one result screenshot." : null)}
+      columns={[
+        { key: "preview", label: "Preview", width: 100, render: (r) => <img className="a-thumb" src={r.gallery?.[0] || resultImageFor(r.imageKeys?.[0])} alt="" /> },
+        { key: "title", label: "Result", render: (r) => <><strong>{r.title}</strong><div className="muted a-sub">{r.desc}</div></> },
+        { key: "gallery", label: "Images", render: (r) => (r.gallery?.length || 0) + (r.imageKeys?.length || 0) },
+        { key: "order", label: "Order" },
+      ]}
+      renderForm={(f, set) => {
+        const addImages = async (files) => {
+          const selected = [...(files || [])];
+          if (selected.some((file) => !file.type.startsWith("image/"))) return alert("Select image files only.");
+          if (selected.some((file) => file.size > 2 * 1024 * 1024)) return alert("Each image must be smaller than 2 MB.");
+          if (selected.reduce((sum, file) => sum + file.size, 0) > 4 * 1024 * 1024) return alert("Keep the selected images under 4 MB total.");
+          const read = (file) => new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+          });
+          try {
+            const gallery = await Promise.all(selected.map(read));
+            set((cur) => ({ ...cur, gallery: [...cur.gallery, ...gallery], imageKeys: [] }));
+          } catch { alert("Couldn't read one of the selected images."); }
+        };
+        const images = [...f.imageKeys.map((key) => ({ src: resultImageFor(key), key })), ...f.gallery.map((src, index) => ({ src, index }))];
+        return <>
+          <div className="a-form-grid">
+            <Field label="Course / result title" id="result-title"><input id="result-title" className="input" value={f.title} onChange={(e) => set({ title: e.target.value })} placeholder="CS101" /></Field>
+            <Field label="Description" id="result-desc"><input id="result-desc" className="input" value={f.desc} onChange={(e) => set({ desc: e.target.value })} placeholder="Assignment result 2026" /></Field>
+          </div>
+          <div className="a-form-grid">
+            <Field label="Result screenshots" id="result-images" hint="Select multiple images if this result has more than one screenshot. Each image must be under 2 MB."><input id="result-images" className="input" type="file" accept="image/*" multiple onChange={(e) => { addImages(e.target.files); e.target.value = ""; }} /></Field>
+            <Field label="Display order" id="result-order"><input id="result-order" className="input" type="number" value={f.order} onChange={(e) => set({ order: e.target.value })} /></Field>
+          </div>
+          <div className="a-preview-row">{images.map(({ src, key, index }) => <div className="a-image-item" key={key || index}><img className="a-preview" src={src} alt="Result preview" /><button type="button" className="btn btn-ghost btn-sm btn-icon danger-hover" aria-label="Remove image" onClick={() => key ? set((cur) => ({ ...cur, imageKeys: cur.imageKeys.filter((x) => x !== key) })) : set((cur) => ({ ...cur, gallery: cur.gallery.filter((_, i) => i !== index) }))}><X /></button></div>)}</div>
+        </>;
+      }}
+    />
+  );
+}
+
+/* ---------- Student reviews ---------- */
+export function StudentReviewsAdmin() {
+  return (
+    <CrudSection
+      path="/testimonials"
+      singular="Student review"
+      emptyText="Add a student testimonial to the reviews section."
+      searchText={(r) => `${r.name} ${r.degree} ${r.text}`}
+      itemName={(r) => r.name}
+      blank={{ name: "", degree: "", text: "", imageKey: "", imageUrl: "", order: 0 }}
+      toForm={(r) => ({ name: r.name, degree: r.degree || "", text: r.text, imageKey: r.imageKey || "", imageUrl: r.imageUrl || "", order: r.order || 0 })}
+      toPayload={(f) => ({ ...f, order: Number(f.order) || 0 })}
+      validate={(f) => (!f.name.trim() ? "Enter the student's name." : !f.text.trim() ? "Enter the review text." : null)}
+      columns={[
+        { key: "avatar", label: "Photo", width: 80, render: (r) => <img className="a-thumb" src={r.imageUrl || testimonialImageFor(r.imageKey)} alt="" /> },
+        { key: "name", label: "Student", render: (r) => <><strong>{r.name}</strong><div className="muted a-sub">{r.degree || "—"}</div></> },
+        { key: "text", label: "Review", render: (r) => <span className="a-review-text">{r.text}</span> },
+        { key: "order", label: "Order" },
+      ]}
+      renderForm={(f, set) => {
+        const upload = (file) => {
+          if (!file) return;
+          if (!file.type.startsWith("image/")) return alert("Choose an image file.");
+          if (file.size > 2 * 1024 * 1024) return alert("Choose an image smaller than 2 MB.");
+          const reader = new FileReader();
+          reader.onload = () => set({ imageUrl: reader.result, imageKey: "" });
+          reader.readAsDataURL(file);
+        };
+        return <>
+          <div className="a-form-grid">
+            <Field label="Student name" id="review-name"><input id="review-name" className="input" value={f.name} onChange={(e) => set({ name: e.target.value })} /></Field>
+            <Field label="Program / degree" id="review-degree" optional><input id="review-degree" className="input" value={f.degree} onChange={(e) => set({ degree: e.target.value })} placeholder="BSCS" /></Field>
+          </div>
+          <Field label="Review text" id="review-text"><textarea id="review-text" className="textarea" rows={5} value={f.text} onChange={(e) => set({ text: e.target.value })} /></Field>
+          <div className="a-form-grid">
+            <Field label="Student photo" id="review-image" optional hint="Optional. Upload an image up to 2 MB."><input id="review-image" className="input" type="file" accept="image/*" onChange={(e) => upload(e.target.files?.[0])} /></Field>
+            <Field label="Display order" id="review-order"><input id="review-order" className="input" type="number" value={f.order} onChange={(e) => set({ order: e.target.value })} /></Field>
+          </div>
+          {(f.imageUrl || f.imageKey) && <img className="a-preview" src={f.imageUrl || testimonialImageFor(f.imageKey)} alt="Student photo preview" />}
         </>;
       }}
     />

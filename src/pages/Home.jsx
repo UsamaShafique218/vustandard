@@ -7,7 +7,7 @@ import { useSite, useWhatsApp } from "../lib/site";
 import { useApiData } from "../lib/api";
 import { WhatsAppIcon } from "../components/site/BrandIcons";
 import { Initials, Lightbox, YouTubeEmbed } from "../components/site/ui";
-import { lmsHandled, lmsImageFor, results, services, team, testimonials, whyChoose } from "../data/showcase";
+import { lmsHandled, lmsImageFor, resultImageFor, results, services, team, testimonialImageFor, testimonials, whyChoose } from "../data/showcase";
 import { projectCourses } from "../data/projects";
 import quizzes from "../data/quizzes";
 import subjects from "../data/subjects";
@@ -327,7 +327,10 @@ function WhyChoose() {
 
 function ResultsStrip() {
   const [open, setOpen] = useState(null);
-  const items = results.slice(0, 4).flatMap((r) => r.gallery.map((src) => ({ src, title: r.title, caption: r.desc })));
+  const { data } = useApiData("/results", results);
+  const entries = (data || results).map((r) => ({ ...r, gallery: r.gallery?.length ? r.gallery : (r.imageKeys || []).map(resultImageFor).filter(Boolean) }));
+  const visible = entries.slice(0, 4);
+  const items = visible.flatMap((r) => r.gallery.map((src) => ({ src, title: r.title, caption: r.desc })));
   return (
     <section className="section">
       <div className="container">
@@ -340,10 +343,10 @@ function ResultsStrip() {
           <Link to="/student-results" className="btn btn-secondary">All results <ArrowRight /></Link>
         </div>
         <div className="results-grid">
-          {results.slice(0, 4).map((r) => {
+          {visible.map((r) => {
             const start = items.findIndex((it) => it.src === r.gallery[0]);
             return (
-              <button key={r.title} type="button" className="result-tile card" onClick={() => setOpen(start)}>
+              <button key={r._id || r.seedKey || r.title} type="button" className="result-tile card" onClick={() => setOpen(start)}>
                 <img src={r.gallery[0]} alt={`${r.title} result`} loading="lazy" />
                 <span className="result-label"><strong>{r.title}</strong> {r.desc}</span>
               </button>
@@ -358,12 +361,14 @@ function ResultsStrip() {
 
 export function Testimonials({ limit }) {
   const [all, setAll] = useState(false);
-  const list = all || !limit ? testimonials : testimonials.slice(0, limit);
+  const { data } = useApiData("/testimonials", testimonials);
+  const entries = (data || testimonials).map((r) => ({ ...r, image: r.imageUrl || r.image || testimonialImageFor(r.imageKey) }));
+  const list = all || !limit ? entries : entries.slice(0, limit);
   return (
     <>
       <div className="reviews">
         {list.map((r) => (
-          <figure key={r.name} className="review card">
+          <figure key={r._id || r.seedKey || r.name} className="review card">
             <Quote className="review-quote" />
             <div className="review-stars" aria-label="5 out of 5 stars">
               {Array.from({ length: 5 }, (_, i) => <Star key={i} fill="currentColor" />)}
@@ -379,10 +384,10 @@ export function Testimonials({ limit }) {
           </figure>
         ))}
       </div>
-      {limit && testimonials.length > limit && (
+      {limit && entries.length > limit && (
         <div className="center-row">
           <button type="button" className="btn btn-secondary" onClick={() => setAll((a) => !a)}>
-            {all ? "Show fewer reviews" : `Read all ${testimonials.length} reviews`}
+            {all ? "Show fewer reviews" : `Read all ${entries.length} reviews`}
           </button>
         </div>
       )}

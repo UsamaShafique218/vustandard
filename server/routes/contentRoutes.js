@@ -2,9 +2,10 @@ import express from "express";
 import mongoose from "mongoose";
 import rateLimit from "express-rate-limit";
 import protect from "../middleware/authMiddleware.js";
-import { Subject, Quiz, Note, Project, LmsHandled, Solution, Message, Attempt, Setting } from "../models/content.js";
+import { Subject, Quiz, Note, Project, LmsHandled, StudentResult, StudentTestimonial, Solution, Message, Attempt, Setting } from "../models/content.js";
 import siteDefaults from "../../src/data/site.js";
 import lmsHandledDefaults from "../../src/data/lmsHandled.js";
+import { resultDefaults, testimonialDefaults } from "../../src/data/studentShowcase.js";
 
 const router = express.Router();
 
@@ -66,6 +67,36 @@ crud("/lms-handled", LmsHandled, {
       await Setting.updateOne({ key: "lms-handled-seed-v1" }, { $setOnInsert: { data: { seeded: true } } }, { upsert: true });
     }
     res.json(await LmsHandled.find().sort({ order: 1, createdAt: -1 }).lean());
+  },
+});
+
+crud("/results", StudentResult, {
+  fields: ["title", "desc", "gallery", "imageKeys", "order"],
+  sort: { order: 1, createdAt: -1 },
+  listHandler: async (_req, res) => {
+    const marker = await Setting.findOne({ key: "results-seed-v1" }).lean();
+    if (!marker) {
+      await StudentResult.bulkWrite(resultDefaults.map((item) => ({
+        updateOne: { filter: { seedKey: item.seedKey }, update: { $setOnInsert: item }, upsert: true },
+      })));
+      await Setting.updateOne({ key: "results-seed-v1" }, { $setOnInsert: { data: { seeded: true } } }, { upsert: true });
+    }
+    res.json(await StudentResult.find().sort({ order: 1, createdAt: -1 }).lean());
+  },
+});
+
+crud("/testimonials", StudentTestimonial, {
+  fields: ["name", "degree", "text", "imageKey", "imageUrl", "order"],
+  sort: { order: 1, createdAt: -1 },
+  listHandler: async (_req, res) => {
+    const marker = await Setting.findOne({ key: "testimonials-seed-v1" }).lean();
+    if (!marker) {
+      await StudentTestimonial.bulkWrite(testimonialDefaults.map((item) => ({
+        updateOne: { filter: { seedKey: item.seedKey }, update: { $setOnInsert: item }, upsert: true },
+      })));
+      await Setting.updateOne({ key: "testimonials-seed-v1" }, { $setOnInsert: { data: { seeded: true } } }, { upsert: true });
+    }
+    res.json(await StudentTestimonial.find().sort({ order: 1, createdAt: -1 }).lean());
   },
 });
 
@@ -165,19 +196,21 @@ router.put("/settings", protect, async (req, res) => {
 });
 
 router.get("/stats", protect, async (req, res) => {
-  const [subjects, quizzes, notes, projects, lmsHandled, solutions, messages, unread, attempts, recentAttempts] = await Promise.all([
+  const [subjects, quizzes, notes, projects, lmsHandled, results, testimonials, solutions, messages, unread, attempts, recentAttempts] = await Promise.all([
     Subject.countDocuments(),
     Quiz.countDocuments(),
     Note.countDocuments(),
     Project.countDocuments(),
     LmsHandled.countDocuments(),
+    StudentResult.countDocuments(),
+    StudentTestimonial.countDocuments(),
     Solution.countDocuments(),
     Message.countDocuments(),
     Message.countDocuments({ read: false }),
     Attempt.countDocuments(),
     Attempt.find().sort({ createdAt: -1 }).limit(8).lean(),
   ]);
-  res.json({ subjects, quizzes, notes, projects, lmsHandled, solutions, messages, unread, attempts, recentAttempts });
+  res.json({ subjects, quizzes, notes, projects, lmsHandled, results, testimonials, solutions, messages, unread, attempts, recentAttempts });
 });
 
 export default router;

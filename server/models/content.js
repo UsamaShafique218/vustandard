@@ -102,6 +102,32 @@ export const LmsHandled = model(
   )
 );
 
+const showcaseOrder = { timestamps: true };
+export const StudentResult = model(
+  "StudentResult",
+  new Schema({
+    seedKey: { type: String, unique: true, sparse: true },
+    title: { type: String, required: true, trim: true, maxlength: 120 },
+    desc: { type: String, trim: true, default: "", maxlength: 240 },
+    gallery: { type: [String], default: [] },
+    imageKeys: { type: [String], default: [] },
+    order: { type: Number, default: 0 },
+  }, showcaseOrder)
+);
+
+export const StudentTestimonial = model(
+  "StudentTestimonial",
+  new Schema({
+    seedKey: { type: String, unique: true, sparse: true },
+    name: { type: String, required: true, trim: true, maxlength: 120 },
+    degree: { type: String, trim: true, default: "", maxlength: 120 },
+    text: { type: String, required: true, trim: true, maxlength: 3000 },
+    imageKey: { type: String, trim: true, default: "" },
+    imageUrl: { type: String, trim: true, default: "" },
+    order: { type: Number, default: 0 },
+  }, showcaseOrder)
+);
+
 export const solutionLanguages = ["cpp", "c", "java", "csharp", "python", "javascript", "php", "html", "css", "sql", "assembly", "text"];
 
 export const Solution = model(

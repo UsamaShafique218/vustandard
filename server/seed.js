@@ -4,12 +4,13 @@ import "dotenv/config";
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import User from "./models/User.js";
-import { Subject, Quiz, Note, LmsHandled, Solution, Setting } from "./models/content.js";
+import { Subject, Quiz, Note, LmsHandled, StudentResult, StudentTestimonial, Solution, Setting } from "./models/content.js";
 import subjects from "../src/data/subjects.js";
 import sampleSolutions from "../src/data/solutions.js";
 import quizzes from "../src/data/quizzes.js";
 import notes from "../src/data/notes.js";
 import lmsHandled from "../src/data/lmsHandled.js";
+import { resultDefaults, testimonialDefaults } from "../src/data/studentShowcase.js";
 
 const departmentOf = Object.fromEntries(subjects.map((s) => [s.code, s.department]));
 
@@ -42,6 +43,14 @@ await LmsHandled.bulkWrite(
   }))
 );
 await Setting.updateOne({ key: "lms-handled-seed-v1" }, { $setOnInsert: { data: { seeded: true } } }, { upsert: true });
+await StudentResult.bulkWrite(resultDefaults.map((item) => ({
+  updateOne: { filter: { seedKey: item.seedKey }, update: { $setOnInsert: item }, upsert: true },
+})));
+await StudentTestimonial.bulkWrite(testimonialDefaults.map((item) => ({
+  updateOne: { filter: { seedKey: item.seedKey }, update: { $setOnInsert: item }, upsert: true },
+})));
+await Setting.updateOne({ key: "results-seed-v1" }, { $setOnInsert: { data: { seeded: true } } }, { upsert: true });
+await Setting.updateOne({ key: "testimonials-seed-v1" }, { $setOnInsert: { data: { seeded: true } } }, { upsert: true });
 
 // Sample solutions are only added once; after that they're managed from the admin panel.
 if (!(await Solution.exists({}))) {

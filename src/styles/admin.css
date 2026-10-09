@@ -169,6 +169,11 @@
 
 .a-thumb { width: 104px; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--r-sm); background: var(--surface-3); display: block; }
 .a-preview { width: 100%; max-width: 320px; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--r-md); border: 1px solid var(--border); margin-top: var(--s-3); }
+.a-preview-row { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-3); }
+.a-image-item { position: relative; width: min(220px, 100%); }
+.a-image-item .a-preview { margin-top: 0; }
+.a-image-item .btn { position: absolute; top: 6px; right: 6px; background: var(--surface); }
+.a-review-text { display: block; max-width: 420px; max-height: 5em; overflow: hidden; }
 
 .link-btn { padding: 0; border: 0; background: none; color: inherit; font-weight: 600; text-decoration: underline; cursor: pointer; }
 

@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Images } from "lucide-react";
 import { Lightbox, PageHero } from "../components/site/ui";
-import { results } from "../data/showcase";
+import { resultImageFor, results } from "../data/showcase";
+import { useApiData } from "../lib/api";
 import { Testimonials } from "./Home";
-
-const items = results.flatMap((r) => r.gallery.map((src) => ({ src, title: r.title, caption: r.desc })));
 
 export default function StudentResults() {
   const [open, setOpen] = useState(null);
+  const { data } = useApiData("/results", results);
+  const entries = (data || results).map((r) => ({
+    ...r,
+    gallery: r.gallery?.length ? r.gallery : (r.imageKeys || []).map(resultImageFor).filter(Boolean),
+  }));
+  const items = useMemo(() => entries.flatMap((r) => r.gallery.map((src) => ({ src, title: r.title, caption: r.desc }))), [entries]);
 
   return (
     <>
@@ -19,10 +24,10 @@ export default function StudentResults() {
       <section className="section-sm">
         <div className="container">
           <div className="results-grid">
-            {results.map((r) => {
+            {entries.map((r) => {
               const start = items.findIndex((it) => it.src === r.gallery[0]);
               return (
-                <button key={r.title} type="button" className="result-tile card" onClick={() => setOpen(start)}>
+                <button key={r._id || r.seedKey || r.title} type="button" className="result-tile card" onClick={() => setOpen(start)}>
                   <img src={r.gallery[0]} alt={`${r.title} result`} loading="lazy" />
                   {r.gallery.length > 1 && (
                     <span className="badge result-count"><Images /> {r.gallery.length}</span>
