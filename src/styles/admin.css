@@ -101,7 +101,7 @@
 .a-logout-mobile { display: none !important; }
 
 /* ---------- Main ---------- */
-.a-main { min-width: 0; padding: var(--s-6) var(--s-6) var(--s-8); max-width: 1240px; width: 100%; }
+.a-main { min-width: 0; padding: var(--s-6) var(--s-6) var(--s-8); width: 100%; }
 .a-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-4); margin-bottom: var(--s-6); }
 .a-head h1 { font-size: var(--fs-3xl); letter-spacing: -0.03em; line-height: 1.15; }
 .a-head p { margin-top: var(--s-1); }
