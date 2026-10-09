@@ -245,6 +245,9 @@ function Result({ quiz, answers, student, durationSec, onRetake }) {
     try {
       const { downloadQuizPdf } = await import("../lib/pdf");
       await downloadQuizPdf({ quiz, answers, student, score, durationSec, settings });
+      // The name and student ID are only conveniences for the next attempt.
+      // Clear them after a successful download so they do not linger for hours.
+      localStorage.removeItem(STUDENT_KEY);
       toast("Your PDF result has been downloaded");
     } catch (err) {
       console.error(err);
