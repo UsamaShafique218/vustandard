@@ -16,18 +16,21 @@ const STUDENT_KEY = "vus-student";
 
 function Intro({ quiz, onStart }) {
   const { settings } = useSite();
-  const saved = JSON.parse(localStorage.getItem(STUDENT_KEY) || "{}");
-  const [name, setName] = useState(saved.name || "");
-  const [vuId, setVuId] = useState(saved.vuId || "");
+  const [name, setName] = useState("");
+  const [vuId, setVuId] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [touched, setTouched] = useState(false);
   const total = quiz.questions.length;
+
+  useEffect(() => {
+    // Remove details saved by older versions; each visitor starts with a blank form.
+    localStorage.removeItem(STUDENT_KEY);
+  }, []);
 
   const submit = (e) => {
     e.preventDefault();
     setTouched(true);
     if (!name.trim() || !subscribed) return;
-    localStorage.setItem(STUDENT_KEY, JSON.stringify({ name: name.trim(), vuId: vuId.trim() }));
     onStart({ name: name.trim(), vuId: vuId.trim().toUpperCase() });
   };
 
@@ -57,7 +60,7 @@ function Intro({ quiz, onStart }) {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="e.g. Ayesha Khan"
-            autoComplete="name"
+            autoComplete="off"
             maxLength={80}
             aria-invalid={touched && !name.trim()}
           />
