@@ -652,7 +652,9 @@ button { cursor: pointer; }
 .refresh-ad-copy .refresh-ad-request { margin-top: 14px; color: var(--text); font-weight: 600; }
 .refresh-ad-cta { margin-top: 20px; gap: 10px; }
 .refresh-ad-cta svg { width: 19px; height: 19px; }
-.refresh-ad-handle { margin-top: 12px; color: var(--text-3); font-size: var(--fs-sm); }
+.refresh-ad-whatsapp { display: inline-flex; align-items: center; gap: 7px; margin-top: 12px; color: #138b4a; font-size: var(--fs-sm); font-weight: 700; text-decoration: none; }
+.refresh-ad-whatsapp:hover { text-decoration: underline; }
+.refresh-ad-whatsapp svg { width: 18px; height: 18px; }
 @keyframes ad-pop-in { from { opacity: 0; transform: translateY(8px) scale(.98); } }
 .lightbox {
   position: fixed;

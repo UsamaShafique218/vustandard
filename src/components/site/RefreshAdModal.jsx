@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
-import { YouTubeIcon } from "./BrandIcons";
+import { WhatsAppIcon, YouTubeIcon } from "./BrandIcons";
 import ownerPhoto from "../../assets/images/user_img1.jpeg";
 
 const CHANNEL_URL = "https://www.youtube.com/@vu_standard";
+const WHATSAPP_URL = "https://wa.me/923150250218";
 
 export default function RefreshAdModal() {
   const [open, setOpen] = useState(true);
@@ -41,7 +42,9 @@ export default function RefreshAdModal() {
           <a className="btn btn-primary refresh-ad-cta" href={CHANNEL_URL} target="_blank" rel="noopener noreferrer">
             <YouTubeIcon /> Subscribe to our channel
           </a>
-          <span className="refresh-ad-handle">@vu_standard</span>
+          <a className="refresh-ad-whatsapp" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+            <WhatsAppIcon /> WhatsApp: 0315 0250218
+          </a>
         </div>
       </section>
     </div>
