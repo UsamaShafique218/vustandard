@@ -588,6 +588,72 @@ button { cursor: pointer; }
 @keyframes toast-in { from { opacity: 0; transform: translateY(8px); } }
 
 /* ---------- Dialog / lightbox ---------- */
+.refresh-ad-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(7, 18, 35, 0.72);
+  backdrop-filter: blur(5px);
+  animation: fade-in var(--t-med) var(--ease);
+}
+.refresh-ad {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(220px, 0.82fr) minmax(300px, 1.18fr);
+  width: min(760px, 100%);
+  max-height: min(90vh, 680px);
+  overflow: auto;
+  border: 1px solid rgba(255,255,255,.7);
+  border-radius: 22px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 28px 90px rgba(0,0,0,.32);
+  animation: ad-pop-in 220ms var(--ease);
+}
+.refresh-ad-close {
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(10, 20, 40, .14);
+}
+.refresh-ad-close:hover { background: var(--surface-2); }
+.refresh-ad-close svg { width: 20px; height: 20px; }
+.refresh-ad-photo {
+  position: relative;
+  display: flex;
+  min-height: 420px;
+  overflow: hidden;
+  align-items: flex-end;
+  background: #09234a;
+}
+.refresh-ad-photo::after { position: absolute; inset: 35% 0 0; content: ""; background: linear-gradient(transparent, rgba(5, 20, 47, .88)); }
+.refresh-ad-photo > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+.refresh-ad-brand { position: absolute; z-index: 1; top: 26px; left: 24px; color: #ffd547; font-size: 28px; font-weight: 800; line-height: 1; text-shadow: 0 2px 8px #061b3a; }
+.refresh-ad-brand strong { display: block; color: white; font-size: 18px; letter-spacing: .09em; }
+.refresh-ad-results { position: relative; z-index: 1; margin: 0 0 24px 20px; padding: 10px 15px; border-radius: 50%; background: white; color: #bc2934; font-weight: 700; text-align: center; line-height: 1.05; transform: rotate(-7deg); }
+.refresh-ad-results strong { color: #14233b; font-size: 13px; }
+.refresh-ad-copy { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 46px 38px 38px; }
+.refresh-ad-copy .eyebrow { color: var(--primary); font-size: var(--fs-xs); }
+.refresh-ad-copy h2 { max-width: 370px; margin: 10px 0 12px; font-size: clamp(25px, 3vw, 34px); line-height: 1.12; }
+.refresh-ad-copy > p { color: var(--text-2); line-height: 1.65; }
+.refresh-ad-copy .refresh-ad-request { margin-top: 14px; color: var(--text); font-weight: 600; }
+.refresh-ad-cta { margin-top: 20px; gap: 10px; }
+.refresh-ad-cta svg { width: 19px; height: 19px; }
+.refresh-ad-handle { margin-top: 12px; color: var(--text-3); font-size: var(--fs-sm); }
+@keyframes ad-pop-in { from { opacity: 0; transform: translateY(8px) scale(.98); } }
 .lightbox {
   position: fixed;
   inset: 0;
@@ -624,6 +690,14 @@ button { cursor: pointer; }
 .lightbox-thumbs img { width: 100%; height: 100%; object-fit: cover; }
 @keyframes fade-in { from { opacity: 0; } }
 @media (max-width: 640px) {
+  .refresh-ad-backdrop { padding: 14px; }
+  .refresh-ad { grid-template-columns: 1fr; width: min(430px, 100%); max-height: 92vh; }
+  .refresh-ad-photo { min-height: 230px; max-height: 31vh; }
+  .refresh-ad-photo > img { object-position: center 24%; }
+  .refresh-ad-brand { top: 18px; left: 18px; font-size: 24px; }
+  .refresh-ad-copy { padding: 25px 24px 28px; }
+  .refresh-ad-copy h2 { max-width: 300px; }
+  .refresh-ad-close { top: 9px; right: 9px; }
   .lightbox-stage { padding: 0 8px; }
   .lightbox-nav { top: auto; bottom: 76px; translate: none; }
 }

@@ -4,6 +4,7 @@ import SiteHeader from "./SiteHeader";
 import SiteFooter from "./SiteFooter";
 import { useSite, useWhatsApp } from "../../lib/site";
 import { WhatsAppIcon } from "./BrandIcons";
+import RefreshAdModal from "./RefreshAdModal";
 
 export default function SiteLayout() {
   const { settings } = useSite();
@@ -30,6 +31,7 @@ export default function SiteLayout() {
         <WhatsAppIcon />
         <span>Chat with us</span>
       </a>
+      <RefreshAdModal />
     </>
   );
 }
