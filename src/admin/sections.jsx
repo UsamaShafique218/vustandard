@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import {
-  BookOpen, Clapperboard, FileCode2, FileText, Inbox, ListChecks, Mail, MailOpen, Plus, Save, Trash2, Trophy, X,
+  BookOpen, Clapperboard, FileCode2, FileText, Inbox, ListChecks, Mail, MailOpen, Plus, Save, Trash2, Trophy, Users, X,
 } from "lucide-react";
 import { api } from "../lib/api";
 import { useSite } from "../lib/site";
