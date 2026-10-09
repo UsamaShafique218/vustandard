@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { SearchX } from "lucide-react";
 import { PageHero, SearchInput, EmptyState } from "../components/site/ui";
-import { lmsHandled } from "../data/showcase";
+import { lmsHandled as fallbackLmsHandled } from "../data/showcase";
+import { useApiData } from "../lib/api";
 import { ContactCta, LmsCard } from "./Home";
 
-const TYPES = ["All", ...new Set(lmsHandled.map((l) => l.type))];
-
 export default function LmsHandled() {
+  const { data } = useApiData("/lms-handled", fallbackLmsHandled);
+  const lmsHandled = data || fallbackLmsHandled;
+  const types = ["All", ...new Set(lmsHandled.map((l) => l.type))];
   const [type, setType] = useState("All");
   const [query, setQuery] = useState("");
   const q = query.trim().toLowerCase();
@@ -25,7 +27,7 @@ export default function LmsHandled() {
         <div className="container">
           <div className="toolbar">
             <div className="chips" role="group" aria-label="Filter by service">
-              {TYPES.map((t) => (
+              {types.map((t) => (
                 <button key={t} type="button" className="chip" aria-pressed={type === t} onClick={() => setType(t)}>
                   {t}
                   <span className="count">{t === "All" ? lmsHandled.length : lmsHandled.filter((l) => l.type === t).length}</span>
@@ -39,7 +41,7 @@ export default function LmsHandled() {
             <EmptyState icon={SearchX} title="No students match your search">Try a different name or program.</EmptyState>
           ) : (
             <div className="lms-grid">
-              {list.map((item) => <LmsCard key={item.id} item={item} />)}
+              {list.map((item) => <LmsCard key={item._id || item.id} item={item} />)}
             </div>
           )}
         </div>

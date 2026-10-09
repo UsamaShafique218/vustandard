@@ -11,6 +11,7 @@ import { departments } from "../data/subjects";
 import { projectCourses } from "../data/projects";
 import { languageOf, solutionLanguages } from "../data/solutions";
 import siteDefaults from "../data/site";
+import { lmsImageFor } from "../data/showcase";
 import { CrudSection, Field, Modal, SectionError } from "./kit";
 import { useAdminList } from "./useAdminList";
 
@@ -22,6 +23,7 @@ export function Overview() {
   const { stats, user } = useOutletContext();
   const cards = [
     { key: "projects", label: "Project videos", icon: Clapperboard, to: "/admin/projects" },
+    { key: "lmsHandled", label: "LMS handled", icon: Users, to: "/admin/lms-handled" },
     { key: "solutions", label: "Assignment solutions", icon: FileCode2, to: "/admin/solutions" },
     { key: "quizzes", label: "Quizzes", icon: ListChecks, to: "/admin/quizzes" },
     { key: "notes", label: "Note files", icon: FileText, to: "/admin/notes" },
@@ -158,6 +160,57 @@ export function ProjectsAdmin() {
             </Field>
           </>
         );
+      }}
+    />
+  );
+}
+
+/* ---------- LMS handled portfolio ---------- */
+const lmsTypes = ["Full LMS Handle", "Assignments + GDBs", "Assignments", "Assignments, Quizzes, GDBs"];
+
+export function LmsHandledAdmin() {
+  return (
+    <CrudSection
+      path="/lms-handled"
+      singular="LMS record"
+      emptyText="Add a student account handled by VU Standard."
+      searchText={(x) => `${x.name} ${x.program} ${x.semester} ${x.type}`}
+      itemName={(x) => x.name}
+      blank={{ name: "", program: "", semester: "", type: lmsTypes[0], imageKey: "", imageUrl: "", order: 0 }}
+      toForm={(x) => ({ name: x.name, program: x.program, semester: x.semester, type: x.type, imageKey: x.imageKey || "", imageUrl: x.imageUrl || "", order: x.order || 0 })}
+      toPayload={(f) => ({ ...f, order: Number(f.order) || 0 })}
+      validate={(f) => (!f.name.trim() ? "Enter the student's name." : !f.program.trim() ? "Enter the study program." : !f.semester.trim() ? "Enter the semester." : !f.imageUrl && !f.imageKey ? "Upload an image for this student card." : null)}
+      columns={[
+        { key: "image", label: "Image", width: 90, render: (x) => <img className="a-thumb" src={x.imageUrl || lmsImageFor(x.imageKey)} alt="" /> },
+        { key: "name", label: "Student", render: (x) => <><strong>{x.name}</strong><div className="muted a-sub">{x.program}</div></> },
+        { key: "semester", label: "Semester" },
+        { key: "type", label: "Service", render: (x) => <span className="badge badge-primary">{x.type}</span> },
+        { key: "order", label: "Order" },
+      ]}
+      renderForm={(f, set) => {
+        const uploadImage = (file) => {
+          if (!file) return;
+          if (!file.type.startsWith("image/")) return alert("Choose an image file.");
+          if (file.size > 2 * 1024 * 1024) return alert("Choose an image smaller than 2 MB.");
+          const reader = new FileReader();
+          reader.onload = () => set({ imageUrl: reader.result, imageKey: "" });
+          reader.readAsDataURL(file);
+        };
+        return <>
+          <div className="a-form-grid">
+            <Field label="Student name" id="lms-name"><input id="lms-name" className="input" value={f.name} onChange={(e) => set({ name: e.target.value })} /></Field>
+            <Field label="Study program" id="lms-program"><input id="lms-program" className="input" value={f.program} onChange={(e) => set({ program: e.target.value })} placeholder="BS Computer Science" /></Field>
+          </div>
+          <div className="a-form-grid">
+            <Field label="Semester" id="lms-semester"><input id="lms-semester" className="input" value={f.semester} onChange={(e) => set({ semester: e.target.value })} placeholder="Semester 5" /></Field>
+            <Field label="Service type" id="lms-type"><select id="lms-type" className="select" value={lmsTypes.includes(f.type) ? f.type : "custom"} onChange={(e) => set({ type: e.target.value === "custom" ? "" : e.target.value })}><option value="custom">Custom…</option>{lmsTypes.map((type) => <option key={type} value={type}>{type}</option>)}</select>{(!lmsTypes.includes(f.type)) && <input className="input" value={f.type} onChange={(e) => set({ type: e.target.value })} placeholder="Enter service type" style={{ marginTop: 8 }} />}</Field>
+          </div>
+          <div className="a-form-grid">
+            <Field label="Card image" id="lms-image" hint="Upload an image up to 2 MB. Existing records keep their original program image unless you upload a replacement."><input id="lms-image" className="input" type="file" accept="image/*" onChange={(e) => uploadImage(e.target.files?.[0])} /></Field>
+            <Field label="Display order" id="lms-order"><input id="lms-order" className="input" type="number" value={f.order} onChange={(e) => set({ order: e.target.value })} /></Field>
+          </div>
+          {f.imageUrl && <img className="a-preview" src={f.imageUrl} alt="Student card preview" />}
+        </>;
       }}
     />
   );

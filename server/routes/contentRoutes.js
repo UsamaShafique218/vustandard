@@ -2,8 +2,9 @@ import express from "express";
 import mongoose from "mongoose";
 import rateLimit from "express-rate-limit";
 import protect from "../middleware/authMiddleware.js";
-import { Subject, Quiz, Note, Project, Solution, Message, Attempt, Setting } from "../models/content.js";
+import { Subject, Quiz, Note, Project, LmsHandled, Solution, Message, Attempt, Setting } from "../models/content.js";
 import siteDefaults from "../../src/data/site.js";
+import lmsHandledDefaults from "../../src/data/lmsHandled.js";
 
 const router = express.Router();
 
@@ -51,6 +52,21 @@ crud("/notes", Note, {
 crud("/projects", Project, {
   fields: ["course", "title", "description", "youtubeUrl", "imageUrl", "projectUrl", "studentName", "tech", "order"],
   sort: { order: 1, createdAt: -1 },
+});
+
+crud("/lms-handled", LmsHandled, {
+  fields: ["name", "program", "semester", "type", "imageKey", "imageUrl", "order"],
+  sort: { order: 1, createdAt: -1 },
+  listHandler: async (_req, res) => {
+    const marker = await Setting.findOne({ key: "lms-handled-seed-v1" }).lean();
+    if (!marker) {
+      await LmsHandled.bulkWrite(lmsHandledDefaults.map((item) => ({
+        updateOne: { filter: { seedKey: item.seedKey }, update: { $setOnInsert: item }, upsert: true },
+      })));
+      await Setting.updateOne({ key: "lms-handled-seed-v1" }, { $setOnInsert: { data: { seeded: true } } }, { upsert: true });
+    }
+    res.json(await LmsHandled.find().sort({ order: 1, createdAt: -1 }).lean());
+  },
 });
 
 // Quizzes: the list omits questions; admins see every quiz, the public only published ones.
@@ -149,18 +165,19 @@ router.put("/settings", protect, async (req, res) => {
 });
 
 router.get("/stats", protect, async (req, res) => {
-  const [subjects, quizzes, notes, projects, solutions, messages, unread, attempts, recentAttempts] = await Promise.all([
+  const [subjects, quizzes, notes, projects, lmsHandled, solutions, messages, unread, attempts, recentAttempts] = await Promise.all([
     Subject.countDocuments(),
     Quiz.countDocuments(),
     Note.countDocuments(),
     Project.countDocuments(),
+    LmsHandled.countDocuments(),
     Solution.countDocuments(),
     Message.countDocuments(),
     Message.countDocuments({ read: false }),
     Attempt.countDocuments(),
     Attempt.find().sort({ createdAt: -1 }).limit(8).lean(),
   ]);
-  res.json({ subjects, quizzes, notes, projects, solutions, messages, unread, attempts, recentAttempts });
+  res.json({ subjects, quizzes, notes, projects, lmsHandled, solutions, messages, unread, attempts, recentAttempts });
 });
 
 export default router;

@@ -7,7 +7,7 @@ import { useSite, useWhatsApp } from "../lib/site";
 import { useApiData } from "../lib/api";
 import { WhatsAppIcon } from "../components/site/BrandIcons";
 import { Initials, Lightbox, YouTubeEmbed } from "../components/site/ui";
-import { lmsHandled, results, services, team, testimonials, whyChoose } from "../data/showcase";
+import { lmsHandled, lmsImageFor, results, services, team, testimonials, whyChoose } from "../data/showcase";
 import { projectCourses } from "../data/projects";
 import quizzes from "../data/quizzes";
 import subjects from "../data/subjects";
@@ -21,6 +21,8 @@ const rotating = ["quizzes", "assignments", "GDBs", "final projects"];
 
 function Hero() {
   const wa = useWhatsApp("Hi VU Standard! I'd like to book LMS support for this semester.");
+  const { data: lmsData } = useApiData("/lms-handled", lmsHandled);
+  const lmsCount = (lmsData || lmsHandled).length;
   const [i, setI] = useState(0);
   useEffect(() => {
     const t = setInterval(() => setI((n) => (n + 1) % rotating.length), 2400);
@@ -97,7 +99,7 @@ function Hero() {
       <div className="container">
         <dl className="stats">
           <div><dt>Happy students</dt><dd>2.5k+</dd></div>
-          <div><dt>LMS accounts handled</dt><dd>{lmsHandled.length}</dd></div>
+          <div><dt>LMS accounts handled</dt><dd>{lmsCount}</dd></div>
           <div><dt>VU subjects listed</dt><dd>{subjects.length}+</dd></div>
           <div><dt>Free practice quizzes</dt><dd>{quizzes.length}</dd></div>
         </dl>
@@ -257,7 +259,7 @@ function ProjectsPreview() {
 export function LmsCard({ item }) {
   return (
     <article className="lms-card card">
-      <img src={item.image} alt="" loading="lazy" />
+      <img src={item.imageUrl || item.image || lmsImageFor(item.imageKey)} alt="" loading="lazy" />
       <div>
         <h3>{item.name.toLowerCase()}</h3>
         <p>{item.program}</p>
@@ -271,6 +273,8 @@ export function LmsCard({ item }) {
 }
 
 function LmsPreview() {
+  const { data } = useApiData("/lms-handled", lmsHandled);
+  const records = data || lmsHandled;
   return (
     <section className="section">
       <div className="container">
@@ -280,10 +284,10 @@ function LmsPreview() {
             <h2>Students who trusted us with their LMS</h2>
             <p>We've handled Virtual University LMS accounts across programs with 100% timely submission and professional support.</p>
           </div>
-          <Link to="/lms-handled" className="btn btn-secondary">See all {lmsHandled.length} <ArrowRight /></Link>
+          <Link to="/lms-handled" className="btn btn-secondary">See all {records.length} <ArrowRight /></Link>
         </div>
         <div className="lms-grid">
-          {lmsHandled.slice(0, 8).map((item) => <LmsCard key={item.id} item={item} />)}
+          {records.slice(0, 8).map((item) => <LmsCard key={item._id || item.id} item={item} />)}
         </div>
       </div>
     </section>

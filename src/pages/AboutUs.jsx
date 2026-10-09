@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, BadgeCheck, GraduationCap, HeartHandshake } from "lucide-react";
 import { useWhatsApp } from "../lib/site";
+import { useApiData } from "../lib/api";
 import { PageHero } from "../components/site/ui";
 import { WhatsAppIcon } from "../components/site/BrandIcons";
 import { lmsHandled } from "../data/showcase";
@@ -15,6 +16,7 @@ const values = [
 
 export default function AboutUs() {
   const wa = useWhatsApp();
+  const { data: lmsData } = useApiData("/lms-handled", lmsHandled);
   return (
     <>
       <PageHero crumb="About" eyebrow="About us" title="Smart learning and development services for VU students" />
@@ -39,7 +41,7 @@ export default function AboutUs() {
             <strong>2.5k+</strong>
             <p>Happy students. Thank you for trusting us with your semester.</p>
             <dl>
-              <div><dt>LMS accounts handled</dt><dd>{lmsHandled.length}+</dd></div>
+              <div><dt>LMS accounts handled</dt><dd>{(lmsData || lmsHandled).length}+</dd></div>
               <div><dt>Subjects supported</dt><dd>{subjects.length}+</dd></div>
               <div><dt>Support availability</dt><dd>24/7</dd></div>
               <div><dt>On-time submissions</dt><dd>100%</dd></div>

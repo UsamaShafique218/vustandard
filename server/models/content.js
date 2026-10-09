@@ -85,6 +85,23 @@ projectSchema.pre("validate", function () {
 });
 export const Project = model("Project", projectSchema);
 
+export const LmsHandled = model(
+  "LmsHandled",
+  new Schema(
+    {
+      seedKey: { type: String, unique: true, sparse: true },
+      name: { type: String, required: true, trim: true, maxlength: 120 },
+      program: { type: String, required: true, trim: true, maxlength: 120 },
+      semester: { type: String, required: true, trim: true, maxlength: 40 },
+      type: { type: String, required: true, trim: true, maxlength: 80 },
+      imageKey: { type: String, trim: true, default: "" },
+      imageUrl: { type: String, trim: true, default: "" },
+      order: { type: Number, default: 0 },
+    },
+    opts
+  )
+);
+
 export const solutionLanguages = ["cpp", "c", "java", "csharp", "python", "javascript", "php", "html", "css", "sql", "assembly", "text"];
 
 export const Solution = model(

@@ -4,11 +4,12 @@ import "dotenv/config";
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import User from "./models/User.js";
-import { Subject, Quiz, Note, Solution } from "./models/content.js";
+import { Subject, Quiz, Note, LmsHandled, Solution, Setting } from "./models/content.js";
 import subjects from "../src/data/subjects.js";
 import sampleSolutions from "../src/data/solutions.js";
 import quizzes from "../src/data/quizzes.js";
 import notes from "../src/data/notes.js";
+import lmsHandled from "../src/data/lmsHandled.js";
 
 const departmentOf = Object.fromEntries(subjects.map((s) => [s.code, s.department]));
 
@@ -33,6 +34,14 @@ await Note.bulkWrite(
     updateOne: { filter: { subject: n.subject, term: n.term }, update: { $set: n }, upsert: true },
   }))
 );
+
+// Add the original public portfolio records once; admin edits remain intact.
+await LmsHandled.bulkWrite(
+  lmsHandled.map((item) => ({
+    updateOne: { filter: { seedKey: item.seedKey }, update: { $setOnInsert: item }, upsert: true },
+  }))
+);
+await Setting.updateOne({ key: "lms-handled-seed-v1" }, { $setOnInsert: { data: { seeded: true } } }, { upsert: true });
 
 // Sample solutions are only added once; after that they're managed from the admin panel.
 if (!(await Solution.exists({}))) {
